@@ -258,10 +258,19 @@ export class MemStorage implements IStorage {
       // Get book content from our new structure
       let bookContent;
       
+      // Check for available book content
       if (book.shortName === 'gen') {
         bookContent = bibleContent.genesis;
+      } else if (book.shortName === 'exo') {
+        bookContent = bibleContent.exodus;
+      } else if (book.shortName === 'mat') {
+        bookContent = bibleContent.matthew;
+      } else if (book.shortName === 'mrk') {
+        bookContent = bibleContent.mark;
+      } else if (book.shortName === 'jhn') {
+        bookContent = bibleContent.john;
       } else {
-        // For now, we only have Genesis content
+        // Content not available for this book yet
         return [];
       }
       

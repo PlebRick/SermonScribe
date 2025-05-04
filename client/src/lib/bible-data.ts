@@ -122,8 +122,8 @@ export const bibleBooks = [...oldTestamentBooks, ...newTestamentBooks];
 export const bibleContent = {
   // Old Testament fully defined
   genesis,
+  exodus,
   // Old Testament placeholders
-  exodus: { shortName: 'exo' },
   leviticus: { shortName: 'lev' },
   numbers: { shortName: 'num' },
   deuteronomy: { shortName: 'deu' },
@@ -162,13 +162,13 @@ export const bibleContent = {
   zechariah: { shortName: 'zec' },
   malachi: { shortName: 'mal' },
   
-  // New Testament content with proper sections
-  matthew: { shortName: 'mat' },
-  mark: { shortName: 'mrk' },
+  // New Testament with fully defined content
+  matthew,
+  mark,
+  john,
   
   // New Testament placeholders
   luke: { shortName: 'luk' },
-  john: { shortName: 'jhn' },
   acts: { shortName: 'act' },
   romans: { shortName: 'rom' },
   corinthians1: { shortName: '1co' },
