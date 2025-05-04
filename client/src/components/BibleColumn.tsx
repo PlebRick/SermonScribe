@@ -90,13 +90,17 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
     // We'll use our structured content data when available for any book
     if (window.__BIBLE_CONTENT__ && bookShortName) {
       console.log('Trying to load data for', bookShortName, 'chapter', chapter);
-      const bookData = window.__BIBLE_CONTENT__[bookShortName.toLowerCase()];
       
-      if (bookData) {
-        console.log(`${bookShortName} content available:`, true);
-        console.log(`${bookShortName} chapters:`, Object.keys(bookData).length);
+      // Access books by key name safely
+      const lowerBookName = bookShortName.toLowerCase();
+      if (lowerBookName === 'gen' && window.__BIBLE_CONTENT__.genesis) {
+        const bookData = window.__BIBLE_CONTENT__.genesis;
         
-        const chapterData = bookData[chapter];
+        console.log(`${bookShortName} content available:`, true);
+        console.log(`${bookShortName} chapters:`, bookData.chapters.length);
+        
+        // Find the chapter object in the chapters array
+        const chapterData = bookData.chapters.find((c: { chapter: number }) => c.chapter === chapter);
         if (chapterData && chapterData.sections) {
           console.log('Found chapter data, sections:', chapterData.sections.length);
           sections = chapterData.sections;
