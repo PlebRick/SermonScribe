@@ -49,12 +49,18 @@ export type Outline = typeof outlines.$inferSelect;
 export const manuscripts = pgTable("manuscripts", {
   id: serial("id").primaryKey(),
   outlineId: integer("outline_id").notNull(),
-  content: jsonb("content").notNull(),
+  content: jsonb("content").notNull(), // Will store sections with rich text content
 });
 
 export const insertManuscriptSchema = createInsertSchema(manuscripts).omit({ id: true });
 export type InsertManuscript = z.infer<typeof insertManuscriptSchema>;
 export type Manuscript = typeof manuscripts.$inferSelect;
+
+// Custom type for strongly-typed manuscript content with rich text
+export interface ManuscriptSection {
+  title: string;
+  content: string; // HTML content from rich text editor
+}
 
 // Commentaries
 export const commentaries = pgTable("commentaries", {

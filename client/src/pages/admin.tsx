@@ -587,16 +587,18 @@ function OutlineEditor({
   );
 }
 
+import RichTextEditor from '@/components/RichTextEditor';
+import { ManuscriptSection } from '@shared/schema';
+
 function ManuscriptEditor({ 
   outlineId, 
   onSave 
 }: { 
   outlineId: number,
-
   onSave: (manuscript: Manuscript) => void
 }) {
-  const [sections, setSections] = useState<{title: string, paragraphs: string[]}[]>([
-    { title: "", paragraphs: [""] }
+  const [sections, setSections] = useState<ManuscriptSection[]>([
+    { title: "", content: "" }
   ]);
 
   const { data: manuscript } = useQuery<Manuscript>({
@@ -605,16 +607,47 @@ function ManuscriptEditor({
     refetchOnWindowFocus: false,
   });
 
+  const { data: outline } = useQuery<Outline>({
+    queryKey: ["/api/outlines", outlineId],
+    enabled: !!outlineId,
+    refetchOnWindowFocus: false,
+  });
+
   useEffect(() => {
     if (manuscript) {
-      setSections(manuscript.content);
+      // Handle existing manuscript format conversion if needed
+      if (Array.isArray(manuscript.content)) {
+        if ('paragraphs' in manuscript.content[0]) {
+          // Convert old format to new format
+          const convertedSections = (manuscript.content as any[]).map(oldSection => ({
+            title: oldSection.title || '',
+            content: oldSection.paragraphs ? oldSection.paragraphs.join('<br/>') : ''
+          }));
+          setSections(convertedSections);
+        } else {
+          // Already in new format
+          setSections(manuscript.content as ManuscriptSection[]);
+        }
+      } else {
+        // Default to empty section if content is not as expected
+        setSections([{ title: "", content: "" }]);
+      }
     } else {
-      setSections([{ title: "", paragraphs: [""] }]);
+      // Initialize with a default section for new manuscripts
+      // If we have an outline, use its title as a starting point
+      if (outline) {
+        setSections([{ 
+          title: outline.title || "Introduction", 
+          content: "<p>Enter your manuscript content here...</p>" 
+        }]);
+      } else {
+        setSections([{ title: "", content: "" }]);
+      }
     }
-  }, [manuscript, outlineId]);
+  }, [manuscript, outline, outlineId]);
 
   const addSection = () => {
-    setSections([...sections, { title: "", paragraphs: [""] }]);
+    setSections([...sections, { title: "", content: "" }]);
   };
 
   const updateSectionTitle = (index: number, title: string) => {
@@ -623,22 +656,9 @@ function ManuscriptEditor({
     setSections(newSections);
   };
 
-  const addParagraph = (sectionIndex: number) => {
+  const updateSectionContent = (index: number, content: string) => {
     const newSections = [...sections];
-    newSections[sectionIndex].paragraphs.push("");
-    setSections(newSections);
-  };
-
-  const updateParagraph = (sectionIndex: number, paragraphIndex: number, text: string) => {
-    const newSections = [...sections];
-    newSections[sectionIndex].paragraphs[paragraphIndex] = text;
-    setSections(newSections);
-  };
-
-  const removeParagraph = (sectionIndex: number, paragraphIndex: number) => {
-    const newSections = [...sections];
-    newSections[sectionIndex].paragraphs = newSections[sectionIndex].paragraphs
-      .filter((_, i) => i !== paragraphIndex);
+    newSections[index].content = content;
     setSections(newSections);
   };
 
@@ -649,13 +669,9 @@ function ManuscriptEditor({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Filter out empty sections and paragraphs
+    // Filter out completely empty sections
     const filteredSections = sections
-      .filter(section => section.title.trim() !== "" || section.paragraphs.some(p => p.trim() !== ""))
-      .map(section => ({
-        title: section.title,
-        paragraphs: section.paragraphs.filter(p => p.trim() !== "")
-      }));
+      .filter(section => section.title.trim() !== "" || section.content.trim() !== "");
     
     const manuscriptData: Manuscript = {
       id: manuscript?.id,
@@ -668,9 +684,26 @@ function ManuscriptEditor({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {outline && (
+        <div className="bg-muted p-4 rounded-md mb-4">
+          <h3 className="text-lg font-medium mb-2">{outline.title}</h3>
+          <div className="text-sm text-muted-foreground mb-2">
+            {outline.bookId}:{outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+          </div>
+          <div>
+            <strong>Outline Points:</strong>
+            <ul className="list-disc pl-5 mt-1">
+              {outline.points && Array.isArray(outline.points) && outline.points.map((point: string, idx: number) => (
+                <li key={idx}>{point}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
       {sections.map((section, sectionIndex) => (
-        <Card key={sectionIndex}>
-          <CardHeader>
+        <Card key={sectionIndex} className="overflow-hidden">
+          <CardHeader className="pb-3">
             <div className="flex justify-between items-center">
               <Input
                 value={section.title}
@@ -688,35 +721,11 @@ function ManuscriptEditor({
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {section.paragraphs.map((paragraph, paragraphIndex) => (
-              <div key={paragraphIndex} className="space-y-2">
-                <div className="flex justify-between items-start">
-                  <Label>Paragraph {paragraphIndex + 1}</Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeParagraph(sectionIndex, paragraphIndex)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-                <Textarea
-                  value={paragraph}
-                  onChange={(e) => updateParagraph(sectionIndex, paragraphIndex, e.target.value)}
-                  rows={4}
-                />
-              </div>
-            ))}
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => addParagraph(sectionIndex)}
-            >
-              Add Paragraph
-            </Button>
+          <CardContent>
+            <RichTextEditor 
+              content={section.content} 
+              onChange={(html) => updateSectionContent(sectionIndex, html)}
+            />
           </CardContent>
         </Card>
       ))}
