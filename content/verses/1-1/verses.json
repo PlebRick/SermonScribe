@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "bookId": 1,
+    "chapter": 1,
+    "verse": 1,
+    "text": "In the beginning God created the heaven and the earth."
+  },
+  {
+    "id": 2,
+    "bookId": 1,
+    "chapter": 1,
+    "verse": 2,
+    "text": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters."
+  },
+  {
+    "id": 3,
+    "bookId": 1,
+    "chapter": 1,
+    "verse": 3,
+    "text": "And God said, Let there be light: and there was light."
+  },
+  {
+    "id": 4,
+    "bookId": 1,
+    "chapter": 1,
+    "verse": 4,
+    "text": "And God saw the light, that it was good: and God divided the light from the darkness."
+  },
+  {
+    "id": 5,
+    "bookId": 1,
+    "chapter": 1,
+    "verse": 5,
+    "text": "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day."
+  }
+]

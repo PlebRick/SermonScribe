@@ -25,6 +25,14 @@ export interface IStorage {
   getOutlineById(id: number): Promise<Outline | undefined>;
   getManuscriptByOutlineId(outlineId: number): Promise<Manuscript | undefined>;
   getCommentariesByBookAndChapter(bookId: number, chapter: number): Promise<Commentary[]>;
+  
+  // Content management methods (for editing content)
+  saveOutline?(outline: Outline): Promise<Outline>;
+  saveManuscript?(manuscript: Manuscript): Promise<Manuscript>;
+  saveCommentary?(commentary: Commentary): Promise<Commentary>;
+  deleteOutline?(id: number): Promise<boolean>;
+  deleteManuscript?(id: number): Promise<boolean>;
+  deleteCommentary?(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -294,4 +302,8 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Import our file-based storage implementation
+import { fileStorage } from './fileStorage';
+
+// Use FileStorage for production to enable content editing through files
+export const storage = fileStorage;
