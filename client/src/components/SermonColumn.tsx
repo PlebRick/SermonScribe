@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useBible } from "@/contexts/BibleContext";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -39,6 +39,13 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     queryKey: ["/api/manuscripts", activeOutlineId],
     enabled: activeTab === SERMON_TABS.MANUSCRIPT && !!activeOutlineId,
   });
+  
+  // Log manuscript data when it changes
+  useEffect(() => {
+    if (manuscript) {
+      console.log("Manuscript loaded successfully:", manuscript);
+    }
+  }, [manuscript]);
 
   const { data: commentaries = [], isLoading: isLoadingCommentaries } = useQuery<any[]>({
     queryKey: ["/api/commentaries", currentBook?.id, currentChapter],

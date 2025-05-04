@@ -1042,14 +1042,29 @@ export class FileStorage implements IStorage {
   }
 
   async getManuscriptByOutlineId(outlineId: number): Promise<Manuscript | undefined> {
-    // For simplicity, we're assuming manuscript IDs match outline IDs
-    const filePath = path.join(CONTENT_DIR, 'manuscripts', `${outlineId}.json`);
-    if (!fs.existsSync(filePath)) {
-      return undefined;
+    console.log(`Looking for manuscript with outlineId: ${outlineId}`);
+    
+    // First try to find a manuscript with this outlineId
+    const manuscriptsDir = path.join(CONTENT_DIR, 'manuscripts');
+    const files = fs.readdirSync(manuscriptsDir).filter(file => file.endsWith('.json'));
+    
+    for (const file of files) {
+      const filePath = path.join(manuscriptsDir, file);
+      const content = fs.readFileSync(filePath, 'utf-8');
+      try {
+        const manuscript = JSON.parse(content) as Manuscript;
+        if (manuscript.outlineId === outlineId) {
+          console.log(`Found manuscript with matching outlineId: ${outlineId} (file: ${file})`);
+          return manuscript;
+        }
+      } catch (error) {
+        console.error(`Error parsing manuscript file ${file}:`, error);
+      }
     }
     
-    const content = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(content) as Manuscript;
+    // If we get here, no manuscript was found
+    console.log(`No manuscript found for outlineId: ${outlineId}`);
+    return undefined;
   }
 
   async getCommentariesByBookAndChapter(bookId: number, chapter: number): Promise<Commentary[]> {
