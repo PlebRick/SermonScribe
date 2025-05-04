@@ -183,7 +183,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                         {/* Check for the new format with HTML content or fall back to old format */}
                         {section.content ? (
                           <div 
-                            className="prose dark:prose-invert max-w-none" 
+                            className="prose dark:prose-invert max-w-none prose-headings:text-primary prose-headings:font-semibold prose-p:my-2 prose-ul:my-1 prose-ol:my-1" 
                             dangerouslySetInnerHTML={{ __html: section.content }}
                           />
                         ) : section.paragraphs ? (
@@ -220,7 +220,15 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                       {currentBook?.name} {commentary.chapter}:{commentary.verse}
                     </h3>
                     <div className="p-4 bg-gray-50 dark:bg-[hsl(220,13%,15%)] rounded-lg">
-                      <p className="mb-2">{commentary.content}</p>
+                      {/* Display formatted content if it's HTML, otherwise display as plain text */}
+                      {commentary.content.includes('<') && commentary.content.includes('>') ? (
+                        <div 
+                          className="prose dark:prose-invert max-w-none prose-headings:text-primary prose-headings:font-semibold prose-p:my-2 prose-ul:my-1 prose-ol:my-1" 
+                          dangerouslySetInnerHTML={{ __html: commentary.content }}
+                        />
+                      ) : (
+                        <p className="mb-2">{commentary.content}</p>
+                      )}
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                         — {commentary.source}
                       </p>
