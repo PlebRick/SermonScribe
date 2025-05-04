@@ -63,7 +63,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Get outline by ID
-  app.get("/api/outlines/:id", asyncHandler(async (req, res) => {
+  app.get("/api/outlines/by-id/:id", asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid outline ID" });
