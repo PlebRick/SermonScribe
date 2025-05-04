@@ -466,6 +466,255 @@ export const john = {
           ]
         }
       ]
+    },
+    {
+      id: 7,
+      chapter: 7,
+      title: "Jesus at the Feast of Tabernacles",
+      sections: [
+        {
+          title: "Jesus' Brothers Disbelieve",
+          verses: [
+            { verse: 1, text: "After these things, Jesus was walking in Galilee, for he wouldn't walk in Judea, because the Jews sought to kill him." },
+            { verse: 2, text: "Now the feast of the Jews, the Feast of Booths, was at hand." },
+            { verse: 3, text: "His brothers therefore said to him, \"Depart from here and go into Judea, that your disciples also may see your works which you do." },
+            { verse: 4, text: "For no one does anything in secret while he seeks to be known openly. If you do these things, reveal yourself to the world.\"" },
+            { verse: 5, text: "For even his brothers didn't believe in him." },
+            { verse: 6, text: "Jesus therefore said to them, \"My time has not yet come, but your time is always ready." },
+            { verse: 7, text: "The world can't hate you, but it hates me, because I testify about it, that its works are evil." },
+            { verse: 8, text: "You go up to the feast. I am not yet going up to this feast, because my time is not yet fulfilled.\"" },
+            { verse: 9, text: "Having said these things to them, he stayed in Galilee." }
+          ]
+        },
+        {
+          title: "Jesus at the Feast",
+          verses: [
+            { verse: 10, text: "But when his brothers had gone up to the feast, then he also went up, not publicly, but as it were in secret." },
+            { verse: 11, text: "The Jews therefore sought him at the feast, and said, \"Where is he?\"" },
+            { verse: 12, text: "There was much murmuring among the multitudes concerning him. Some said, \"He is a good man.\" Others said, \"Not so, but he leads the multitude astray.\"" },
+            { verse: 13, text: "Yet no one spoke openly of him for fear of the Jews." },
+            { verse: 14, text: "But when it was now the middle of the feast, Jesus went up into the temple and taught." },
+            { verse: 15, text: "The Jews therefore marveled, saying, \"How does this man know letters, having never been educated?\"" },
+            { verse: 16, text: "Jesus therefore answered them, \"My teaching is not mine, but his who sent me." },
+            { verse: 17, text: "If anyone desires to do his will, he will know about the teaching, whether it is from God, or if I am speaking from myself." },
+            { verse: 18, text: "He who speaks from himself seeks his own glory, but he who seeks the glory of him who sent him is true, and no unrighteousness is in him." },
+            { verse: 19, text: "Didn't Moses give you the law, and yet none of you keeps the law? Why do you seek to kill me?\"" },
+            { verse: 20, text: "The multitude answered, \"You have a demon! Who seeks to kill you?\"" },
+            { verse: 21, text: "Jesus answered them, \"I did one work and you all marvel because of it." },
+            { verse: 22, text: "Moses has given you circumcision (not that it is of Moses, but of the fathers), and on the Sabbath you circumcise a boy." },
+            { verse: 23, text: "If a boy receives circumcision on the Sabbath, that the law of Moses may not be broken, are you angry with me, because I made a man completely healthy on the Sabbath?" },
+            { verse: 24, text: "Don't judge according to appearance, but judge righteous judgment.\"" }
+          ]
+        },
+        {
+          title: "Is This the Christ?",
+          verses: [
+            { verse: 25, text: "Therefore some of them of Jerusalem said, \"Isn't this he whom they seek to kill?" },
+            { verse: 26, text: "Behold, he speaks openly, and they say nothing to him. Can it be that the rulers indeed know that this is truly the Christ?" },
+            { verse: 27, text: "However we know where this man comes from, but when the Christ comes, no one will know where he comes from.\"" },
+            { verse: 28, text: "Jesus therefore cried out in the temple, teaching and saying, \"You both know me, and know where I am from. I have not come of myself, but he who sent me is true, whom you don't know." },
+            { verse: 29, text: "I know him, because I am from him, and he sent me.\"" },
+            { verse: 30, text: "They sought therefore to take him; but no one laid a hand on him, because his hour had not yet come." },
+            { verse: 31, text: "But of the multitude, many believed in him. They said, \"When the Christ comes, he won't do more signs than those which this man has done, will he?\"" },
+            { verse: 32, text: "The Pharisees heard the multitude murmuring these things concerning him, and the chief priests and the Pharisees sent officers to arrest him." }
+          ]
+        },
+        {
+          title: "Rivers of Living Water",
+          verses: [
+            { verse: 33, text: "Then Jesus said, \"I will be with you a little while longer, then I go to him who sent me." },
+            { verse: 34, text: "You will seek me, and won't find me. You can't come where I am.\"" },
+            { verse: 35, text: "The Jews therefore said among themselves, \"Where will this man go that we won't find him? Will he go to the Dispersion among the Greeks, and teach the Greeks?" },
+            { verse: 36, text: "What is this word that he said, 'You will seek me, and won't find me;' and 'Where I am, you can't come'?\"" },
+            { verse: 37, text: "Now on the last and greatest day of the feast, Jesus stood and cried out, \"If anyone is thirsty, let him come to me and drink!" },
+            { verse: 38, text: "He who believes in me, as the Scripture has said, from within him will flow rivers of living water.\"" },
+            { verse: 39, text: "But he said this about the Spirit, which those believing in him were to receive. For the Holy Spirit was not yet given, because Jesus wasn't yet glorified." }
+          ]
+        },
+        {
+          title: "Division Among the People",
+          verses: [
+            { verse: 40, text: "Many of the multitude therefore, when they heard these words, said, \"This is truly the prophet.\"" },
+            { verse: 41, text: "Others said, \"This is the Christ.\" But some said, \"What, does the Christ come out of Galilee?" },
+            { verse: 42, text: "Hasn't the Scripture said that the Christ comes of the offspring of David, and from Bethlehem, the village where David was?\"" },
+            { verse: 43, text: "So a division arose in the multitude because of him." },
+            { verse: 44, text: "Some of them would have arrested him, but no one laid hands on him." }
+          ]
+        },
+        {
+          title: "The Unbelief of Those in Authority",
+          verses: [
+            { verse: 45, text: "The officers therefore came to the chief priests and Pharisees, and they said to them, \"Why didn't you bring him?\"" },
+            { verse: 46, text: "The officers answered, \"No man ever spoke like this man!\"" },
+            { verse: 47, text: "The Pharisees therefore answered them, \"You aren't also led astray, are you?" },
+            { verse: 48, text: "Have any of the rulers believed in him, or of the Pharisees?" },
+            { verse: 49, text: "But this multitude that doesn't know the law is cursed.\"" },
+            { verse: 50, text: "Nicodemus (he who came to him by night, being one of them) said to them," },
+            { verse: 51, text: "\"Does our law judge a man, unless it first hears from him personally and knows what he does?\"" },
+            { verse: 52, text: "They answered him, \"Are you also from Galilee? Search, and see that no prophet has arisen out of Galilee.\"" },
+            { verse: 53, text: "Everyone went to his own house," }
+          ]
+        }
+      ]
+    },
+    {
+      id: 8,
+      chapter: 8,
+      title: "The Woman Caught in Adultery",
+      sections: [
+        {
+          title: "The Woman Caught in Adultery",
+          verses: [
+            { verse: 1, text: "but Jesus went to the Mount of Olives." },
+            { verse: 2, text: "Now very early in the morning, he came again into the temple, and all the people came to him. He sat down and taught them." },
+            { verse: 3, text: "The scribes and the Pharisees brought a woman taken in adultery. Having set her in the middle," },
+            { verse: 4, text: "they told him, \"Teacher, we found this woman in adultery, in the very act." },
+            { verse: 5, text: "Now in our law, Moses commanded us to stone such women. What then do you say about her?\"" },
+            { verse: 6, text: "They said this testing him, that they might have something to accuse him of. But Jesus stooped down and wrote on the ground with his finger." },
+            { verse: 7, text: "But when they continued asking him, he looked up and said to them, \"He who is without sin among you, let him throw the first stone at her.\"" },
+            { verse: 8, text: "Again he stooped down and wrote on the ground with his finger." },
+            { verse: 9, text: "They, when they heard it, being convicted by their conscience, went out one by one, beginning from the oldest, even to the last. Jesus was left alone with the woman where she was, in the middle." },
+            { verse: 10, text: "Jesus, standing up, saw her and said, \"Woman, where are your accusers? Did no one condemn you?\"" },
+            { verse: 11, text: "She said, \"No one, Lord.\" Jesus said, \"Neither do I condemn you. Go your way. From now on, sin no more.\"" }
+          ]
+        },
+        {
+          title: "I Am the Light of the World",
+          verses: [
+            { verse: 12, text: "Again, therefore, Jesus spoke to them, saying, \"I am the light of the world. He who follows me will not walk in the darkness, but will have the light of life.\"" },
+            { verse: 13, text: "The Pharisees therefore said to him, \"You testify about yourself. Your testimony is not valid.\"" },
+            { verse: 14, text: "Jesus answered them, \"Even if I testify about myself, my testimony is true, for I know where I came from, and where I am going; but you don't know where I came from, or where I am going." },
+            { verse: 15, text: "You judge according to the flesh. I judge no one." },
+            { verse: 16, text: "Even if I do judge, my judgment is true, for I am not alone, but I am with the Father who sent me." },
+            { verse: 17, text: "It's also written in your law that the testimony of two people is valid." },
+            { verse: 18, text: "I am one who testifies about myself, and the Father who sent me testifies about me.\"" },
+            { verse: 19, text: "They said therefore to him, \"Where is your Father?\" Jesus answered, \"You know neither me nor my Father. If you knew me, you would know my Father also.\"" },
+            { verse: 20, text: "Jesus spoke these words in the treasury, as he taught in the temple. Yet no one arrested him, because his hour had not yet come." }
+          ]
+        },
+        {
+          title: "Where I Am Going You Cannot Come",
+          verses: [
+            { verse: 21, text: "Jesus said therefore again to them, \"I am going away, and you will seek me, and you will die in your sins. Where I go, you can't come.\"" },
+            { verse: 22, text: "The Jews therefore said, \"Will he kill himself, because he says, 'Where I am going, you can't come'?\"" },
+            { verse: 23, text: "He said to them, \"You are from beneath. I am from above. You are of this world. I am not of this world." },
+            { verse: 24, text: "I said therefore to you that you will die in your sins; for unless you believe that I am he, you will die in your sins.\"" },
+            { verse: 25, text: "They said therefore to him, \"Who are you?\" Jesus said to them, \"Just what I have been saying to you from the beginning." },
+            { verse: 26, text: "I have many things to speak and to judge concerning you. However he who sent me is true; and the things which I heard from him, these I say to the world.\"" },
+            { verse: 27, text: "They didn't understand that he spoke to them about the Father." },
+            { verse: 28, text: "Jesus therefore said to them, \"When you have lifted up the Son of Man, then you will know that I am he, and I do nothing of myself, but as my Father taught me, I say these things." },
+            { verse: 29, text: "He who sent me is with me. The Father hasn't left me alone, for I always do the things that are pleasing to him.\"" },
+            { verse: 30, text: "As he spoke these things, many believed in him." }
+          ]
+        },
+        {
+          title: "The Truth Will Make You Free",
+          verses: [
+            { verse: 31, text: "Jesus therefore said to those Jews who had believed him, \"If you remain in my word, then you are truly my disciples." },
+            { verse: 32, text: "You will know the truth, and the truth will make you free.\"" },
+            { verse: 33, text: "They answered him, \"We are Abraham's offspring, and have never been in bondage to anyone. How do you say, 'You will be made free'?\"" },
+            { verse: 34, text: "Jesus answered them, \"Most certainly I tell you, everyone who commits sin is the bondservant of sin." },
+            { verse: 35, text: "A bondservant doesn't live in the house forever. A son remains forever." },
+            { verse: 36, text: "If therefore the Son makes you free, you will be free indeed." },
+            { verse: 37, text: "I know that you are Abraham's offspring, yet you seek to kill me, because my word finds no place in you." },
+            { verse: 38, text: "I say the things which I have seen with my Father; and you also do the things which you have seen with your father.\"" }
+          ]
+        },
+        {
+          title: "Your Father the Devil",
+          verses: [
+            { verse: 39, text: "They answered him, \"Our father is Abraham.\" Jesus said to them, \"If you were Abraham's children, you would do the works of Abraham." },
+            { verse: 40, text: "But now you seek to kill me, a man who has told you the truth which I heard from God. Abraham didn't do this." },
+            { verse: 41, text: "You do the works of your father.\" They said to him, \"We were not born of sexual immorality. We have one Father, God.\"" },
+            { verse: 42, text: "Therefore Jesus said to them, \"If God were your father, you would love me, for I came out and have come from God. For I haven't come of myself, but he sent me." },
+            { verse: 43, text: "Why don't you understand my speech? Because you can't hear my word." },
+            { verse: 44, text: "You are of your father, the devil, and you want to do the desires of your father. He was a murderer from the beginning, and doesn't stand in the truth, because there is no truth in him. When he speaks a lie, he speaks on his own; for he is a liar, and the father of lies." },
+            { verse: 45, text: "But because I tell the truth, you don't believe me." },
+            { verse: 46, text: "Which of you convicts me of sin? If I tell the truth, why do you not believe me?" },
+            { verse: 47, text: "He who is of God hears the words of God. For this cause you don't hear, because you are not of God.\"" }
+          ]
+        },
+        {
+          title: "Before Abraham Was, I AM",
+          verses: [
+            { verse: 48, text: "Then the Jews answered him, \"Don't we say well that you are a Samaritan, and have a demon?\"" },
+            { verse: 49, text: "Jesus answered, \"I don't have a demon, but I honor my Father and you dishonor me." },
+            { verse: 50, text: "But I don't seek my own glory. There is one who seeks and judges." },
+            { verse: 51, text: "Most certainly, I tell you, if a person keeps my word, he will never see death.\"" },
+            { verse: 52, text: "Then the Jews said to him, \"Now we know that you have a demon. Abraham died, as did the prophets; and you say, 'If a man keeps my word, he will never taste of death.'" },
+            { verse: 53, text: "Are you greater than our father, Abraham, who died? The prophets died. Who do you make yourself out to be?\"" },
+            { verse: 54, text: "Jesus answered, \"If I glorify myself, my glory is nothing. It is my Father who glorifies me, of whom you say that he is our God." },
+            { verse: 55, text: "You have not known him, but I know him. If I said, 'I don't know him,' I would be like you, a liar. But I know him and keep his word." },
+            { verse: 56, text: "Your father Abraham rejoiced to see my day. He saw it, and was glad.\"" },
+            { verse: 57, text: "The Jews therefore said to him, \"You are not yet fifty years old! Have you seen Abraham?\"" },
+            { verse: 58, text: "Jesus said to them, \"Most certainly, I tell you, before Abraham came into existence, I AM.\"" },
+            { verse: 59, text: "Therefore they took up stones to throw at him, but Jesus was hidden, and went out of the temple, having gone through the middle of them, and so passed by." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 9,
+      chapter: 9,
+      title: "Jesus Heals a Man Born Blind",
+      sections: [
+        {
+          title: "Jesus Heals a Man Born Blind",
+          verses: [
+            { verse: 1, text: "As he passed by, he saw a man blind from birth." },
+            { verse: 2, text: "His disciples asked him, \"Rabbi, who sinned, this man or his parents, that he was born blind?\"" },
+            { verse: 3, text: "Jesus answered, \"This man didn't sin, nor did his parents; but, that the works of God might be revealed in him." },
+            { verse: 4, text: "I must work the works of him who sent me while it is day. The night is coming, when no one can work." },
+            { verse: 5, text: "While I am in the world, I am the light of the world.\"" },
+            { verse: 6, text: "When he had said this, he spat on the ground, made mud with the saliva, anointed the blind man's eyes with the mud," },
+            { verse: 7, text: "and said to him, \"Go, wash in the pool of Siloam\" (which means \"Sent\"). So he went away, washed, and came back seeing." },
+            { verse: 8, text: "The neighbors therefore, and those who saw that he was blind before, said, \"Isn't this he who sat and begged?\"" },
+            { verse: 9, text: "Others were saying, \"It is he.\" Still others were saying, \"He looks like him.\" He said, \"I am he.\"" },
+            { verse: 10, text: "They therefore were asking him, \"How were your eyes opened?\"" },
+            { verse: 11, text: "He answered, \"A man called Jesus made mud, anointed my eyes, and said to me, 'Go to the pool of Siloam and wash.' So I went away and washed, and I received sight.\"" },
+            { verse: 12, text: "Then they asked him, \"Where is he?\" He said, \"I don't know.\"" }
+          ]
+        },
+        {
+          title: "The Pharisees Investigate the Healing",
+          verses: [
+            { verse: 13, text: "They brought him who had been blind to the Pharisees." },
+            { verse: 14, text: "It was a Sabbath when Jesus made the mud and opened his eyes." },
+            { verse: 15, text: "Again therefore the Pharisees also asked him how he received his sight. He said to them, \"He put mud on my eyes, I washed, and I see.\"" },
+            { verse: 16, text: "Some therefore of the Pharisees said, \"This man is not from God, because he doesn't keep the Sabbath.\" Others said, \"How can a man who is a sinner do such signs?\" So there was division among them." },
+            { verse: 17, text: "Therefore they asked the blind man again, \"What do you say about him, because he opened your eyes?\" He said, \"He is a prophet.\"" },
+            { verse: 18, text: "The Jews therefore didn't believe concerning him, that he had been blind, and had received his sight, until they called the parents of him who had received his sight," },
+            { verse: 19, text: "and asked them, \"Is this your son, whom you say was born blind? How then does he now see?\"" },
+            { verse: 20, text: "His parents answered them, \"We know that this is our son, and that he was born blind;" },
+            { verse: 21, text: "but how he now sees, we don't know; or who opened his eyes, we don't know. He is of age. Ask him. He will speak for himself.\"" },
+            { verse: 22, text: "His parents said these things because they feared the Jews; for the Jews had already agreed that if any man would confess him as Christ, he would be put out of the synagogue." },
+            { verse: 23, text: "Therefore his parents said, \"He is of age. Ask him.\"" },
+            { verse: 24, text: "So they called the man who was blind a second time, and said to him, \"Give glory to God. We know that this man is a sinner.\"" },
+            { verse: 25, text: "He therefore answered, \"I don't know if he is a sinner. One thing I do know: that though I was blind, now I see.\"" },
+            { verse: 26, text: "They said to him again, \"What did he do to you? How did he open your eyes?\"" },
+            { verse: 27, text: "He answered them, \"I told you already, and you didn't listen. Why do you want to hear it again? You don't also want to become his disciples, do you?\"" },
+            { verse: 28, text: "They insulted him and said, \"You are his disciple, but we are disciples of Moses." },
+            { verse: 29, text: "We know that God has spoken to Moses. But as for this man, we don't know where he comes from.\"" },
+            { verse: 30, text: "The man answered them, \"How amazing! You don't know where he comes from, yet he opened my eyes." },
+            { verse: 31, text: "We know that God doesn't listen to sinners, but if anyone is a worshiper of God, and does his will, he listens to him." },
+            { verse: 32, text: "Since the world began it has never been heard of that anyone opened the eyes of someone born blind." },
+            { verse: 33, text: "If this man were not from God, he could do nothing.\"" },
+            { verse: 34, text: "They answered him, \"You were altogether born in sins, and do you teach us?\" Then they threw him out." }
+          ]
+        },
+        {
+          title: "Spiritual Blindness",
+          verses: [
+            { verse: 35, text: "Jesus heard that they had thrown him out, and finding him, he said, \"Do you believe in the Son of God?\"" },
+            { verse: 36, text: "He answered, \"Who is he, Lord, that I may believe in him?\"" },
+            { verse: 37, text: "Jesus said to him, \"You have both seen him, and it is he who speaks with you.\"" },
+            { verse: 38, text: "He said, \"Lord, I believe!\" and he worshiped him." },
+            { verse: 39, text: "Jesus said, \"I came into this world for judgment, that those who don't see may see; and that those who see may become blind.\"" },
+            { verse: 40, text: "Those of the Pharisees who were with him heard these things, and said to him, \"Are we also blind?\"" },
+            { verse: 41, text: "Jesus said to them, \"If you were blind, you would have no sin; but now you say, 'We see.' Therefore your sin remains." }
+          ]
+        }
+      ]
     }
   ]
 };
