@@ -91,15 +91,16 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
     if (window.__BIBLE_CONTENT__ && bookShortName) {
       console.log('Trying to load data for', bookShortName, 'chapter', chapter);
       
-      // Access books by their shortnames
-      const bookKey = Object.keys(window.__BIBLE_CONTENT__).find(key => {
+      // Access books by their shortnames - cast to Record to fix TypeScript issues
+      const bibleContent = window.__BIBLE_CONTENT__ as Record<string, any>;
+      const bookKey = Object.keys(bibleContent).find(key => {
         // Match either by direct name or by shortName property
         return key === bookShortName.toLowerCase() || 
-               (window.__BIBLE_CONTENT__[key].shortName === bookShortName.toLowerCase());
+               (bibleContent[key]?.shortName === bookShortName.toLowerCase());
       });
       
-      if (bookKey && window.__BIBLE_CONTENT__[bookKey]) {
-        const bookData = window.__BIBLE_CONTENT__[bookKey];
+      if (bookKey && bibleContent[bookKey]) {
+        const bookData = bibleContent[bookKey];
         
         console.log(`${bookShortName} content available:`, true);
         
@@ -118,8 +119,8 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
           console.log('No chapters found in book data');
         }
       } else {
-        console.log(`Content for ${bookShortName} not found in window.__BIBLE_CONTENT__`);
-        console.log('Available books:', Object.keys(window.__BIBLE_CONTENT__ || {}).join(', '));
+        console.log(`Content for ${bookShortName} not found in bible content`);
+        console.log('Available books:', Object.keys(bibleContent).join(', '));
       }
     }
   } catch (err) {

@@ -73,7 +73,7 @@ export class FileStorage implements IStorage {
   }
 
   private initializeBibleBooks() {
-    // Initialize more books from both Old and New Testaments
+    // Initialize all books from both Old and New Testaments
     const books: Book[] = [
       // Old Testament
       {
@@ -116,6 +116,278 @@ export class FileStorage implements IStorage {
         position: 5,
         chapterCount: 34
       },
+      {
+        id: 6,
+        name: "Joshua",
+        shortName: "jos",
+        testament: "old",
+        position: 6,
+        chapterCount: 24
+      },
+      {
+        id: 7,
+        name: "Judges",
+        shortName: "jdg",
+        testament: "old",
+        position: 7,
+        chapterCount: 21
+      },
+      {
+        id: 8,
+        name: "Ruth",
+        shortName: "rut",
+        testament: "old",
+        position: 8,
+        chapterCount: 4
+      },
+      {
+        id: 9,
+        name: "1 Samuel",
+        shortName: "1sa",
+        testament: "old",
+        position: 9,
+        chapterCount: 31
+      },
+      {
+        id: 10,
+        name: "2 Samuel",
+        shortName: "2sa",
+        testament: "old",
+        position: 10,
+        chapterCount: 24
+      },
+      {
+        id: 11,
+        name: "1 Kings",
+        shortName: "1ki",
+        testament: "old",
+        position: 11,
+        chapterCount: 22
+      },
+      {
+        id: 12,
+        name: "2 Kings",
+        shortName: "2ki",
+        testament: "old",
+        position: 12,
+        chapterCount: 25
+      },
+      {
+        id: 13,
+        name: "1 Chronicles",
+        shortName: "1ch",
+        testament: "old",
+        position: 13,
+        chapterCount: 29
+      },
+      {
+        id: 14,
+        name: "2 Chronicles",
+        shortName: "2ch",
+        testament: "old",
+        position: 14,
+        chapterCount: 36
+      },
+      {
+        id: 15,
+        name: "Ezra",
+        shortName: "ezr",
+        testament: "old",
+        position: 15,
+        chapterCount: 10
+      },
+      {
+        id: 16,
+        name: "Nehemiah",
+        shortName: "neh",
+        testament: "old",
+        position: 16,
+        chapterCount: 13
+      },
+      {
+        id: 17,
+        name: "Esther",
+        shortName: "est",
+        testament: "old",
+        position: 17,
+        chapterCount: 10
+      },
+      {
+        id: 18,
+        name: "Job",
+        shortName: "job",
+        testament: "old",
+        position: 18,
+        chapterCount: 42
+      },
+      {
+        id: 19,
+        name: "Psalms",
+        shortName: "psa",
+        testament: "old",
+        position: 19,
+        chapterCount: 150
+      },
+      {
+        id: 20,
+        name: "Proverbs",
+        shortName: "pro",
+        testament: "old",
+        position: 20,
+        chapterCount: 31
+      },
+      {
+        id: 21,
+        name: "Ecclesiastes",
+        shortName: "ecc",
+        testament: "old",
+        position: 21,
+        chapterCount: 12
+      },
+      {
+        id: 22,
+        name: "Song of Solomon",
+        shortName: "sng",
+        testament: "old",
+        position: 22,
+        chapterCount: 8
+      },
+      {
+        id: 23,
+        name: "Isaiah",
+        shortName: "isa",
+        testament: "old",
+        position: 23,
+        chapterCount: 66
+      },
+      {
+        id: 24,
+        name: "Jeremiah",
+        shortName: "jer",
+        testament: "old",
+        position: 24,
+        chapterCount: 52
+      },
+      {
+        id: 25,
+        name: "Lamentations",
+        shortName: "lam",
+        testament: "old",
+        position: 25,
+        chapterCount: 5
+      },
+      {
+        id: 26,
+        name: "Ezekiel",
+        shortName: "ezk",
+        testament: "old",
+        position: 26,
+        chapterCount: 48
+      },
+      {
+        id: 27,
+        name: "Daniel",
+        shortName: "dan",
+        testament: "old",
+        position: 27,
+        chapterCount: 12
+      },
+      {
+        id: 28,
+        name: "Hosea",
+        shortName: "hos",
+        testament: "old",
+        position: 28,
+        chapterCount: 14
+      },
+      {
+        id: 29,
+        name: "Joel",
+        shortName: "jol",
+        testament: "old",
+        position: 29,
+        chapterCount: 3
+      },
+      {
+        id: 30,
+        name: "Amos",
+        shortName: "amo",
+        testament: "old",
+        position: 30,
+        chapterCount: 9
+      },
+      {
+        id: 31,
+        name: "Obadiah",
+        shortName: "oba",
+        testament: "old",
+        position: 31,
+        chapterCount: 1
+      },
+      {
+        id: 32,
+        name: "Jonah",
+        shortName: "jon",
+        testament: "old",
+        position: 32,
+        chapterCount: 4
+      },
+      {
+        id: 33,
+        name: "Micah",
+        shortName: "mic",
+        testament: "old",
+        position: 33,
+        chapterCount: 7
+      },
+      {
+        id: 34,
+        name: "Nahum",
+        shortName: "nam",
+        testament: "old",
+        position: 34,
+        chapterCount: 3
+      },
+      {
+        id: 35,
+        name: "Habakkuk",
+        shortName: "hab",
+        testament: "old",
+        position: 35,
+        chapterCount: 3
+      },
+      {
+        id: 36,
+        name: "Zephaniah",
+        shortName: "zep",
+        testament: "old",
+        position: 36,
+        chapterCount: 3
+      },
+      {
+        id: 37,
+        name: "Haggai",
+        shortName: "hag",
+        testament: "old",
+        position: 37,
+        chapterCount: 2
+      },
+      {
+        id: 38,
+        name: "Zechariah",
+        shortName: "zec",
+        testament: "old",
+        position: 38,
+        chapterCount: 14
+      },
+      {
+        id: 39,
+        name: "Malachi",
+        shortName: "mal",
+        testament: "old",
+        position: 39,
+        chapterCount: 4
+      },
       // New Testament
       {
         id: 40,
@@ -156,6 +428,182 @@ export class FileStorage implements IStorage {
         testament: "new",
         position: 44,
         chapterCount: 28
+      },
+      {
+        id: 45,
+        name: "Romans",
+        shortName: "rom",
+        testament: "new",
+        position: 45,
+        chapterCount: 16
+      },
+      {
+        id: 46,
+        name: "1 Corinthians",
+        shortName: "1co",
+        testament: "new",
+        position: 46,
+        chapterCount: 16
+      },
+      {
+        id: 47,
+        name: "2 Corinthians",
+        shortName: "2co",
+        testament: "new",
+        position: 47,
+        chapterCount: 13
+      },
+      {
+        id: 48,
+        name: "Galatians",
+        shortName: "gal",
+        testament: "new",
+        position: 48,
+        chapterCount: 6
+      },
+      {
+        id: 49,
+        name: "Ephesians",
+        shortName: "eph",
+        testament: "new",
+        position: 49,
+        chapterCount: 6
+      },
+      {
+        id: 50,
+        name: "Philippians",
+        shortName: "php",
+        testament: "new",
+        position: 50,
+        chapterCount: 4
+      },
+      {
+        id: 51,
+        name: "Colossians",
+        shortName: "col",
+        testament: "new",
+        position: 51,
+        chapterCount: 4
+      },
+      {
+        id: 52,
+        name: "1 Thessalonians",
+        shortName: "1th",
+        testament: "new",
+        position: 52,
+        chapterCount: 5
+      },
+      {
+        id: 53,
+        name: "2 Thessalonians",
+        shortName: "2th",
+        testament: "new",
+        position: 53,
+        chapterCount: 3
+      },
+      {
+        id: 54,
+        name: "1 Timothy",
+        shortName: "1ti",
+        testament: "new",
+        position: 54,
+        chapterCount: 6
+      },
+      {
+        id: 55,
+        name: "2 Timothy",
+        shortName: "2ti",
+        testament: "new",
+        position: 55,
+        chapterCount: 4
+      },
+      {
+        id: 56,
+        name: "Titus",
+        shortName: "tit",
+        testament: "new",
+        position: 56,
+        chapterCount: 3
+      },
+      {
+        id: 57,
+        name: "Philemon",
+        shortName: "phm",
+        testament: "new",
+        position: 57,
+        chapterCount: 1
+      },
+      {
+        id: 58,
+        name: "Hebrews",
+        shortName: "heb",
+        testament: "new",
+        position: 58,
+        chapterCount: 13
+      },
+      {
+        id: 59,
+        name: "James",
+        shortName: "jas",
+        testament: "new",
+        position: 59,
+        chapterCount: 5
+      },
+      {
+        id: 60,
+        name: "1 Peter",
+        shortName: "1pe",
+        testament: "new",
+        position: 60,
+        chapterCount: 5
+      },
+      {
+        id: 61,
+        name: "2 Peter",
+        shortName: "2pe",
+        testament: "new",
+        position: 61,
+        chapterCount: 3
+      },
+      {
+        id: 62,
+        name: "1 John",
+        shortName: "1jn",
+        testament: "new",
+        position: 62,
+        chapterCount: 5
+      },
+      {
+        id: 63,
+        name: "2 John",
+        shortName: "2jn",
+        testament: "new",
+        position: 63,
+        chapterCount: 1
+      },
+      {
+        id: 64,
+        name: "3 John",
+        shortName: "3jn",
+        testament: "new",
+        position: 64,
+        chapterCount: 1
+      },
+      {
+        id: 65,
+        name: "Jude",
+        shortName: "jud",
+        testament: "new",
+        position: 65,
+        chapterCount: 1
+      },
+      {
+        id: 66,
+        name: "Revelation",
+        shortName: "rev",
+        testament: "new",
+        position: 66,
+        chapterCount: 22
       }
     ];
     
