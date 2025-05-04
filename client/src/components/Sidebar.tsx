@@ -24,7 +24,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
   
   const { setCurrentLocation } = useBible();
 
-  const { data: books = [], isLoading } = useQuery({
+  const { data: books = [], isLoading } = useQuery<Book[]>({
     queryKey: ['/api/books'],
   });
 
@@ -190,7 +190,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
         <div className="absolute inset-0 bg-black bg-opacity-50" onClick={closeMobileSidebar}></div>
         <div 
           className={cn(
-            "absolute inset-y-0 left-0 w-64 bg-sidebar-light dark:bg-sidebar-dark transform transition-transform duration-300", 
+            "absolute inset-y-0 left-0 w-64 bg-white dark:bg-[hsl(var(--sidebar-dark))] transform transition-transform duration-300", 
             isOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
@@ -201,7 +201,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
   }
 
   return (
-    <aside className="w-64 border-r border-gray-200 dark:border-gray-700 bg-sidebar-light dark:bg-sidebar-dark transition-all duration-300 overflow-hidden">
+    <aside className="w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-[hsl(var(--sidebar-dark))] transition-all duration-300 overflow-hidden">
       {sidebarContent}
     </aside>
   );
