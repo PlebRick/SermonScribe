@@ -271,13 +271,6 @@ export default function AdminPage() {
                             {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
                           </CardDescription>
                         </CardHeader>
-                        <CardContent>
-                          <ul className="list-disc pl-5">
-                            {outline.points.map((point, index) => (
-                              <li key={index}>{point}</li>
-                            ))}
-                          </ul>
-                        </CardContent>
                       </div>
                       <div className="absolute top-3 right-3">
                         <Button
@@ -342,89 +335,89 @@ export default function AdminPage() {
         </TabsContent>
         
         <TabsContent value="manuscripts">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h2 className="text-xl font-bold mb-4">Outlines</h2>
-              {outlines && outlines.length > 0 ? (
-                <div className="space-y-4">
-                  {outlines.map((outline: Outline) => (
-                    <Card key={outline.id} className="relative">
-                      <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
-                        <CardHeader>
-                          <CardTitle>{outline.title}</CardTitle>
-                          <CardDescription>
-                            {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
-                          </CardDescription>
-                        </CardHeader>
-                      </div>
-                      <div className="absolute top-3 right-3">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="text-gray-400 hover:text-red-500"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (confirm("Are you sure you want to delete this outline?")) {
-                              deleteOutlineMutation.mutate(outline.id);
+          <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="md:col-span-1">
+                <h2 className="text-xl font-bold mb-4">Outlines</h2>
+                {outlines && outlines.length > 0 ? (
+                  <div className="space-y-4">
+                    {outlines.map((outline: Outline) => (
+                      <Card key={outline.id} className="relative">
+                        <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
+                          <CardHeader>
+                            <CardTitle className="text-sm">{outline.title}</CardTitle>
+                            <CardDescription className="text-xs">
+                              {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+                            </CardDescription>
+                          </CardHeader>
+                        </div>
+                        <div className="absolute top-3 right-3">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-gray-400 hover:text-red-500 h-6 w-6"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (confirm("Are you sure you want to delete this outline?")) {
+                                deleteOutlineMutation.mutate(outline.id);
+                              }
+                            }}
+                          >
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              width="14" 
+                              height="14" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              strokeWidth="2" 
+                              strokeLinecap="round" 
+                              strokeLinejoin="round"
+                            >
+                              <path d="M3 6h18"></path>
+                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                              <line x1="10" y1="11" x2="10" y2="17"></line>
+                              <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                          </Button>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <p>No outlines found for this chapter.</p>
+                )}
+              </div>
+              
+              <div className="md:col-span-3">
+                {selectedOutline ? (
+                  <div className="space-y-4">
+                    {manuscript && manuscript.id && (
+                      <div className="flex justify-end mb-4">
+                        <Button 
+                          variant="outline" 
+                          className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                          onClick={() => {
+                            if (confirm("Are you sure you want to delete this manuscript?")) {
+                              deleteManuscriptMutation.mutate(manuscript.id);
+                              queryClient.invalidateQueries({ queryKey: ["/api/manuscripts"] });
                             }
                           }}
                         >
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="16" 
-                            height="16" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            strokeWidth="2" 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round"
-                          >
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                          </svg>
+                          Delete Manuscript
                         </Button>
                       </div>
-                    </Card>
-                  ))}
-                </div>
-              ) : (
-                <p>No outlines found for this chapter.</p>
-              )}
-            </div>
-            
-            <div>
-              <h2 className="text-xl font-bold mb-4">Manuscript</h2>
-              {selectedOutline ? (
-                <div className="space-y-4">
-                  {/* Show delete button only if a manuscript exists */}
-                  {manuscript && manuscript.id && (
-                    <div className="flex justify-end mb-4">
-                      <Button 
-                        variant="outline" 
-                        className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
-                        onClick={() => {
-                          if (confirm("Are you sure you want to delete this manuscript?")) {
-                            deleteManuscriptMutation.mutate(manuscript.id);
-                            queryClient.invalidateQueries({ queryKey: ["/api/manuscripts"] });
-                          }
-                        }}
-                      >
-                        Delete Manuscript
-                      </Button>
-                    </div>
-                  )}
-                  <ManuscriptEditor 
-                    outlineId={selectedOutline} 
-                    onSave={(manuscript) => saveManuscriptMutation.mutate(manuscript)}
-                  />
-                </div>
-              ) : (
-                <p>Select an outline to edit or create a manuscript.</p>
-              )}
+                    )}
+                    <ManuscriptEditor 
+                      outlineId={selectedOutline} 
+                      onSave={(manuscript) => saveManuscriptMutation.mutate(manuscript)}
+                    />
+                  </div>
+                ) : (
+                  <p>Select an outline to edit or create a manuscript.</p>
+                )}
+              </div>
             </div>
           </div>
         </TabsContent>
