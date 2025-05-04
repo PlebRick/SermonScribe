@@ -35,6 +35,12 @@ export default function AdminPage() {
     enabled: !!selectedBook && !!selectedChapter,
     refetchOnWindowFocus: false,
   });
+  
+  const { data: manuscript } = useQuery({
+    queryKey: ["/api/manuscripts", selectedOutline],
+    enabled: !!selectedOutline,
+    refetchOnWindowFocus: false,
+  });
 
   // Mutations
   const saveOutlineMutation = useMutation({
@@ -361,10 +367,29 @@ export default function AdminPage() {
             <div>
               <h2 className="text-xl font-bold mb-4">Manuscript</h2>
               {selectedOutline ? (
-                <ManuscriptEditor 
-                  outlineId={selectedOutline} 
-                  onSave={(manuscript) => saveManuscriptMutation.mutate(manuscript)}
-                />
+                <div className="space-y-4">
+                  {/* Show delete button only if a manuscript exists */}
+                  {manuscript && manuscript.id && (
+                    <div className="flex justify-end mb-4">
+                      <Button 
+                        variant="outline" 
+                        className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                        onClick={() => {
+                          if (confirm("Are you sure you want to delete this manuscript?")) {
+                            deleteManuscriptMutation.mutate(manuscript.id);
+                            queryClient.invalidateQueries({ queryKey: ["/api/manuscripts"] });
+                          }
+                        }}
+                      >
+                        Delete Manuscript
+                      </Button>
+                    </div>
+                  )}
+                  <ManuscriptEditor 
+                    outlineId={selectedOutline} 
+                    onSave={(manuscript) => saveManuscriptMutation.mutate(manuscript)}
+                  />
+                </div>
               ) : (
                 <p>Select an outline to edit or create a manuscript.</p>
               )}
@@ -379,6 +404,7 @@ export default function AdminPage() {
               bookId={selectedBook} 
               chapter={selectedChapter}
               onSave={(commentary) => saveCommentaryMutation.mutate(commentary)}
+              onDelete={(id) => deleteCommentaryMutation.mutate(id)}
             />
           </div>
         </TabsContent>
@@ -690,11 +716,13 @@ function ManuscriptEditor({
 function CommentaryEditor({ 
   bookId, 
   chapter,
-  onSave 
+  onSave,
+  onDelete
 }: { 
   bookId: number, 
   chapter: number,
-  onSave: (commentary: Commentary) => void
+  onSave: (commentary: Commentary) => void,
+  onDelete: (id: number) => void
 }) {
   const [verse, setVerse] = useState(1);
   const [content, setContent] = useState("");
@@ -759,12 +787,24 @@ function CommentaryEditor({
                 <CardContent>
                   <p>{commentary.content}</p>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex justify-between">
                   <Button 
                     variant="outline" 
                     onClick={() => handleEditCommentary(commentary)}
                   >
                     Edit
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                    onClick={() => {
+                      if (confirm("Are you sure you want to delete this commentary?")) {
+                        onDelete(commentary.id);
+                        refetchCommentaries();
+                      }
+                    }}
+                  >
+                    Delete
                   </Button>
                 </CardFooter>
               </Card>
