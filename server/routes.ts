@@ -132,11 +132,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get manuscript by outline ID
   app.get("/api/manuscripts/:outlineId", asyncHandler(async (req, res) => {
     const outlineId = parseInt(req.params.outlineId);
+    console.log(`Fetching manuscript for outline ID: ${outlineId}`);
+    
     if (isNaN(outlineId)) {
       return res.status(400).json({ message: "Invalid outline ID" });
     }
     
     let manuscript = await storage.getManuscriptByOutlineId(outlineId);
+    console.log(`Manuscript result:`, manuscript ? "Found" : "Not found");
     
     // If manuscript doesn't exist, and we have the ability to save, create a default one
     if (!manuscript && storage.saveManuscript) {
