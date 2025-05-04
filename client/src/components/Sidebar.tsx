@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Book } from "@shared/schema";
 import { cn } from "@/lib/utils";
 import { TESTAMENTS } from "@/lib/constants";
+import { oldTestamentBooks, newTestamentBooks } from "@/lib/bible-data";
 
 interface SidebarProps {
   isMobile: boolean;
