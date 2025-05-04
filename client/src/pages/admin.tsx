@@ -213,7 +213,7 @@ export default function AdminPage() {
               <SelectValue placeholder="Select chapter" />
             </SelectTrigger>
             <SelectContent>
-              {book && Array.from({ length: book.chapterCount }, (_, i) => i + 1).map((chapter) => (
+              {book && book.chapterCount && Array.from({ length: book.chapterCount }, (_, i) => i + 1).map((chapter) => (
                 <SelectItem key={chapter} value={chapter.toString()}>
                   {chapter}
                 </SelectItem>
@@ -735,13 +735,13 @@ function CommentaryEditor({
   const [source, setSource] = useState("");
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  const { data: commentaries, refetch: refetchCommentaries } = useQuery({
+  const { data: commentaries, refetch: refetchCommentaries } = useQuery<Commentary[]>({
     queryKey: ["/api/commentaries", bookId, chapter],
     enabled: !!bookId && !!chapter,
     refetchOnWindowFocus: false,
   });
 
-  const { data: verses } = useQuery({
+  const { data: verses } = useQuery<Verse[]>({
     queryKey: ["/api/verses", bookId, chapter],
     enabled: !!bookId && !!chapter,
     refetchOnWindowFocus: false,
@@ -836,7 +836,7 @@ function CommentaryEditor({
                 <SelectValue placeholder="Select verse" />
               </SelectTrigger>
               <SelectContent>
-                {verses && verses.map((v: any) => (
+                {verses && verses.map((v: Verse) => (
                   <SelectItem key={v.verse} value={v.verse.toString()}>
                     {v.verse}: {v.text.substring(0, 30)}...
                   </SelectItem>
