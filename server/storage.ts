@@ -6,7 +6,7 @@ import {
   Commentary, InsertCommentary,
   User, InsertUser
 } from "@shared/schema";
-import { bibleData, getTestamentBooks, getBibleChapters } from "../client/src/lib/bible-data";
+import { bibleBooks, bibleContent, getTestamentBooks, getBibleChapters } from "../client/src/lib/bible-data";
 
 export interface IStorage {
   // User methods
@@ -77,25 +77,21 @@ export class MemStorage implements IStorage {
   }
 
   private initializeBibleBooks() {
-    // Add Bible books data
-    const testaments = ["old", "new"];
-    let position = 1;
-
-    testaments.forEach(testament => {
-      const books = getTestamentBooks(testament);
-      books.forEach(book => {
-        const chapters = getBibleChapters(book.id);
-        const bookData: Book = {
-          id: this.bookCurrentId++,
-          name: book.name,
-          shortName: book.id,
-          testament: testament,
-          position: position++,
-          chapterCount: chapters.length
-        };
-        this.books.set(bookData.id, bookData);
-      });
+    // Add Bible books data directly from our bibleBooks data
+    bibleBooks.forEach(book => {
+      const bookData: Book = {
+        id: book.id,
+        name: book.name,
+        shortName: book.shortName,
+        testament: book.testament,
+        position: book.id, // Use ID as position
+        chapterCount: book.chapterCount
+      };
+      this.books.set(bookData.id, bookData);
     });
+    
+    // Update the book current ID
+    this.bookCurrentId = bibleBooks.length + 1;
   }
 
   private initializeSampleOutlines() {
@@ -256,22 +252,40 @@ export class MemStorage implements IStorage {
     const book = await this.getBookById(bookId);
     if (!book) return [];
 
-    // If we don't have verses for this book/chapter, fetch from bibleData
+    // If we don't have verses for this book/chapter, fetch from Bible content
     const cacheKey = `${bookId}:${chapter}`;
     if (!this.verses.has(+cacheKey)) {
-      const bookData = bibleData.find(b => b.id === book.shortName);
-      if (!bookData) return [];
+      // Get book content from our new structure
+      let bookContent;
       
-      const chapterVerses = bookData.chapters[chapter - 1]?.verses || [];
+      if (book.shortName === 'gen') {
+        bookContent = bibleContent.genesis;
+      } else {
+        // For now, we only have Genesis content
+        return [];
+      }
       
-      const verses: Verse[] = chapterVerses.map((text, index) => ({
-        id: this.verseCurrentId++,
-        bookId,
-        chapter,
-        verse: index + 1,
-        text
-      }));
+      // Find the specific chapter
+      const chapterContent = bookContent.chapters.find(c => c.chapter === chapter);
+      if (!chapterContent) return [];
       
+      // Flatten all verses from all sections
+      let verses: Verse[] = [];
+      let verseId = this.verseCurrentId;
+      
+      chapterContent.sections.forEach(section => {
+        section.verses.forEach(verseData => {
+          verses.push({
+            id: verseId++,
+            bookId,
+            chapter,
+            verse: verseData.verse,
+            text: verseData.text
+          });
+        });
+      });
+      
+      this.verseCurrentId = verseId; // Update the verse ID counter
       this.verses.set(+cacheKey, verses);
     }
     

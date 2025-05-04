@@ -75,28 +75,31 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
 }
 
 function renderVerses(verses: any[]) {
-  // Group verses by sections (every 5 verses)
-  const sections: any[][] = [];
-  let currentSection: any[] = [];
+  // Group verses by title/section
+  const versesMap = new Map<string, any[]>();
+  let previousTitle = "Introduction";
   
-  verses.forEach((verse, index) => {
-    if (index % 5 === 0 && index > 0) {
-      sections.push(currentSection);
-      currentSection = [];
+  verses.forEach((verse) => {
+    // Since our verses are already flattened from sections in the backend,
+    // we need to infer section headers based on verse ranges.
+    // For simplicity, we'll group verses into sections of 5
+    const sectionIndex = Math.floor((verse.verse - 1) / 5);
+    const sectionTitle = `Verses ${sectionIndex * 5 + 1}-${Math.min((sectionIndex + 1) * 5, verses[verses.length - 1]?.verse || 1)}`;
+    
+    if (!versesMap.has(sectionTitle)) {
+      versesMap.set(sectionTitle, []);
     }
-    currentSection.push(verse);
+    
+    versesMap.get(sectionTitle)?.push(verse);
   });
-  
-  if (currentSection.length > 0) {
-    sections.push(currentSection);
-  }
   
   return (
     <>
-      {sections.map((section, sectionIndex) => (
+      {Array.from(versesMap.entries()).map(([sectionTitle, sectionVerses], sectionIndex) => (
         <div key={`section-${sectionIndex}`} className="space-y-4">
-          <p>
-            {section.map((verse, verseIndex) => (
+          <h3 className="text-lg font-semibold text-primary/90 mb-2">{sectionTitle}</h3>
+          <p className="leading-relaxed">
+            {sectionVerses.map((verse, verseIndex) => (
               <span key={verse.id}>
                 <span className="font-semibold text-primary">{verse.verse}</span> {verse.text}{' '}
               </span>

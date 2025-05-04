@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Söhne:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-sans: 'Söhne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+body {
+  font-family: var(--font-sans);
+}
 
 :root {
   --background: 0 0% 100%;
