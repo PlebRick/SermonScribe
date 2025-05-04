@@ -62,7 +62,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
           ) : (
             <div className="space-y-6">
               {verses.length > 0 ? (
-                renderVerses(verses)
+                renderVerses(verses, currentBook?.shortName || '', currentChapter)
               ) : (
                 <p className="text-gray-500 italic text-center py-10">No verses available for this chapter.</p>
               )}
@@ -74,15 +74,66 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
   );
 }
 
-function renderVerses(verses: any[]) {
-  // Group verses by title/section
+function renderVerses(verses: any[], bookShortName: string, chapter: number) {
+  if (!verses.length) return null;
+  
+  // Try to get section data from our structured content
+  let sections: Array<{
+    title: string;
+    verses: Array<{
+      verse: number;
+      text: string;
+    }>;
+  }> = [];
+  
+  try {
+    // We'll use our structured content data when possible
+    if (bookShortName === 'gen') {
+      const genData = window.__BIBLE_CONTENT__?.genesis;
+      if (genData) {
+        const chapterData = genData.chapters.find(c => c.chapter === chapter);
+        if (chapterData) {
+          sections = chapterData.sections;
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Error getting section data:', err);
+  }
+  
+  // If we got section data, render with proper headings
+  if (sections && sections.length > 0) {
+    return (
+      <>
+        {sections.map((section, sIndex) => (
+          <div key={`section-${sIndex}`} className="space-y-4 mb-8">
+            {section.title && (
+              <h3 className="text-lg font-semibold text-primary/90 mb-2">{section.title}</h3>
+            )}
+            <p className="leading-relaxed">
+              {section.verses.map((verseData, vIndex: number) => {
+                // Find the full verse data to get the text
+                const verse = verses.find(v => v.verse === verseData.verse);
+                if (!verse) return null;
+                
+                return (
+                  <span key={verse.id || `v-${verseData.verse}`}>
+                    <span className="font-semibold text-primary">{verse.verse}</span> {verse.text}{' '}
+                  </span>
+                );
+              })}
+            </p>
+          </div>
+        ))}
+      </>
+    );
+  }
+  
+  // Fallback: Group verses by ranges if we couldn't get section data
   const versesMap = new Map<string, any[]>();
-  let previousTitle = "Introduction";
   
   verses.forEach((verse) => {
-    // Since our verses are already flattened from sections in the backend,
-    // we need to infer section headers based on verse ranges.
-    // For simplicity, we'll group verses into sections of 5
+    // Group verses into sections of 5
     const sectionIndex = Math.floor((verse.verse - 1) / 5);
     const sectionTitle = `Verses ${sectionIndex * 5 + 1}-${Math.min((sectionIndex + 1) * 5, verses[verses.length - 1]?.verse || 1)}`;
     
@@ -96,10 +147,10 @@ function renderVerses(verses: any[]) {
   return (
     <>
       {Array.from(versesMap.entries()).map(([sectionTitle, sectionVerses], sectionIndex) => (
-        <div key={`section-${sectionIndex}`} className="space-y-4">
+        <div key={`section-${sectionIndex}`} className="space-y-4 mb-6">
           <h3 className="text-lg font-semibold text-primary/90 mb-2">{sectionTitle}</h3>
           <p className="leading-relaxed">
-            {sectionVerses.map((verse, verseIndex) => (
+            {sectionVerses.map((verse) => (
               <span key={verse.id}>
                 <span className="font-semibold text-primary">{verse.verse}</span> {verse.text}{' '}
               </span>
