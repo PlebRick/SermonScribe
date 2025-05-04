@@ -30,15 +30,8 @@ export default function AdminPage() {
     refetchOnWindowFocus: false,
   });
 
-  const { data: book } = useQuery<Book>({
-    queryKey: ["/api/books", selectedBook],
-    enabled: !!selectedBook,
-    refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      console.log("Book data received:", data);
-      console.log("Book chapter count:", data?.chapterCount);
-    }
-  });
+  // We now use the books data directly instead of making a separate query for book
+  // This simplifies our code and avoids the need for an extra API call
 
   const { data: outlines, refetch: refetchOutlines } = useQuery<Outline[]>({
     queryKey: ["/api/outlines", selectedBook, selectedChapter],
@@ -192,7 +185,18 @@ export default function AdminPage() {
           <Label htmlFor="book-select">Book</Label>
           <Select 
             value={selectedBook?.toString()} 
-            onValueChange={(value) => setSelectedBook(parseInt(value, 10))}
+            onValueChange={(value) => {
+              const bookId = parseInt(value, 10);
+              console.log("Book selected:", bookId);
+              setSelectedBook(bookId);
+              
+              // Fetch book details directly when selected
+              const selectedBookData = books?.find(b => b.id === bookId);
+              console.log("Selected book data:", selectedBookData);
+              if (selectedBookData) {
+                console.log("Chapter count:", selectedBookData.chapterCount);
+              }
+            }}
           >
             <SelectTrigger id="book-select">
               <SelectValue placeholder="Select book" />
@@ -217,11 +221,22 @@ export default function AdminPage() {
               <SelectValue placeholder="Select chapter" />
             </SelectTrigger>
             <SelectContent>
-              {book && book.chapterCount && Array.from({ length: book.chapterCount }, (_, i) => i + 1).map((chapter) => (
-                <SelectItem key={chapter} value={chapter.toString()}>
-                  {chapter}
-                </SelectItem>
-              ))}
+              {books && selectedBook && (() => {
+                const selectedBookData = books.find(b => b.id === selectedBook);
+                console.log("Rendering chapter dropdown for book:", selectedBookData);
+                
+                if (selectedBookData && selectedBookData.chapterCount) {
+                  return Array.from(
+                    { length: selectedBookData.chapterCount }, 
+                    (_, i) => i + 1
+                  ).map((chapter) => (
+                    <SelectItem key={chapter} value={chapter.toString()}>
+                      {chapter}
+                    </SelectItem>
+                  ));
+                }
+                return null;
+              })()}
             </SelectContent>
           </Select>
         </div>
