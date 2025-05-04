@@ -18,25 +18,31 @@ export default function AdminPage() {
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
   const [selectedOutline, setSelectedOutline] = useState<number | null>(null);
 
+  // Update selected chapter when book changes
+  useEffect(() => {
+    // Reset to chapter 1 when book changes
+    setSelectedChapter(1);
+  }, [selectedBook]);
+
   // Queries
-  const { data: books } = useQuery({
+  const { data: books } = useQuery<Book[]>({
     queryKey: ["/api/books"],
     refetchOnWindowFocus: false,
   });
 
-  const { data: book } = useQuery({
+  const { data: book } = useQuery<Book>({
     queryKey: ["/api/books", selectedBook],
     enabled: !!selectedBook,
     refetchOnWindowFocus: false,
   });
 
-  const { data: outlines, refetch: refetchOutlines } = useQuery({
+  const { data: outlines, refetch: refetchOutlines } = useQuery<Outline[]>({
     queryKey: ["/api/outlines", selectedBook, selectedChapter],
     enabled: !!selectedBook && !!selectedChapter,
     refetchOnWindowFocus: false,
   });
   
-  const { data: manuscript } = useQuery({
+  const { data: manuscript } = useQuery<Manuscript>({
     queryKey: ["/api/manuscripts", selectedOutline],
     enabled: !!selectedOutline,
     refetchOnWindowFocus: false,
@@ -188,7 +194,7 @@ export default function AdminPage() {
               <SelectValue placeholder="Select book" />
             </SelectTrigger>
             <SelectContent>
-              {books?.map((book: Book) => (
+              {books && (books as Book[]).sort((a: Book, b: Book) => a.position - b.position).map((book: Book) => (
                 <SelectItem key={book.id} value={book.id.toString()}>
                   {book.name}
                 </SelectItem>
@@ -431,7 +437,7 @@ function OutlineEditor({
   const [endVerse, setEndVerse] = useState(10);
   const [points, setPoints] = useState<string[]>([""]);
 
-  const { data: outline } = useQuery({
+  const { data: outline } = useQuery<Outline>({
     queryKey: ["/api/outlines", outlineId],
     enabled: !!outlineId,
     refetchOnWindowFocus: false,
@@ -574,7 +580,7 @@ function ManuscriptEditor({
     { title: "", paragraphs: [""] }
   ]);
 
-  const { data: manuscript } = useQuery({
+  const { data: manuscript } = useQuery<Manuscript>({
     queryKey: ["/api/manuscripts", outlineId],
     enabled: !!outlineId,
     refetchOnWindowFocus: false,
