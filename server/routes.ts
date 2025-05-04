@@ -180,7 +180,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/commentaries", asyncHandler(async (req, res) => {
     console.log("GET /api/commentaries - forwarding to book/chapter handler", req.query);
     
-    // If book and chapter query params are provided, use those
+    // Handle if query params are provided directly
+    const queryKeys = Object.keys(req.query);
+    if (queryKeys.length > 0) {
+      // If first key is a numeric value, treat it as bookId and try to find book/chapter
+      const potentialBookId = parseInt(queryKeys[0]);
+      if (!isNaN(potentialBookId)) {
+        const chapter = parseInt(req.query[queryKeys[0]] as string);
+        if (!isNaN(chapter)) {
+          console.log(`Interpreted query as bookId=${potentialBookId}, chapter=${chapter}`);
+          const commentaries = await storage.getCommentariesByBookAndChapter(potentialBookId, chapter);
+          console.log(`Found ${commentaries.length} commentaries`);
+          return res.json(commentaries);
+        }
+      }
+    }
+    
+    // Fallback to standard bookId/chapter query params
     if (req.query.bookId && req.query.chapter) {
       const bookId = parseInt(req.query.bookId as string);
       const chapter = parseInt(req.query.chapter as string);

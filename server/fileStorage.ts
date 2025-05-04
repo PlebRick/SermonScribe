@@ -1068,23 +1068,72 @@ export class FileStorage implements IStorage {
   }
 
   async getCommentariesByBookAndChapter(bookId: number, chapter: number): Promise<Commentary[]> {
+    console.log(`Looking for commentaries for book ${bookId}, chapter ${chapter}...`);
+    
+    // Check if the index file exists for this book-chapter
     const indexPath = path.join(CONTENT_DIR, 'commentaries', `${bookId}-${chapter}`, 'index.json');
+    console.log(`Checking index path: ${indexPath}`);
+    
     if (!fs.existsSync(indexPath)) {
+      console.log(`No index file found at ${indexPath}`);
+      
+      // Fallback: search all commentary files manually for this book and chapter
+      console.log("Attempting fallback search for commentaries...");
+      const commentaryDir = path.join(CONTENT_DIR, 'commentaries');
+      const commentaryFiles = fs.readdirSync(commentaryDir)
+          .filter(file => file.endsWith('.json') && !isNaN(parseInt(file.replace('.json', ''))));
+      
+      const commentaries: Commentary[] = [];
+      for (const file of commentaryFiles) {
+        try {
+          const filePath = path.join(commentaryDir, file);
+          const content = fs.readFileSync(filePath, 'utf-8');
+          const commentary = JSON.parse(content) as Commentary;
+          
+          if (commentary.bookId === bookId && commentary.chapter === chapter) {
+            console.log(`Found matching commentary in file ${file} for book ${bookId}, chapter ${chapter}`);
+            commentaries.push(commentary);
+          }
+        } catch (error) {
+          console.error(`Error parsing commentary file ${file}:`, error);
+        }
+      }
+      
+      console.log(`Found ${commentaries.length} commentaries through fallback search`);
+      return commentaries;
+    }
+    
+    // If index file exists, use it
+    console.log(`Found index file at ${indexPath}`);
+    const indexContent = fs.readFileSync(indexPath, 'utf-8');
+    console.log(`Index content: ${indexContent}`);
+    
+    let commentaryIds: number[];
+    try {
+      commentaryIds = JSON.parse(indexContent) as number[];
+    } catch (error) {
+      console.error(`Error parsing index content: ${indexContent}`, error);
       return [];
     }
     
-    const indexContent = fs.readFileSync(indexPath, 'utf-8');
-    const commentaryIds = JSON.parse(indexContent) as number[];
+    console.log(`Found ${commentaryIds.length} commentaryIds in index file`);
     
     const commentaries: Commentary[] = [];
     for (const id of commentaryIds) {
       const filePath = path.join(CONTENT_DIR, 'commentaries', `${id}.json`);
+      console.log(`Checking for commentary file: ${filePath}`);
+      
       if (fs.existsSync(filePath)) {
+        console.log(`Found commentary file: ${filePath}`);
         const content = fs.readFileSync(filePath, 'utf-8');
-        commentaries.push(JSON.parse(content) as Commentary);
+        const commentary = JSON.parse(content) as Commentary;
+        commentaries.push(commentary);
+      } else {
+        console.log(`Commentary file not found: ${filePath}`);
       }
     }
     
+    console.log(`Returning ${commentaries.length} commentaries`);
     return commentaries;
   }
 
