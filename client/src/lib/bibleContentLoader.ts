@@ -1,6 +1,8 @@
 import { genesis } from './bible-content/genesis';
+import { exodus } from './bible-content/exodus';
 import { matthew } from './bible-content/matthew';
 import { mark } from './bible-content/mark';
+import { john } from './bible-content/john';
 import { bibleContent as allBibleContent } from './bible-data';
 
 // Define a global type for TypeScript
@@ -8,8 +10,10 @@ declare global {
   interface Window {
     __BIBLE_CONTENT__: {
       genesis: typeof genesis;
+      exodus: typeof exodus;
       matthew: typeof matthew;
       mark: typeof mark;
+      john: typeof john;
       [key: string]: any; // Allow for dynamic book keys
     };
   }
@@ -23,8 +27,10 @@ export function initializeBibleContent() {
     ...allBibleContent,  // Base placeholders for all books
     // Override with fully defined book structures
     genesis,
+    exodus,
     matthew,
-    mark
+    mark, 
+    john
   };
   
   window.__BIBLE_CONTENT__ = mergedContent;
@@ -38,6 +44,8 @@ export const bibleContent = {
   ...allBibleContent,  // Base placeholders
   // Override with fully defined structures
   genesis,
+  exodus,
   matthew,
-  mark
+  mark,
+  john
 };
