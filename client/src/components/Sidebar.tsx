@@ -50,9 +50,14 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
     }
   };
 
-  // Group books by testament
-  const oldTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.OLD);
-  const newTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.NEW);
+  // Group books from API by testament - using data from API call
+  // Only fall back to imported constants if the API call fails
+  const apiOldTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.OLD);
+  const apiNewTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.NEW);
+  
+  // Use API books or fall back to imported constant books
+  const oldTestamentBooksToDisplay = apiOldTestamentBooks.length > 0 ? apiOldTestamentBooks : oldTestamentBooks;
+  const newTestamentBooksToDisplay = apiNewTestamentBooks.length > 0 ? apiNewTestamentBooks : newTestamentBooks;
 
   if (!isOpen) return null;
 
@@ -92,7 +97,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
               
               {expandedTestaments[TESTAMENTS.OLD] && (
                 <div className="pl-6 mt-1">
-                  {oldTestamentBooks.map((book: Book) => (
+                  {oldTestamentBooksToDisplay.map((book: Book) => (
                     <div key={book.id} className="mb-2">
                       <div 
                         className="flex items-center py-1 cursor-pointer hover:text-primary"
@@ -143,7 +148,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
               
               {expandedTestaments[TESTAMENTS.NEW] && (
                 <div className="pl-6 mt-1">
-                  {newTestamentBooks.map((book: Book) => (
+                  {newTestamentBooksToDisplay.map((book: Book) => (
                     <div key={book.id} className="mb-2">
                       <div 
                         className="flex items-center py-1 cursor-pointer hover:text-primary"
