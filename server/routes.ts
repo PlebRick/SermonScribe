@@ -36,7 +36,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(book);
   }));
 
-  // Get verses by book and chapter
+  // Support GET /api/verses with no parameters
+  app.get("/api/verses", asyncHandler(async (req, res) => {
+    console.log("GET /api/verses - forwarding to book/chapter handler", req.query);
+    
+    // If book and chapter query params are provided, use those
+    if (req.query.bookId && req.query.chapter) {
+      const bookId = parseInt(req.query.bookId as string);
+      const chapter = parseInt(req.query.chapter as string);
+      
+      if (isNaN(bookId) || isNaN(chapter)) {
+        return res.status(400).json({ message: "Invalid book ID or chapter" });
+      }
+      
+      console.log(`Fetching verses for book ${bookId}, chapter ${chapter} (from query)`);
+      const verses = await storage.getVersesByBookAndChapter(bookId, chapter);
+      console.log(`Found ${verses.length} verses`);
+      return res.json(verses);
+    }
+    
+    // Otherwise return an empty array
+    return res.json([]);
+  }));
+
+  // Get verses by book and chapter from URL parameters
   app.get("/api/verses/:bookId/:chapter", asyncHandler(async (req, res) => {
     const bookId = parseInt(req.params.bookId);
     const chapter = parseInt(req.params.chapter);
@@ -45,15 +68,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(400).json({ message: "Invalid book ID or chapter" });
     }
     
+    console.log(`Fetching verses for book ${bookId}, chapter ${chapter} (from params)`);
     const verses = await storage.getVersesByBookAndChapter(bookId, chapter);
+    console.log(`Found ${verses.length} verses`);
     res.json(verses);
   }));
 
-  // Get outlines by book and chapter - handled by the combined route below
+  // Support GET /api/outlines with no parameters
+  app.get("/api/outlines", asyncHandler(async (req, res) => {
+    console.log("GET /api/outlines - forwarding to book/chapter handler", req.query);
+    
+    // If book and chapter query params are provided, use those
+    if (req.query.bookId && req.query.chapter) {
+      const bookId = parseInt(req.query.bookId as string);
+      const chapter = parseInt(req.query.chapter as string);
+      
+      if (isNaN(bookId) || isNaN(chapter)) {
+        return res.status(400).json({ message: "Invalid book ID or chapter" });
+      }
+      
+      console.log(`Fetching outlines for book ${bookId}, chapter ${chapter} (from query)`);
+      const outlines = await storage.getOutlinesByBookAndChapter(bookId, chapter);
+      console.log(`Found ${outlines.length} outlines`);
+      return res.json(outlines);
+    }
+    
+    // Otherwise return an empty array
+    return res.json([]);
+  }));
 
   // Get outline by ID - support both endpoints patterns
   app.get("/api/outlines/:idOrBookId/:chapterOrNothing?", asyncHandler(async (req, res) => {
     const idOrBookId = parseInt(req.params.idOrBookId);
+    console.log("Outlines API request", req.url, req.params);
     
     if (isNaN(idOrBookId)) {
       return res.status(400).json({ message: "Invalid ID parameter" });
@@ -66,11 +113,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid chapter" });
       }
       
+      console.log(`Fetching outlines for book ${idOrBookId}, chapter ${chapter}`);
       const outlines = await storage.getOutlinesByBookAndChapter(idOrBookId, chapter);
+      console.log(`Found ${outlines.length} outlines`);
       return res.json(outlines);
     }
     
     // No chapter parameter - this means we're getting a specific outline by ID
+    console.log(`Fetching outline by ID ${idOrBookId}`);
     const outline = await storage.getOutlineById(idOrBookId);
     if (!outline) {
       return res.status(404).json({ message: "Outline not found" });
@@ -99,6 +149,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         // Create a default manuscript
         const defaultManuscript = {
+          id: 0, // This will be assigned automatically by storage layer
           outlineId: outlineId,
           content: [
             { 
@@ -122,7 +173,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(manuscript);
   }));
 
-  // Get commentaries by book and chapter
+  // Support GET /api/commentaries with no parameters
+  app.get("/api/commentaries", asyncHandler(async (req, res) => {
+    console.log("GET /api/commentaries - forwarding to book/chapter handler", req.query);
+    
+    // If book and chapter query params are provided, use those
+    if (req.query.bookId && req.query.chapter) {
+      const bookId = parseInt(req.query.bookId as string);
+      const chapter = parseInt(req.query.chapter as string);
+      
+      if (isNaN(bookId) || isNaN(chapter)) {
+        return res.status(400).json({ message: "Invalid book ID or chapter" });
+      }
+      
+      console.log(`Fetching commentaries for book ${bookId}, chapter ${chapter} (from query)`);
+      const commentaries = await storage.getCommentariesByBookAndChapter(bookId, chapter);
+      console.log(`Found ${commentaries.length} commentaries`);
+      return res.json(commentaries);
+    }
+    
+    // Otherwise return an empty array
+    return res.json([]);
+  }));
+
+  // Get commentaries by book and chapter from URL parameters
   app.get("/api/commentaries/:bookId/:chapter", asyncHandler(async (req, res) => {
     const bookId = parseInt(req.params.bookId);
     const chapter = parseInt(req.params.chapter);
@@ -131,7 +205,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(400).json({ message: "Invalid book ID or chapter" });
     }
     
+    console.log(`Fetching commentaries for book ${bookId}, chapter ${chapter} (from params)`);
     const commentaries = await storage.getCommentariesByBookAndChapter(bookId, chapter);
+    console.log(`Found ${commentaries.length} commentaries`);
     res.json(commentaries);
   }));
 
