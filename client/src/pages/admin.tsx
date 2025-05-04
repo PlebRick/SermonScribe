@@ -8,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { apiRequest } from "@/lib/queryClient";
-import { Outline, Manuscript, Commentary, Book } from "@shared/schema";
+import { Outline, Manuscript, Commentary, Book, ManuscriptSection, type Verse } from "@shared/schema";
 import { toast } from "@/hooks/use-toast";
 import { Link } from "wouter";
+import RichTextEditor from '@/components/RichTextEditor';
 
 export default function AdminPage() {
   const queryClient = useQueryClient();
@@ -242,7 +243,13 @@ export default function AdminPage() {
         </div>
       </div>
       
-      <Tabs defaultValue="outlines">
+      <Tabs defaultValue="outlines" onValueChange={(tab) => {
+          // When switching tabs, reset the selected outline if we need to
+          if (tab === "outlines" || tab === "manuscripts") {
+            // Make sure we fetch outlines again when switching tabs
+            queryClient.invalidateQueries({ queryKey: ["/api/outlines", selectedBook, selectedChapter] });
+          }
+        }}>
         <TabsList className="mb-4">
           <TabsTrigger value="outlines">Outlines</TabsTrigger>
           <TabsTrigger value="manuscripts">Manuscripts</TabsTrigger>
@@ -587,9 +594,6 @@ function OutlineEditor({
   );
 }
 
-import RichTextEditor from '@/components/RichTextEditor';
-import { ManuscriptSection } from '@shared/schema';
-
 function ManuscriptEditor({ 
   outlineId, 
   onSave 
@@ -819,7 +823,15 @@ function CommentaryEditor({
                   <CardDescription>{commentary.source}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>{commentary.content}</p>
+                  {/* Display formatted content if it's HTML, otherwise display as plain text */}
+                  {commentary.content.includes('<') && commentary.content.includes('>') ? (
+                    <div 
+                      className="prose dark:prose-invert max-w-none" 
+                      dangerouslySetInnerHTML={{ __html: commentary.content }}
+                    />
+                  ) : (
+                    <p>{commentary.content}</p>
+                  )}
                 </CardContent>
                 <CardFooter className="flex justify-between">
                   <Button 
@@ -875,13 +887,12 @@ function CommentaryEditor({
           
           <div>
             <Label htmlFor="content">Commentary</Label>
-            <Textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              rows={8}
-              required
-            />
+            <div className="mt-2 border rounded-md overflow-hidden">
+              <RichTextEditor 
+                content={content} 
+                onChange={setContent}
+              />
+            </div>
           </div>
           
           <div>
