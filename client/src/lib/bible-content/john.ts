@@ -528,6 +528,168 @@ export const john = {
           ]
         }
       ]
+    },
+    {
+      id: 15,
+      chapter: 15,
+      title: "Jesus the True Vine",
+      sections: [
+        {
+          title: "Jesus the True Vine",
+          verses: [
+            { verse: 1, text: "\"I am the true vine, and my Father is the farmer." },
+            { verse: 2, text: "Every branch in me that doesn't bear fruit, he takes away. Every branch that bears fruit, he prunes, that it may bear more fruit." },
+            { verse: 3, text: "You are already pruned clean because of the word which I have spoken to you." },
+            { verse: 4, text: "Remain in me, and I in you. As the branch can't bear fruit by itself unless it remains in the vine, so neither can you, unless you remain in me." },
+            { verse: 5, text: "I am the vine. You are the branches. He who remains in me and I in him bears much fruit, for apart from me you can do nothing." },
+            { verse: 6, text: "If a man doesn't remain in me, he is thrown out as a branch and is withered; and they gather them, throw them into the fire, and they are burned." },
+            { verse: 7, text: "If you remain in me, and my words remain in you, you will ask whatever you desire, and it will be done for you." },
+            { verse: 8, text: "\"In this my Father is glorified, that you bear much fruit; and so you will be my disciples." }
+          ]
+        },
+        {
+          title: "Love and Joy Perfected",
+          verses: [
+            { verse: 9, text: "Even as the Father has loved me, I also have loved you. Remain in my love." },
+            { verse: 10, text: "If you keep my commandments, you will remain in my love; even as I have kept my Father's commandments, and remain in his love." },
+            { verse: 11, text: "I have spoken these things to you, that my joy may remain in you, and that your joy may be made full." },
+            { verse: 12, text: "\"This is my commandment, that you love one another, even as I have loved you." },
+            { verse: 13, text: "Greater love has no one than this, that someone lay down his life for his friends." },
+            { verse: 14, text: "You are my friends if you do whatever I command you." },
+            { verse: 15, text: "No longer do I call you servants, for the servant doesn't know what his lord does. But I have called you friends, for everything that I heard from my Father, I have made known to you." },
+            { verse: 16, text: "You didn't choose me, but I chose you and appointed you, that you should go and bear fruit, and that your fruit should remain; that whatever you will ask of the Father in my name, he may give it to you." },
+            { verse: 17, text: "\"I command these things to you, that you may love one another." }
+          ]
+        },
+        {
+          title: "The World's Hatred",
+          verses: [
+            { verse: 18, text: "If the world hates you, you know that it has hated me before it hated you." },
+            { verse: 19, text: "If you were of the world, the world would love its own. But because you are not of the world, since I chose you out of the world, therefore the world hates you." },
+            { verse: 20, text: "Remember the word that I said to you: 'A servant is not greater than his lord.' If they persecuted me, they will also persecute you. If they kept my word, they will also keep yours." },
+            { verse: 21, text: "But they will do all these things to you for my name's sake, because they don't know him who sent me." },
+            { verse: 22, text: "If I had not come and spoken to them, they would not have had sin; but now they have no excuse for their sin." },
+            { verse: 23, text: "He who hates me, hates my Father also." },
+            { verse: 24, text: "If I hadn't done among them the works which no one else did, they wouldn't have had sin. But now they have seen and also hated both me and my Father." },
+            { verse: 25, text: "But this happened so that the word may be fulfilled which was written in their law, 'They hated me without a cause.'" }
+          ]
+        },
+        {
+          title: "The Coming Rejection",
+          verses: [
+            { verse: 26, text: "\"When the Counselor has come, whom I will send to you from the Father, the Spirit of truth, who proceeds from the Father, he will testify about me." },
+            { verse: 27, text: "You will also testify, because you have been with me from the beginning." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 16,
+      chapter: 16,
+      title: "Jesus Warns and Comforts His Disciples",
+      sections: [
+        {
+          title: "Jesus Warns and Comforts His Disciples",
+          verses: [
+            { verse: 1, text: "\"I have said these things to you so that you wouldn't be caused to stumble." },
+            { verse: 2, text: "They will put you out of the synagogues. Yes, the time comes that whoever kills you will think that he offers service to God." },
+            { verse: 3, text: "They will do these things because they have not known the Father nor me." },
+            { verse: 4, text: "But I have told you these things, so that when the time comes, you may remember that I told you about them. I didn't tell you these things from the beginning, because I was with you." }
+          ]
+        },
+        {
+          title: "The Work of the Holy Spirit",
+          verses: [
+            { verse: 5, text: "But now I am going to him who sent me, and none of you asks me, 'Where are you going?'" },
+            { verse: 6, text: "But because I have told you these things, sorrow has filled your heart." },
+            { verse: 7, text: "Nevertheless I tell you the truth: It is to your advantage that I go away, for if I don't go away, the Counselor won't come to you. But if I go, I will send him to you." },
+            { verse: 8, text: "When he has come, he will convict the world about sin, about righteousness, and about judgment;" },
+            { verse: 9, text: "about sin, because they don't believe in me;" },
+            { verse: 10, text: "about righteousness, because I am going to my Father, and you won't see me any more;" },
+            { verse: 11, text: "about judgment, because the prince of this world has been judged." },
+            { verse: 12, text: "\"I still have many things to tell you, but you can't bear them now." },
+            { verse: 13, text: "However when he, the Spirit of truth, has come, he will guide you into all truth, for he will not speak from himself; but whatever he hears, he will speak. He will declare to you things that are coming." },
+            { verse: 14, text: "He will glorify me, for he will take from what is mine, and will declare it to you." },
+            { verse: 15, text: "All things that the Father has are mine; therefore I said that he takes of mine and will declare it to you." }
+          ]
+        },
+        {
+          title: "Sorrow Will Turn to Joy",
+          verses: [
+            { verse: 16, text: "A little while, and you will not see me. Again a little while, and you will see me.\"" },
+            { verse: 17, text: "Some of his disciples therefore said to one another, \"What is this that he says to us, 'A little while, and you won't see me, and again a little while, and you will see me;' and, 'Because I go to the Father'?\"" },
+            { verse: 18, text: "They said therefore, \"What is this that he says, 'A little while'? We don't know what he is saying.\"" },
+            { verse: 19, text: "Therefore Jesus perceived that they wanted to ask him, and he said to them, \"Do you inquire among yourselves concerning this, that I said, 'A little while, and you won't see me, and again a little while, and you will see me?'" },
+            { verse: 20, text: "Most certainly I tell you that you will weep and lament, but the world will rejoice. You will be sorrowful, but your sorrow will be turned into joy." },
+            { verse: 21, text: "A woman, when she gives birth, has sorrow because her time has come. But when she has delivered the child, she doesn't remember the anguish any more, for the joy that a human being is born into the world." },
+            { verse: 22, text: "Therefore you now have sorrow, but I will see you again, and your heart will rejoice, and no one will take your joy away from you." }
+          ]
+        },
+        {
+          title: "Prayer in Jesus' Name",
+          verses: [
+            { verse: 23, text: "\"In that day you will ask me no questions. Most certainly I tell you, whatever you may ask of the Father in my name, he will give it to you." },
+            { verse: 24, text: "Until now, you have asked nothing in my name. Ask, and you will receive, that your joy may be made full." },
+            { verse: 25, text: "I have spoken these things to you in figures of speech. But the time is coming when I will no more speak to you in figures of speech, but will tell you plainly about the Father." },
+            { verse: 26, text: "In that day you will ask in my name; and I don't say to you that I will pray to the Father for you," },
+            { verse: 27, text: "for the Father himself loves you, because you have loved me, and have believed that I came from God." },
+            { verse: 28, text: "I came from the Father, and have come into the world. Again, I leave the world, and go to the Father.\"" },
+            { verse: 29, text: "His disciples said to him, \"Behold, now you are speaking plainly, and using no figures of speech." },
+            { verse: 30, text: "Now we know that you know all things, and don't need for anyone to question you. By this we believe that you came from God.\"" },
+            { verse: 31, text: "Jesus answered them, \"Do you now believe?" },
+            { verse: 32, text: "Behold, the time is coming, yes, and has now come, that you will be scattered, everyone to his own place, and you will leave me alone. Yet I am not alone, because the Father is with me." },
+            { verse: 33, text: "I have told you these things, that in me you may have peace. In the world you have trouble; but cheer up! I have overcome the world.\"" }
+          ]
+        }
+      ]
+    },
+    {
+      id: 17,
+      chapter: 17,
+      title: "Jesus Prays for Himself",
+      sections: [
+        {
+          title: "Jesus Prays for Himself",
+          verses: [
+            { verse: 1, text: "Jesus said these things, then lifting up his eyes to heaven, he said, \"Father, the time has come. Glorify your Son, that your Son may also glorify you;" },
+            { verse: 2, text: "even as you gave him authority over all flesh, so he will give eternal life to all whom you have given him." },
+            { verse: 3, text: "This is eternal life, that they should know you, the only true God, and him whom you sent, Jesus Christ." },
+            { verse: 4, text: "I glorified you on the earth. I have accomplished the work which you have given me to do." },
+            { verse: 5, text: "Now, Father, glorify me with your own self with the glory which I had with you before the world existed." }
+          ]
+        },
+        {
+          title: "Jesus Prays for His Disciples",
+          verses: [
+            { verse: 6, text: "\"I revealed your name to the people whom you have given me out of the world. They were yours, and you have given them to me. They have kept your word." },
+            { verse: 7, text: "Now they have known that all things whatever you have given me are from you," },
+            { verse: 8, text: "for the words which you have given me I have given to them, and they received them, and knew for sure that I came from you. They have believed that you sent me." },
+            { verse: 9, text: "I pray for them. I don't pray for the world, but for those whom you have given me, for they are yours." },
+            { verse: 10, text: "All things that are mine are yours, and yours are mine, and I am glorified in them." },
+            { verse: 11, text: "I am no more in the world, but these are in the world, and I am coming to you. Holy Father, keep them through your name which you have given me, that they may be one, even as we are." },
+            { verse: 12, text: "While I was with them in the world, I kept them in your name. I have kept those whom you have given me. None of them is lost except the son of destruction, that the Scripture might be fulfilled." },
+            { verse: 13, text: "But now I come to you, and I say these things in the world, that they may have my joy made full in themselves." },
+            { verse: 14, text: "I have given them your word. The world hated them, because they are not of the world, even as I am not of the world." },
+            { verse: 15, text: "I pray not that you would take them from the world, but that you would keep them from the evil one." },
+            { verse: 16, text: "They are not of the world even as I am not of the world." },
+            { verse: 17, text: "Sanctify them in your truth. Your word is truth." },
+            { verse: 18, text: "As you sent me into the world, even so I have sent them into the world." },
+            { verse: 19, text: "For their sakes I sanctify myself, that they themselves also may be sanctified in truth." }
+          ]
+        },
+        {
+          title: "Jesus Prays for All Believers",
+          verses: [
+            { verse: 20, text: "\"Not for these only do I pray, but for those also who will believe in me through their word," },
+            { verse: 21, text: "that they may all be one; even as you, Father, are in me, and I in you, that they also may be one in us; that the world may believe that you sent me." },
+            { verse: 22, text: "The glory which you have given me, I have given to them; that they may be one, even as we are one;" },
+            { verse: 23, text: "I in them, and you in me, that they may be perfected into one; that the world may know that you sent me and loved them, even as you loved me." },
+            { verse: 24, text: "Father, I desire that they also whom you have given me be with me where I am, that they may see my glory, which you have given me, for you loved me before the foundation of the world." },
+            { verse: 25, text: "Righteous Father, the world hasn't known you, but I knew you; and these knew that you sent me." },
+            { verse: 26, text: "I made known to them your name, and will make it known; that the love with which you loved me may be in them, and I in them.\"" }
+          ]
+        }
+      ]
     }
   ]
 };
