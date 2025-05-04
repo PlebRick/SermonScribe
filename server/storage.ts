@@ -259,19 +259,33 @@ export class MemStorage implements IStorage {
       let bookContent;
       
       // Check for available book content
+      console.log(`Loading content for book: ${book.shortName}, chapter: ${chapter}`);
       if (book.shortName === 'gen') {
         bookContent = bibleContent.genesis;
+        console.log('Using genesis content');
       } else if (book.shortName === 'exo') {
         bookContent = bibleContent.exodus;
+        console.log('Using exodus content');
       } else if (book.shortName === 'mat') {
         bookContent = bibleContent.matthew;
+        console.log('Using matthew content');
       } else if (book.shortName === 'mrk') {
         bookContent = bibleContent.mark;
+        console.log('Using mark content');
       } else if (book.shortName === 'jhn') {
         bookContent = bibleContent.john;
+        console.log('Using john content');
       } else {
         // Content not available for this book yet
+        console.log(`No content available for book: ${book.shortName}`);
         return [];
+      }
+      
+      // Log book structure to verify it has chapters
+      console.log(`Book content structure: ${Object.keys(bookContent)}`);
+      console.log(`Book has chapters array: ${bookContent.chapters ? 'Yes' : 'No'}`);
+      if (bookContent.chapters) {
+        console.log(`Number of chapters: ${bookContent.chapters.length}`);
       }
       
       // Find the specific chapter
