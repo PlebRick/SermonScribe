@@ -52,12 +52,22 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
 
   // Group books from API by testament - using data from API call
   // Only fall back to imported constants if the API call fails
-  const apiOldTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.OLD);
-  const apiNewTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.NEW);
+  const apiOldTestamentBooks = books
+    .filter((book) => book.testament === TESTAMENTS.OLD)
+    .sort((a, b) => a.position - b.position);
+    
+  const apiNewTestamentBooks = books
+    .filter((book) => book.testament === TESTAMENTS.NEW)
+    .sort((a, b) => a.position - b.position);
   
   // Use API books or fall back to imported constant books
-  const oldTestamentBooksToDisplay = apiOldTestamentBooks.length > 0 ? apiOldTestamentBooks : oldTestamentBooks;
-  const newTestamentBooksToDisplay = apiNewTestamentBooks.length > 0 ? apiNewTestamentBooks : newTestamentBooks;
+  const oldTestamentBooksToDisplay = apiOldTestamentBooks.length > 0 
+    ? apiOldTestamentBooks 
+    : oldTestamentBooks.sort((a, b) => a.position - b.position);
+    
+  const newTestamentBooksToDisplay = apiNewTestamentBooks.length > 0 
+    ? apiNewTestamentBooks 
+    : newTestamentBooks.sort((a, b) => a.position - b.position);
 
   if (!isOpen) return null;
 

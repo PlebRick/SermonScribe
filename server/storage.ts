@@ -339,83 +339,8 @@ export class MemStorage implements IStorage {
   }
 }
 
-// Import bibleContent directly into server code
-import { bibleContent } from '../client/src/lib/bible-data';
-
 // Import our file-based storage implementation
 import { fileStorage } from './fileStorage';
 
-// Enhanced storage with fallback to in-memory content
-class EnhancedStorage implements IStorage {
-  constructor(private base: IStorage) {}
-  
-  // Pass through most methods to base storage
-  async getUser(id: number) { return this.base.getUser(id); }
-  async getUserByUsername(username: string) { return this.base.getUserByUsername(username); }
-  async createUser(user: InsertUser) { return this.base.createUser(user); }
-  async getAllBooks() { return this.base.getAllBooks(); }
-  async getBookById(id: number) { return this.base.getBookById(id); }
-  async getBookByName(name: string) { return this.base.getBookByName(name); }
-  async getOutlinesByBookAndChapter(bookId: number, chapter: number) { return this.base.getOutlinesByBookAndChapter(bookId, chapter); }
-  async getOutlineById(id: number) { return this.base.getOutlineById(id); }
-  async getManuscriptByOutlineId(outlineId: number) { return this.base.getManuscriptByOutlineId(outlineId); }
-  async getCommentariesByBookAndChapter(bookId: number, chapter: number) { return this.base.getCommentariesByBookAndChapter(bookId, chapter); }
-  
-  // Enhanced method with in-memory fallback
-  async getVersesByBookAndChapter(bookId: number, chapter: number): Promise<Verse[]> {
-    // First try to get from file storage
-    const fileVerses = await this.base.getVersesByBookAndChapter(bookId, chapter);
-    if (fileVerses && fileVerses.length > 0) {
-      return fileVerses;
-    }
-    
-    // If not found in files, try to generate from in-memory content
-    console.log(`No file content found for book ${bookId}, chapter ${chapter}. Trying in-memory content...`);
-    
-    // Get book from database to find short name
-    const book = await this.getBookById(bookId);
-    if (!book) {
-      console.log(`Book with id ${bookId} not found.`);
-      return [];
-    }
-    
-    const shortName = book.shortName;
-    console.log(`Using in-memory content for book: ${shortName}, chapter: ${chapter}`);
-    
-    // Access the book content in our imported bibleContent
-    const bookContent = bibleContent[shortName];
-    if (!bookContent || !bookContent.chapters) {
-      console.log(`No content available for book: ${shortName}`);
-      return [];
-    }
-    
-    // Find the specific chapter
-    const chapterData = bookContent.chapters.find(c => c.chapter === chapter);
-    if (!chapterData) {
-      console.log(`No content found for chapter ${chapter} in book ${shortName}`);
-      return [];
-    }
-    
-    // Convert chapter content into Verse objects
-    let verseId = 1000 * bookId + chapter * 100; // Generate unique IDs
-    let verses: Verse[] = [];
-    
-    chapterData.sections.forEach(section => {
-      section.verses.forEach(v => {
-        verses.push({
-          id: verseId++,
-          bookId: bookId,
-          chapter: chapter,
-          verse: v.verse,
-          text: v.text
-        });
-      });
-    });
-    
-    console.log(`Generated ${verses.length} verses from in-memory content.`);
-    return verses;
-  }
-}
-
-// Use Enhanced storage combining file and in-memory approaches
-export const storage = new EnhancedStorage(fileStorage);
+// Use FileStorage for both file and in-memory content
+export const storage = fileStorage;

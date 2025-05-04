@@ -960,18 +960,49 @@ export class FileStorage implements IStorage {
   }
 
   async getVersesByBookAndChapter(bookId: number, chapter: number): Promise<Verse[]> {
+    // First try to load from disk
     const chapterDir = path.join(CONTENT_DIR, 'verses', `${bookId}-${chapter}`);
-    if (!fs.existsSync(chapterDir)) {
-      return [];
+    if (fs.existsSync(chapterDir)) {
+      const filePath = path.join(chapterDir, 'verses.json');
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        return JSON.parse(content) as Verse[];
+      }
     }
     
-    const filePath = path.join(chapterDir, 'verses.json');
-    if (!fs.existsSync(filePath)) {
+    // If no file exists, dynamically import our Bible content
+    try {
+      // Find the book to get its shortName
+      const book = await this.getBookById(bookId);
+      if (!book) {
+        console.log(`Book with ID ${bookId} not found.`);
+        return [];
+      }
+      
+      // Import our Bible content helper
+      const { getVersesForBookAndChapter } = require('./bibleContent');
+      
+      // Get verses from the imported Bible content
+      console.log(`Loading verses from code for ${book.shortName} chapter ${chapter}`);
+      const verses = getVersesForBookAndChapter(bookId, chapter, book.shortName);
+      
+      // Cache these verses to disk for future use
+      if (verses.length > 0) {
+        if (!fs.existsSync(chapterDir)) {
+          fs.mkdirSync(chapterDir, { recursive: true });
+        }
+        fs.writeFileSync(
+          path.join(chapterDir, 'verses.json'),
+          JSON.stringify(verses, null, 2)
+        );
+        console.log(`Cached ${verses.length} verses to disk for ${book.shortName} chapter ${chapter}`);
+      }
+      
+      return verses;
+    } catch (error) {
+      console.error(`Error loading verses for book ${bookId}, chapter ${chapter}:`, error);
       return [];
     }
-    
-    const content = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(content) as Verse[];
   }
 
   // Sermon methods
