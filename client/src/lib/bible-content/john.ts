@@ -715,6 +715,85 @@ export const john = {
           ]
         }
       ]
+    },
+    {
+      id: 10,
+      chapter: 10,
+      title: "Jesus the Good Shepherd",
+      sections: [
+        {
+          title: "Jesus the Good Shepherd",
+          verses: [
+            { verse: 1, text: "\"Most certainly, I tell you, one who doesn't enter by the door into the sheep fold, but climbs up some other way, is a thief and a robber." },
+            { verse: 2, text: "But one who enters in by the door is the shepherd of the sheep." },
+            { verse: 3, text: "The gatekeeper opens the gate for him, and the sheep listen to his voice. He calls his own sheep by name, and leads them out." },
+            { verse: 4, text: "Whenever he brings out his own sheep, he goes before them, and the sheep follow him, for they know his voice." },
+            { verse: 5, text: "They will by no means follow a stranger, but will flee from him; for they don't know the voice of strangers.\"" },
+            { verse: 6, text: "Jesus spoke this parable to them, but they didn't understand what he was telling them." }
+          ]
+        },
+        {
+          title: "I Am the Good Shepherd",
+          verses: [
+            { verse: 7, text: "Jesus therefore said to them again, \"Most certainly, I tell you, I am the sheep's door." },
+            { verse: 8, text: "All who came before me are thieves and robbers, but the sheep didn't listen to them." },
+            { verse: 9, text: "I am the door. If anyone enters in by me, he will be saved, and will go in and go out, and will find pasture." },
+            { verse: 10, text: "The thief only comes to steal, kill, and destroy. I came that they may have life, and may have it abundantly." },
+            { verse: 11, text: "I am the good shepherd. The good shepherd lays down his life for the sheep." },
+            { verse: 12, text: "He who is a hired hand, and not a shepherd, who doesn't own the sheep, sees the wolf coming, leaves the sheep, and flees. The wolf snatches the sheep, and scatters them." },
+            { verse: 13, text: "The hired hand flees because he is a hired hand, and doesn't care for the sheep." },
+            { verse: 14, text: "I am the good shepherd. I know my own, and I'm known by my own;" },
+            { verse: 15, text: "even as the Father knows me, and I know the Father. I lay down my life for the sheep." },
+            { verse: 16, text: "I have other sheep, which are not of this fold. I must bring them also, and they will hear my voice. They will become one flock with one shepherd." },
+            { verse: 17, text: "Therefore the Father loves me, because I lay down my life, that I may take it again." },
+            { verse: 18, text: "No one takes it away from me, but I lay it down by myself. I have power to lay it down, and I have power to take it again. I received this commandment from my Father.\"" }
+          ]
+        },
+        {
+          title: "The Jews Are Divided Again",
+          verses: [
+            { verse: 19, text: "Therefore a division arose again among the Jews because of these words." },
+            { verse: 20, text: "Many of them said, \"He has a demon, and is insane! Why do you listen to him?\"" },
+            { verse: 21, text: "Others said, \"These are not the sayings of one possessed by a demon. It isn't possible for a demon to open the eyes of the blind, is it?\"" }
+          ]
+        },
+        {
+          title: "Jesus Rejected by the Jews",
+          verses: [
+            { verse: 22, text: "It was the Feast of the Dedication at Jerusalem." },
+            { verse: 23, text: "It was winter, and Jesus was walking in the temple, in Solomon's porch." },
+            { verse: 24, text: "The Jews therefore came around him and said to him, \"How long will you hold us in suspense? If you are the Christ, tell us plainly.\"" },
+            { verse: 25, text: "Jesus answered them, \"I told you, and you don't believe. The works that I do in my Father's name, these testify about me." },
+            { verse: 26, text: "But you don't believe, because you are not of my sheep, as I told you." },
+            { verse: 27, text: "My sheep hear my voice, and I know them, and they follow me." },
+            { verse: 28, text: "I give eternal life to them. They will never perish, and no one will snatch them out of my hand." },
+            { verse: 29, text: "My Father who has given them to me is greater than all. No one is able to snatch them out of my Father's hand." },
+            { verse: 30, text: "I and the Father are one.\"" }
+          ]
+        },
+        {
+          title: "Attempt to Stone Jesus",
+          verses: [
+            { verse: 31, text: "Therefore the Jews took up stones again to stone him." },
+            { verse: 32, text: "Jesus answered them, \"I have shown you many good works from my Father. For which of those works do you stone me?\"" },
+            { verse: 33, text: "The Jews answered him, \"We don't stone you for a good work, but for blasphemy: because you, being a man, make yourself God.\"" },
+            { verse: 34, text: "Jesus answered them, \"Isn't it written in your law, 'I said, you are gods?'" },
+            { verse: 35, text: "If he called them gods, to whom the word of God came (and the Scripture can't be broken)," },
+            { verse: 36, text: "do you say of him whom the Father sanctified and sent into the world, 'You blaspheme,' because I said, 'I am the Son of God?'" },
+            { verse: 37, text: "If I don't do the works of my Father, don't believe me." },
+            { verse: 38, text: "But if I do them, though you don't believe me, believe the works; that you may know and believe that the Father is in me, and I in the Father.\"" },
+            { verse: 39, text: "They sought again to seize him, and he went out of their hand." }
+          ]
+        },
+        {
+          title: "Many Across the Jordan Believe",
+          verses: [
+            { verse: 40, text: "He went away again beyond the Jordan into the place where John was baptizing at first, and he stayed there." },
+            { verse: 41, text: "Many came to him. They said, \"John indeed did no sign, but everything that John said about this man is true.\"" },
+            { verse: 42, text: "Many believed in him there." }
+          ]
+        }
+      ]
     }
   ]
 };
