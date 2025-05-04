@@ -50,5 +50,6 @@ export const bibleContent = {
   exodus,
   matthew,
   mark,
-  john
+  john,
+  romans
 };
