@@ -424,13 +424,44 @@ export default function AdminPage() {
         
         <TabsContent value="commentaries">
           <div className="grid grid-cols-1 gap-6">
-            <h2 className="text-xl font-bold mb-4">Verse Commentaries</h2>
-            <CommentaryEditor 
-              bookId={selectedBook} 
-              chapter={selectedChapter}
-              onSave={(commentary) => saveCommentaryMutation.mutate(commentary)}
-              onDelete={(id) => deleteCommentaryMutation.mutate(id)}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="md:col-span-1">
+                <h2 className="text-xl font-bold mb-4">Outlines</h2>
+                {outlines && outlines.length > 0 ? (
+                  <div className="space-y-4">
+                    {outlines.map((outline: Outline) => (
+                      <Card key={outline.id} className="relative">
+                        <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
+                          <CardHeader>
+                            <CardTitle className="text-sm">{outline.title}</CardTitle>
+                            <CardDescription className="text-xs">
+                              {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+                            </CardDescription>
+                          </CardHeader>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <p>No outlines found for this chapter.</p>
+                )}
+              </div>
+              
+              <div className="md:col-span-3">
+                <h2 className="text-xl font-bold mb-4">Commentaries</h2>
+                {selectedOutline ? (
+                  <CommentaryEditor 
+                    bookId={selectedBook} 
+                    chapter={selectedChapter}
+                    outlineId={selectedOutline}
+                    onSave={(commentary) => saveCommentaryMutation.mutate(commentary)}
+                    onDelete={(id) => deleteCommentaryMutation.mutate(id)}
+                  />
+                ) : (
+                  <p>Select an outline to edit or create commentaries.</p>
+                )}
+              </div>
+            </div>
           </div>
         </TabsContent>
       </Tabs>
@@ -464,10 +495,11 @@ function OutlineEditor({
 
   useEffect(() => {
     if (outline) {
-      setTitle(outline.title);
-      setStartVerse(outline.startVerse);
-      setEndVerse(outline.endVerse);
-      setPoints(outline.points);
+      setTitle(outline.title || "");
+      setStartVerse(outline.startVerse || 1);
+      setEndVerse(outline.endVerse || 10);
+      // Ensure points is always an array
+      setPoints(Array.isArray(outline.points) ? outline.points : [""]);
     } else {
       // Reset form for new outline
       setTitle("");
@@ -686,168 +718,101 @@ function ManuscriptEditor({
 function CommentaryEditor({ 
   bookId, 
   chapter,
+  outlineId,
   onSave,
   onDelete
 }: { 
   bookId: number, 
   chapter: number,
+  outlineId: number,
   onSave: (commentary: Commentary) => void,
   onDelete: (id: number) => void
 }) {
-  const [verse, setVerse] = useState(1);
   const [content, setContent] = useState("");
-  const [source, setSource] = useState("");
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [source, setSource] = useState("Study Notes");
 
   const { data: commentaries, refetch: refetchCommentaries } = useQuery<Commentary[]>({
-    queryKey: ["/api/commentaries", bookId, chapter],
+    queryKey: ["/api/commentaries", bookId, chapter, outlineId],
     enabled: !!bookId && !!chapter,
     refetchOnWindowFocus: false,
   });
 
-  const { data: verses } = useQuery<Verse[]>({
-    queryKey: ["/api/verses", bookId, chapter],
-    enabled: !!bookId && !!chapter,
+  const { data: outline } = useQuery<Outline>({
+    queryKey: ["/api/outlines", outlineId],
+    enabled: !!outlineId,
     refetchOnWindowFocus: false,
   });
 
-  const handleEditCommentary = (commentary: Commentary) => {
-    setEditingId(commentary.id);
-    setVerse(commentary.verse);
-    setContent(commentary.content);
-    setSource(commentary.source);
-  };
+  // Get the single commentary for this outline if it exists
+  const currentCommentary = commentaries?.find(c => c.outlineId === outlineId);
 
-  const handleClear = () => {
-    setEditingId(null);
-    setVerse(1);
-    setContent("");
-    setSource("");
-  };
+  useEffect(() => {
+    if (currentCommentary) {
+      setContent(currentCommentary.content || "");
+      setSource(currentCommentary.source || "Study Notes");
+    } else {
+      // Initialize with empty content for new commentary
+      setContent("<p>Enter your commentary notes here...</p>");
+      setSource("Study Notes");
+    }
+  }, [currentCommentary, outlineId]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     const commentaryData: Commentary = {
-      id: editingId || undefined,
+      id: currentCommentary?.id,
       bookId,
       chapter,
-      verse,
+      verse: outline?.startVerse || 1,
+      outlineId,
       content,
       source
     };
     
     onSave(commentaryData);
-    handleClear();
     refetchCommentaries();
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Existing Commentaries</h3>
-        {commentaries && commentaries.length > 0 ? (
-          <div className="space-y-4">
-            {commentaries.map((commentary: Commentary) => (
-              <Card key={commentary.id}>
-                <CardHeader>
-                  <CardTitle>Verse {commentary.verse}</CardTitle>
-                  <CardDescription>{commentary.source}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {/* Display formatted content if it's HTML, otherwise display as plain text */}
-                  {commentary.content.includes('<') && commentary.content.includes('>') ? (
-                    <div 
-                      className="prose dark:prose-invert max-w-none" 
-                      dangerouslySetInnerHTML={{ __html: commentary.content }}
-                    />
-                  ) : (
-                    <p>{commentary.content}</p>
-                  )}
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button 
-                    variant="outline" 
-                    onClick={() => handleEditCommentary(commentary)}
-                  >
-                    Edit
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
-                    onClick={() => {
-                      if (confirm("Are you sure you want to delete this commentary?")) {
-                        onDelete(commentary.id);
-                        refetchCommentaries();
-                      }
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <p>No commentaries found for this chapter.</p>
-        )}
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {outline && (
+        <div className="bg-muted p-4 rounded-md mb-4">
+          <h2 className="text-xl font-bold mb-2">{outline.title}</h2>
+          <p className="text-sm text-muted-foreground">
+            {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+          </p>
+        </div>
+      )}
+
+      <Card className="overflow-hidden">
+        <CardContent className="p-4">
+          <RichTextEditor 
+            content={content} 
+            onChange={(html) => setContent(html)}
+          />
+        </CardContent>
+      </Card>
       
-      <div>
-        <h3 className="text-lg font-semibold mb-4">
-          {editingId ? "Edit Commentary" : "New Commentary"}
-        </h3>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="verse">Verse</Label>
-            <Select 
-              value={verse.toString()} 
-              onValueChange={(value) => setVerse(parseInt(value, 10))}
-            >
-              <SelectTrigger id="verse">
-                <SelectValue placeholder="Select verse" />
-              </SelectTrigger>
-              <SelectContent>
-                {verses && verses.map((v: Verse) => (
-                  <SelectItem key={v.verse} value={v.verse.toString()}>
-                    {v.verse}: {v.text.substring(0, 30)}...
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div>
-            <Label htmlFor="content">Commentary</Label>
-            <div className="mt-2 border rounded-md overflow-hidden">
-              <RichTextEditor 
-                content={content} 
-                onChange={setContent}
-              />
-            </div>
-          </div>
-          
-          <div>
-            <Label htmlFor="source">Source</Label>
-            <Input
-              id="source"
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-              placeholder="e.g., Commentary name, author"
-              required
-            />
-          </div>
-          
-          <div className="flex justify-between">
-            <Button type="button" variant="outline" onClick={handleClear}>
-              {editingId ? "Cancel" : "Clear"}
-            </Button>
-            <Button type="submit">
-              Save Commentary
-            </Button>
-          </div>
-        </form>
+      <div className="flex flex-col space-y-4">
+        <div>
+          <Label htmlFor="source">Source</Label>
+          <Input
+            id="source"
+            value={source}
+            onChange={(e) => setSource(e.target.value)}
+            placeholder="e.g., Commentary name, author"
+            className="mb-4"
+            required
+          />
+        </div>
+        
+        <div className="flex justify-end">
+          <Button type="submit" className="px-8">
+            Save Commentary
+          </Button>
+        </div>
       </div>
-    </div>
+    </form>
   );
 }

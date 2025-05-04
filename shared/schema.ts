@@ -68,6 +68,7 @@ export const commentaries = pgTable("commentaries", {
   bookId: integer("book_id").notNull(),
   chapter: integer("chapter").notNull(),
   verse: integer("verse").notNull(),
+  outlineId: integer("outline_id"), // optional for backwards compatibility
   content: text("content").notNull(),
   source: text("source").notNull(),
 });

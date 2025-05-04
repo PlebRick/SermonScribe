@@ -177,9 +177,11 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                   </div>
                   
                   <div className="space-y-6">
-                    {(manuscript.content as any[]).map((section, idx) => (
+                    {Array.isArray(manuscript.content) && manuscript.content.map((section: any, idx: number) => (
                       <div key={idx} className="space-y-4">
-                        <h4 className="font-medium text-lg">{section.title}</h4>
+                        {section.title && section.title.trim() !== "" && (
+                          <h4 className="font-medium text-lg">{section.title}</h4>
+                        )}
                         {/* Check for the new format with HTML content or fall back to old format */}
                         {section.content ? (
                           <div 
@@ -213,31 +215,46 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
             <div className="space-y-6">
               {isLoadingCommentaries ? (
                 <CommentarySkeleton />
-              ) : commentaries.length > 0 ? (
-                commentaries.map(commentary => (
-                  <div key={commentary.id} className="space-y-4">
-                    <h3 className="font-bold text-lg">
-                      {currentBook?.name} {commentary.chapter}:{commentary.verse}
-                    </h3>
-                    <div className="p-4 bg-gray-50 dark:bg-[hsl(220,13%,15%)] rounded-lg">
-                      {/* Display formatted content if it's HTML, otherwise display as plain text */}
-                      {commentary.content.includes('<') && commentary.content.includes('>') ? (
-                        <div 
-                          className="prose dark:prose-invert max-w-none prose-headings:text-primary prose-headings:font-semibold prose-p:my-2 prose-ul:my-1 prose-ol:my-1" 
-                          dangerouslySetInnerHTML={{ __html: commentary.content }}
-                        />
-                      ) : (
-                        <p className="mb-2">{commentary.content}</p>
-                      )}
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                        — {commentary.source}
-                      </p>
+              ) : activeOutlineId && commentaries.find(c => c.outlineId === activeOutlineId) ? (
+                // Display commentary for selected outline
+                (() => {
+                  const commentary = commentaries.find(c => c.outlineId === activeOutlineId);
+                  return (
+                    <div>
+                      <div className="mb-6">
+                        <h3 className="font-serif font-bold text-xl mb-1">
+                          {outlines.find(o => o.id === activeOutlineId)?.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {activeOutlineId && outlines.find(o => o.id === activeOutlineId) 
+                            ? formatVerseRange(outlines.find(o => o.id === activeOutlineId)) 
+                            : ""}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {commentary?.content.includes('<') && commentary.content.includes('>') ? (
+                          <div 
+                            className="prose dark:prose-invert max-w-none prose-headings:text-primary prose-headings:font-semibold prose-p:my-2 prose-ul:my-1 prose-ol:my-1" 
+                            dangerouslySetInnerHTML={{ __html: commentary.content }}
+                          />
+                        ) : (
+                          <p className="mb-2">{commentary?.content}</p>
+                        )}
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                          — {commentary?.source}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })()
+              ) : activeOutlineId ? (
+                <div className="text-center py-10">
+                  <p className="text-gray-500 dark:text-gray-400">No commentary available for this outline.</p>
+                </div>
               ) : (
                 <div className="text-center py-10">
-                  <p className="text-gray-500 dark:text-gray-400">No commentaries available for this chapter.</p>
+                  <p className="text-gray-500 dark:text-gray-400">Select an outline to view its commentary.</p>
                 </div>
               )}
             </div>
