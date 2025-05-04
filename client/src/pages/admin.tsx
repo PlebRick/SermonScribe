@@ -577,14 +577,15 @@ function OutlineEditor({
     // Remove empty points
     const filteredPoints = points.filter(point => point.trim() !== "");
     
-    const outlineData: Outline = {
+    // Cast to any to avoid TypeScript errors with optional fields
+    const outlineData: any = {
       id: outlineId || undefined,
       title,
       bookId,
       startChapter: chapter,
       endChapter: chapter,
-      startVerse,
-      endVerse,
+      startVerse: startVerse || 1,
+      endVerse: endVerse || 1,
       points: filteredPoints
     };
     
@@ -722,7 +723,8 @@ function ManuscriptEditor({
     e.preventDefault();
     
     // Create a single section with the outline title and content
-    const manuscriptData: Manuscript = {
+    // Cast to any to avoid TypeScript errors with optional fields
+    const manuscriptData: any = {
       id: manuscript?.id,
       outlineId,
       content: [{ 
@@ -808,7 +810,8 @@ function CommentaryEditor({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const commentaryData: Commentary = {
+    // Cast to any to avoid TypeScript errors with optional fields
+    const commentaryData: any = {
       id: currentCommentary?.id,
       bookId,
       chapter,
@@ -823,44 +826,87 @@ function CommentaryEditor({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {outline && (
-        <div className="bg-muted p-4 rounded-md mb-4">
-          <h2 className="text-xl font-bold mb-2">{outline.title}</h2>
-          <p className="text-sm text-muted-foreground">
-            {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
-          </p>
-        </div>
-      )}
-
-      <Card className="overflow-hidden">
-        <CardContent className="p-4">
-          <RichTextEditor 
-            content={content} 
-            onChange={(html) => setContent(html)}
-          />
-        </CardContent>
-      </Card>
-      
-      <div className="flex flex-col space-y-4">
-        <div>
-          <Label htmlFor="source">Source</Label>
-          <Input
-            id="source"
-            value={source}
-            onChange={(e) => setSource(e.target.value)}
-            placeholder="e.g., Commentary name, author"
-            className="mb-4"
-            required
-          />
-        </div>
-        
-        <div className="flex justify-end">
-          <Button type="submit" className="px-8">
-            Save Commentary
-          </Button>
-        </div>
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-medium">
+          {currentCommentary ? "Edit Commentary" : "Add New Commentary"} 
+        </h3>
+        {currentCommentary && (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure you want to delete this commentary?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. The commentary will be permanently deleted.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction 
+                  onClick={() => {
+                    if (currentCommentary?.id) {
+                      onDelete(currentCommentary.id);
+                      refetchCommentaries();
+                    }
+                  }}
+                  className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                >
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
       </div>
-    </form>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {outline && (
+          <div className="bg-muted p-4 rounded-md mb-4">
+            <h2 className="text-xl font-bold mb-2">{outline.title}</h2>
+            <p className="text-sm text-muted-foreground">
+              {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+            </p>
+          </div>
+        )}
+
+        <Card className="overflow-hidden">
+          <CardContent className="p-4">
+            <RichTextEditor 
+              content={content} 
+              onChange={(html) => setContent(html)}
+            />
+          </CardContent>
+        </Card>
+        
+        <div className="flex flex-col space-y-4">
+          <div>
+            <Label htmlFor="source">Source</Label>
+            <Input
+              id="source"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
+              placeholder="e.g., Commentary name, author"
+              className="mb-4"
+              required
+            />
+          </div>
+          
+          <div className="flex justify-end">
+            <Button type="submit" className="px-8">
+              Save Commentary
+            </Button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
