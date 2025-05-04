@@ -310,13 +310,46 @@ export default function AdminPage() {
               {outlines && outlines.length > 0 ? (
                 <div className="space-y-4">
                   {outlines.map((outline: Outline) => (
-                    <Card key={outline.id} className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
-                      <CardHeader>
-                        <CardTitle>{outline.title}</CardTitle>
-                        <CardDescription>
-                          {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
-                        </CardDescription>
-                      </CardHeader>
+                    <Card key={outline.id} className="relative">
+                      <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
+                        <CardHeader>
+                          <CardTitle>{outline.title}</CardTitle>
+                          <CardDescription>
+                            {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+                          </CardDescription>
+                        </CardHeader>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-gray-400 hover:text-red-500"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (confirm("Are you sure you want to delete this outline?")) {
+                              deleteOutlineMutation.mutate(outline.id);
+                            }
+                          }}
+                        >
+                          <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            width="16" 
+                            height="16" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeWidth="2" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                          </svg>
+                        </Button>
+                      </div>
                     </Card>
                   ))}
                 </div>
