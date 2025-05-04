@@ -91,22 +91,35 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
     if (window.__BIBLE_CONTENT__ && bookShortName) {
       console.log('Trying to load data for', bookShortName, 'chapter', chapter);
       
-      // Access books by key name safely
-      const lowerBookName = bookShortName.toLowerCase();
-      if (lowerBookName === 'gen' && window.__BIBLE_CONTENT__.genesis) {
-        const bookData = window.__BIBLE_CONTENT__.genesis;
+      // Access books by their shortnames
+      const bookKey = Object.keys(window.__BIBLE_CONTENT__).find(key => {
+        // Match either by direct name or by shortName property
+        return key === bookShortName.toLowerCase() || 
+               (window.__BIBLE_CONTENT__[key].shortName === bookShortName.toLowerCase());
+      });
+      
+      if (bookKey && window.__BIBLE_CONTENT__[bookKey]) {
+        const bookData = window.__BIBLE_CONTENT__[bookKey];
         
         console.log(`${bookShortName} content available:`, true);
-        console.log(`${bookShortName} chapters:`, bookData.chapters.length);
         
-        // Find the chapter object in the chapters array
-        const chapterData = bookData.chapters.find((c: { chapter: number }) => c.chapter === chapter);
-        if (chapterData && chapterData.sections) {
-          console.log('Found chapter data, sections:', chapterData.sections.length);
-          sections = chapterData.sections;
+        if (bookData.chapters && bookData.chapters.length) {
+          console.log(`${bookShortName} chapters:`, bookData.chapters.length);
+          
+          // Find the chapter object in the chapters array
+          const chapterData = bookData.chapters.find((c: { chapter: number }) => c.chapter === chapter);
+          if (chapterData && chapterData.sections) {
+            console.log('Found chapter data, sections:', chapterData.sections.length);
+            sections = chapterData.sections;
+          } else {
+            console.log('No chapter data found for chapter', chapter);
+          }
         } else {
-          console.log('No chapter data found for chapter', chapter);
+          console.log('No chapters found in book data');
         }
+      } else {
+        console.log(`Content for ${bookShortName} not found in window.__BIBLE_CONTENT__`);
+        console.log('Available books:', Object.keys(window.__BIBLE_CONTENT__ || {}).join(', '));
       }
     }
   } catch (err) {

@@ -116,5 +116,7 @@ export const bibleBooks = [...oldTestamentBooks, ...newTestamentBooks];
 
 // Export Bible content data for our application
 export const bibleContent = {
-  genesis
+  genesis,
+  matthew: { shortName: 'mat' },
+  mark: { shortName: 'mrk' }
 };
