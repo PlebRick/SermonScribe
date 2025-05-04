@@ -2,6 +2,10 @@
 // https://worldenglish.bible/
 
 import { genesis } from "./bible-content/genesis";
+import { exodus } from "./bible-content/exodus";
+import { matthew } from "./bible-content/matthew"; 
+import { mark } from "./bible-content/mark";
+import { john } from "./bible-content/john";
 
 // Old Testament books with details
 export const oldTestamentBooks = [
