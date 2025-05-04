@@ -594,9 +594,7 @@ function ManuscriptEditor({
   outlineId: number,
   onSave: (manuscript: Manuscript) => void
 }) {
-  const [sections, setSections] = useState<ManuscriptSection[]>([
-    { title: "", content: "" }
-  ]);
+  const [content, setContent] = useState("");
 
   const { data: manuscript } = useQuery<Manuscript>({
     queryKey: ["/api/manuscripts", outlineId],
@@ -612,68 +610,45 @@ function ManuscriptEditor({
 
   useEffect(() => {
     if (manuscript) {
-      // Handle existing manuscript format conversion if needed
+      // Extract content from the first section, or combine all sections
       if (Array.isArray(manuscript.content)) {
-        if ('paragraphs' in manuscript.content[0]) {
-          // Convert old format to new format
-          const convertedSections = (manuscript.content as any[]).map(oldSection => ({
-            title: oldSection.title || '',
-            content: oldSection.paragraphs ? oldSection.paragraphs.join('<br/>') : ''
-          }));
-          setSections(convertedSections);
-        } else {
-          // Already in new format
-          setSections(manuscript.content as ManuscriptSection[]);
+        if (manuscript.content.length > 0) {
+          if ('content' in manuscript.content[0]) {
+            // Use the first section's content directly
+            setContent(manuscript.content[0].content || "");
+          } else if ('paragraphs' in manuscript.content[0]) {
+            // Convert old format
+            const paragraphs = (manuscript.content as any[])
+              .flatMap(section => section.paragraphs || [])
+              .join('<br/>');
+            setContent(paragraphs);
+          }
         }
       } else {
-        // Default to empty section if content is not as expected
-        setSections([{ title: "", content: "" }]);
+        // Default to empty content if format is unexpected
+        setContent("");
       }
     } else {
-      // Initialize with a default section for new manuscripts
-      // If we have an outline, use its title as a starting point
-      if (outline) {
-        setSections([{ 
-          title: outline.title || "Introduction", 
-          content: "<p>Enter your manuscript content here...</p>" 
-        }]);
-      } else {
-        setSections([{ title: "", content: "" }]);
-      }
+      // Initialize with empty content for new manuscripts
+      setContent("<p>Enter your manuscript content here...</p>");
     }
   }, [manuscript, outline, outlineId]);
 
-  const addSection = () => {
-    setSections([...sections, { title: "", content: "" }]);
-  };
-
-  const updateSectionTitle = (index: number, title: string) => {
-    const newSections = [...sections];
-    newSections[index].title = title;
-    setSections(newSections);
-  };
-
-  const updateSectionContent = (index: number, content: string) => {
-    const newSections = [...sections];
-    newSections[index].content = content;
-    setSections(newSections);
-  };
-
-  const removeSection = (index: number) => {
-    setSections(sections.filter((_, i) => i !== index));
+  const updateSectionContent = (_index: number, newContent: string) => {
+    setContent(newContent);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Filter out completely empty sections
-    const filteredSections = sections
-      .filter(section => section.title.trim() !== "" || section.content.trim() !== "");
-    
+    // Create a single section with the outline title and content
     const manuscriptData: Manuscript = {
       id: manuscript?.id,
       outlineId,
-      content: filteredSections
+      content: [{ 
+        title: outline?.title || "", 
+        content: content 
+      }]
     };
     
     onSave(manuscriptData);
@@ -683,60 +658,24 @@ function ManuscriptEditor({
     <form onSubmit={handleSubmit} className="space-y-6">
       {outline && (
         <div className="bg-muted p-4 rounded-md mb-4">
-          <h3 className="text-lg font-medium mb-2">{outline.title}</h3>
-          <div className="text-sm text-muted-foreground mb-2">
-            {outline.bookId}:{outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
-          </div>
-          <div>
-            <strong>Outline Points:</strong>
-            <ul className="list-disc pl-5 mt-1">
-              {outline.points && Array.isArray(outline.points) && outline.points.map((point: string, idx: number) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
+          <h2 className="text-xl font-bold mb-2">{outline.title}</h2>
+          <p className="text-sm text-muted-foreground">
+            {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
+          </p>
         </div>
       )}
 
-      {sections.map((section, sectionIndex) => (
-        <Card key={sectionIndex} className="overflow-hidden">
-          <CardHeader className="pb-3">
-            <div className="flex justify-between items-center">
-              <Input
-                value={section.title}
-                onChange={(e) => updateSectionTitle(sectionIndex, e.target.value)}
-                placeholder="Section Title"
-                className="font-bold text-lg"
-              />
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => removeSection(sectionIndex)}
-              >
-                Remove Section
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <RichTextEditor 
-              content={section.content} 
-              onChange={(html) => updateSectionContent(sectionIndex, html)}
-            />
-          </CardContent>
-        </Card>
-      ))}
+      <Card className="overflow-hidden">
+        <CardContent className="p-4">
+          <RichTextEditor 
+            content={content} 
+            onChange={(html) => updateSectionContent(0, html)}
+          />
+        </CardContent>
+      </Card>
       
-      <div className="flex justify-between">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={addSection}
-        >
-          Add Section
-        </Button>
-        
-        <Button type="submit">
+      <div className="flex justify-end">
+        <Button type="submit" className="px-8">
           Save Manuscript
         </Button>
       </div>
