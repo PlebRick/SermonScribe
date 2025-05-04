@@ -35,10 +35,29 @@ export class FileStorage implements IStorage {
   }
 
   private ensureContentExists() {
+    // Ensure all directories exist
+    const dirs = [
+      path.join(CONTENT_DIR, 'books'),
+      path.join(CONTENT_DIR, 'verses'),
+      path.join(CONTENT_DIR, 'outlines'),
+      path.join(CONTENT_DIR, 'manuscripts'),
+      path.join(CONTENT_DIR, 'commentaries')
+    ];
+    
+    dirs.forEach(dir => {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    });
+    
     // Check if books directory is empty
     const booksDir = path.join(CONTENT_DIR, 'books');
     if (fs.readdirSync(booksDir).length === 0) {
-      // Initialize with sample data (same as in MemStorage)
+      // Initialize with sample data
+      this.initializeData();
+    } else {
+      // For testing - force recreation of all data
+      console.log("Reinitializing data to ensure all books and verses are available");
       this.initializeData();
     }
   }
@@ -54,7 +73,9 @@ export class FileStorage implements IStorage {
   }
 
   private initializeBibleBooks() {
+    // Initialize more books from both Old and New Testaments
     const books: Book[] = [
+      // Old Testament
       {
         id: 1,
         name: "Genesis",
@@ -62,6 +83,79 @@ export class FileStorage implements IStorage {
         testament: "old",
         position: 1,
         chapterCount: 50
+      },
+      {
+        id: 2,
+        name: "Exodus",
+        shortName: "exo",
+        testament: "old",
+        position: 2,
+        chapterCount: 40
+      },
+      {
+        id: 3,
+        name: "Leviticus",
+        shortName: "lev",
+        testament: "old",
+        position: 3,
+        chapterCount: 27
+      },
+      {
+        id: 4,
+        name: "Numbers",
+        shortName: "num",
+        testament: "old",
+        position: 4,
+        chapterCount: 36
+      },
+      {
+        id: 5,
+        name: "Deuteronomy",
+        shortName: "deu",
+        testament: "old",
+        position: 5,
+        chapterCount: 34
+      },
+      // New Testament
+      {
+        id: 40,
+        name: "Matthew",
+        shortName: "mat",
+        testament: "new",
+        position: 40,
+        chapterCount: 28
+      },
+      {
+        id: 41,
+        name: "Mark",
+        shortName: "mrk",
+        testament: "new",
+        position: 41,
+        chapterCount: 16
+      },
+      {
+        id: 42,
+        name: "Luke",
+        shortName: "luk",
+        testament: "new",
+        position: 42,
+        chapterCount: 24
+      },
+      {
+        id: 43,
+        name: "John",
+        shortName: "jhn",
+        testament: "new",
+        position: 43,
+        chapterCount: 21
+      },
+      {
+        id: 44,
+        name: "Acts",
+        shortName: "act",
+        testament: "new",
+        position: 44,
+        chapterCount: 28
       }
     ];
     
@@ -71,7 +165,7 @@ export class FileStorage implements IStorage {
       fs.writeFileSync(filePath, JSON.stringify(book, null, 2));
     });
     
-    // Add sample verses
+    // Add sample verses for Genesis 1
     const genesisChapter1Verses: Verse[] = [
       {
         id: 1,
@@ -110,16 +204,100 @@ export class FileStorage implements IStorage {
       }
     ];
     
-    const versesDir = path.join(CONTENT_DIR, 'verses');
-    const chapterDir = path.join(versesDir, '1-1'); // bookId-chapter
-    if (!fs.existsSync(chapterDir)) {
-      fs.mkdirSync(chapterDir, { recursive: true });
-    }
+    // Add sample verses for Genesis 2
+    const genesisChapter2Verses: Verse[] = [
+      {
+        id: 31,
+        bookId: 1,
+        chapter: 2,
+        verse: 1,
+        text: "Thus the heavens and the earth were finished, and all the host of them."
+      },
+      {
+        id: 32,
+        bookId: 1,
+        chapter: 2,
+        verse: 2,
+        text: "And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made."
+      },
+      {
+        id: 33,
+        bookId: 1,
+        chapter: 2,
+        verse: 3,
+        text: "And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made."
+      }
+    ];
     
-    // Save verses
+    // Add sample verses for Matthew 1
+    const matthewChapter1Verses: Verse[] = [
+      {
+        id: 1001,
+        bookId: 40,
+        chapter: 1,
+        verse: 1,
+        text: "The book of the generation of Jesus Christ, the son of David, the son of Abraham."
+      },
+      {
+        id: 1002,
+        bookId: 40,
+        chapter: 1,
+        verse: 2,
+        text: "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;"
+      },
+      {
+        id: 1003,
+        bookId: 40,
+        chapter: 1,
+        verse: 3,
+        text: "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;"
+      },
+      {
+        id: 1004,
+        bookId: 40,
+        chapter: 1,
+        verse: 4,
+        text: "And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;"
+      },
+      {
+        id: 1005,
+        bookId: 40,
+        chapter: 1,
+        verse: 5,
+        text: "And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;"
+      }
+    ];
+    
+    const versesDir = path.join(CONTENT_DIR, 'verses');
+    
+    // Create and save Genesis chapter 1 verses
+    const gen1ChapterDir = path.join(versesDir, '1-1'); // bookId-chapter
+    if (!fs.existsSync(gen1ChapterDir)) {
+      fs.mkdirSync(gen1ChapterDir, { recursive: true });
+    }
     fs.writeFileSync(
-      path.join(chapterDir, 'verses.json'), 
+      path.join(gen1ChapterDir, 'verses.json'), 
       JSON.stringify(genesisChapter1Verses, null, 2)
+    );
+    
+    // Create and save Genesis chapter 2 verses
+    const gen2ChapterDir = path.join(versesDir, '1-2'); // bookId-chapter
+    if (!fs.existsSync(gen2ChapterDir)) {
+      fs.mkdirSync(gen2ChapterDir, { recursive: true });
+    }
+    fs.writeFileSync(
+      path.join(gen2ChapterDir, 'verses.json'), 
+      JSON.stringify(genesisChapter2Verses, null, 2)
+    );
+    
+    // Create and save Matthew chapter 1 verses
+    const matt1ChapterDir = path.join(versesDir, '40-1'); // bookId-chapter
+    if (!fs.existsSync(matt1ChapterDir)) {
+      fs.mkdirSync(matt1ChapterDir, { recursive: true });
+    }
+    fs.writeFileSync(
+      path.join(matt1ChapterDir, 'verses.json'), 
+      JSON.stringify(matthewChapter1Verses, null, 2)
     );
   }
 
