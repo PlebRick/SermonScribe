@@ -865,6 +865,7 @@ export class FileStorage implements IStorage {
       bookId: 1,
       chapter: 1,
       verse: 1,
+      outlineId: 1, // Linked to the first outline
       content: "This opening verse of the Bible is fundamental to the Christian worldview. The phrase 'In the beginning God' immediately establishes the priority and preexistence of God before all things. The Hebrew word 'bara' (created) is only ever used with God as the subject, indicating a unique divine creative activity.",
       source: "Biblical Commentary Series"
     };
@@ -874,6 +875,7 @@ export class FileStorage implements IStorage {
       bookId: 1,
       chapter: 1,
       verse: 2,
+      outlineId: 1, // Linked to the first outline
       content: "The formlessness described here doesn't indicate chaos but rather an unfinished state awaiting God's further creative ordering. The Spirit of God hovering over the waters presents a beautiful picture of God's attentive care over creation even in its initial stages.",
       source: "Expository Commentary"
     };
@@ -883,6 +885,7 @@ export class FileStorage implements IStorage {
       bookId: 1,
       chapter: 1,
       verse: 3,
+      outlineId: 1, // Linked to the first outline
       content: "God's creation by speaking demonstrates the power of His word. This creative word establishes a pattern that continues throughout the creation account, where God speaks and matter obeys. This verse has often been connected to John 1:1-3, where Christ is identified as the Word through whom all things were made.",
       source: "Reformed Study Guide"
     };
