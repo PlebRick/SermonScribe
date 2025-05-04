@@ -49,27 +49,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(verses);
   }));
 
-  // Get outlines by book and chapter
-  app.get("/api/outlines/:bookId/:chapter", asyncHandler(async (req, res) => {
-    const bookId = parseInt(req.params.bookId);
-    const chapter = parseInt(req.params.chapter);
-    
-    if (isNaN(bookId) || isNaN(chapter)) {
-      return res.status(400).json({ message: "Invalid book ID or chapter" });
-    }
-    
-    const outlines = await storage.getOutlinesByBookAndChapter(bookId, chapter);
-    res.json(outlines);
-  }));
+  // Get outlines by book and chapter - handled by the combined route below
 
-  // Get outline by ID
-  app.get("/api/outlines/by-id/:id", asyncHandler(async (req, res) => {
-    const id = parseInt(req.params.id);
-    if (isNaN(id)) {
-      return res.status(400).json({ message: "Invalid outline ID" });
+  // Get outline by ID - support both endpoints patterns
+  app.get("/api/outlines/:idOrBookId/:chapterOrNothing?", asyncHandler(async (req, res) => {
+    const idOrBookId = parseInt(req.params.idOrBookId);
+    
+    if (isNaN(idOrBookId)) {
+      return res.status(400).json({ message: "Invalid ID parameter" });
     }
     
-    const outline = await storage.getOutlineById(id);
+    // Check if we have a chapter parameter - this means we're getting outlines by book/chapter
+    if (req.params.chapterOrNothing) {
+      const chapter = parseInt(req.params.chapterOrNothing);
+      if (isNaN(chapter)) {
+        return res.status(400).json({ message: "Invalid chapter" });
+      }
+      
+      const outlines = await storage.getOutlinesByBookAndChapter(idOrBookId, chapter);
+      return res.json(outlines);
+    }
+    
+    // No chapter parameter - this means we're getting a specific outline by ID
+    const outline = await storage.getOutlineById(idOrBookId);
     if (!outline) {
       return res.status(404).json({ message: "Outline not found" });
     }
@@ -84,8 +86,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(400).json({ message: "Invalid outline ID" });
     }
     
-    const manuscript = await storage.getManuscriptByOutlineId(outlineId);
-    if (!manuscript) {
+    let manuscript = await storage.getManuscriptByOutlineId(outlineId);
+    
+    // If manuscript doesn't exist, and we have the ability to save, create a default one
+    if (!manuscript && storage.saveManuscript) {
+      try {
+        // Get the outline to use its title
+        const outline = await storage.getOutlineById(outlineId);
+        if (!outline) {
+          return res.status(404).json({ message: "Outline not found" });
+        }
+        
+        // Create a default manuscript
+        const defaultManuscript = {
+          outlineId: outlineId,
+          content: [
+            { 
+              title: outline.title || "Introduction", 
+              content: "<p>Enter your manuscript content here...</p>" 
+            }
+          ]
+        };
+        
+        // Save it
+        manuscript = await storage.saveManuscript(defaultManuscript);
+        console.log("Created default manuscript for outline:", outlineId);
+      } catch (error) {
+        console.error("Error creating default manuscript:", error);
+        return res.status(404).json({ message: "Manuscript not found and couldn't create a default one" });
+      }
+    } else if (!manuscript) {
       return res.status(404).json({ message: "Manuscript not found" });
     }
     
