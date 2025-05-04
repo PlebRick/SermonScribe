@@ -34,6 +34,10 @@ export default function AdminPage() {
     queryKey: ["/api/books", selectedBook],
     enabled: !!selectedBook,
     refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      console.log("Book data received:", data);
+      console.log("Book chapter count:", data?.chapterCount);
+    }
   });
 
   const { data: outlines, refetch: refetchOutlines } = useQuery<Outline[]>({
