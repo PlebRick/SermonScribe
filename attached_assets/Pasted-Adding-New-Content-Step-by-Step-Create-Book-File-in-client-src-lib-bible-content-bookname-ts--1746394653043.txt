@@ -1,0 +1,77 @@
+Adding New Content Step-by-Step
+
+    Create Book File in client/src/lib/bible-content/[bookname].ts
+        Use lowercase for filename (e.g., romans.ts, psalms.ts)
+        Follow the format above
+
+    Book Properties:
+        id: Use standard Bible book numbering (Genesis=1, Exodus=2, etc.; Matthew=40, Mark=41, etc.)
+        shortName: Lower case 3-4 letter abbreviation (e.g., "gen", "exo", "rom")
+        testament: "old" or "new"
+        chapterCount: Total number of chapters in the book
+
+    Chapter Structure:
+        Each chapter needs an id and chapter (both the same number)
+        Each chapter needs a descriptive title that summarizes the main content
+        Chapters are divided into sections with headings and verses
+
+    Section Divisions:
+        Create logical sections with descriptive titles based on narrative or thematic shifts
+        Old Testament narrative usually divides by storylines
+        Epistles often divide by logical arguments or topics
+        Poetic books divide by changes in themes or speakers
+
+    Verse Formatting:
+        Begin a new verse with a number and full text
+        Format with proper quotes (use escaped quotes \" for dialogue)
+        Preserve paragraph breaks from the source text where appropriate
+
+    After Adding Content:
+        Add the import to client/src/lib/bibleContentLoader.ts
+        Restart the workflow to clear any cache
+        Test by navigating to the new book/chapter
+
+Testing New Content
+
+    After adding a new book or chapters, always:
+        Check navigation in the sidebar works
+        Ensure all chapters load correctly
+        Verify section headings display properly
+        Test verse display and formatting
+        Clear cache files if needed: rm -rf content/verses/[book-id]-[chapter]
+
+Handling Errors
+
+If you encounter errors with content loading:
+
+    Check the browser console for errors
+    Verify syntax in your book file (missing commas, brackets, etc.)
+    Clear the cache files in the content/verses/ directory
+    Restart the workflow
+
+Next Steps
+Priority Tasks
+
+    Complete the Old Testament books, starting with:
+        Exodus through Deuteronomy
+        Historical books (Joshua, Judges, etc.)
+    Complete the New Testament, focusing on:
+        Romans and other Pauline epistles
+        Remaining gospels (Matthew, Mark, Luke)
+
+Content Guidelines
+
+    Ensure consistent section divisions across similar book types
+    Old Testament narrative: 5-10 verses per section typically
+    Epistles: Divide by argument/topic (usually 3-10 verses)
+    Maintain consistent styling for quotations, especially in dialogue-heavy sections
+
+Known Issues
+
+    Some TypeScript errors in admin components (can be addressed later)
+    Server-side caching might need optimization for larger books
+    Mobile view still needs testing with more complex books
+
+Final Notes
+
+The Bible content system is designed to be modular and extensible. The patterns established with John can be applied to all books. Remember that the caching system will help with performance once content is initially loaded, so focus on proper structure and accuracy rather than performance concerns.
