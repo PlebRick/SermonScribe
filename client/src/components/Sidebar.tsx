@@ -57,7 +57,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
         <h2 className="font-medium text-lg">Bible Navigation</h2>
         {isMobile && (
           <Button variant="ghost" size="icon" onClick={closeMobileSidebar}>
@@ -201,7 +201,7 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
   }
 
   return (
-    <aside className="w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-[hsl(var(--sidebar-dark))] transition-all duration-300 overflow-hidden">
+    <aside className="w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] transition-all duration-300 overflow-hidden">
       {sidebarContent}
     </aside>
   );

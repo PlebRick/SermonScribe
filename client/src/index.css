@@ -32,17 +32,17 @@
 }
 
 .dark {
-  /* ChatGPT-like dark mode styling */
-  --background: 220 13% 9%; /* Darker background like ChatGPT */
+  /* ChatGPT-like dark mode styling, matching the screenshot */
+  --background: 0 0% 11%; /* Main content area background */
   --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
+  --muted: 220 13% 18%;
   --muted-foreground: 240 5% 64.9%;
-  --popover: 220 13% 9%;
+  --popover: 0 0% 11%;
   --popover-foreground: 0 0% 98%;
-  --card: 220 13% 9%;
+  --card: 0 0% 11%;
   --card-foreground: 0 0% 98%;
   --border: 215 13% 15%;
-  --input: 240 3.7% 15.9%;
+  --input: 215 13% 15%;
   --primary: 207 90% 54%;
   --primary-foreground: 211 100% 99%;
   --secondary: 240 3.7% 15.9%;
@@ -55,10 +55,10 @@
   --radius: 0.5rem;
   
   /* Custom variables */
-  --sidebar-bg: 220 13% 9%; /* ChatGPT sidebar dark color */
-  --content-bg: 220 13% 9%;
-  --content-dark: 220 13% 9%;
-  --sidebar-dark: 215 28% 17%; /* Slightly lighter for sidebar */
+  --sidebar-bg: 0 0% 6.5%; /* ChatGPT sidebar dark color - darkest part */
+  --content-bg: 0 0% 11%; /* Main content area */
+  --content-dark: 0 0% 11%;
+  --sidebar-dark: 0 0% 6.5%; /* The darkest part in the sidebar */
 }
 
 @layer base {
