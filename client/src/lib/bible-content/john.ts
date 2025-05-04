@@ -410,6 +410,124 @@ export const john = {
           ]
         }
       ]
+    },
+    {
+      id: 13,
+      chapter: 13,
+      title: "Jesus Washes His Disciples' Feet",
+      sections: [
+        {
+          title: "Jesus Washes His Disciples' Feet",
+          verses: [
+            { verse: 1, text: "Now before the feast of the Passover, Jesus, knowing that his time had come that he would depart from this world to the Father, having loved his own who were in the world, he loved them to the end." },
+            { verse: 2, text: "During supper, the devil having already put into the heart of Judas Iscariot, Simon's son, to betray him," },
+            { verse: 3, text: "Jesus, knowing that the Father had given all things into his hands, and that he came from God, and was going to God," },
+            { verse: 4, text: "arose from supper, and laid aside his outer garments. He took a towel and wrapped a towel around his waist." },
+            { verse: 5, text: "Then he poured water into the basin, and began to wash the disciples' feet and to wipe them with the towel that was wrapped around him." },
+            { verse: 6, text: "Then he came to Simon Peter. He said to him, \"Lord, do you wash my feet?\"" },
+            { verse: 7, text: "Jesus answered him, \"You don't know what I am doing now, but you will understand later.\"" },
+            { verse: 8, text: "Peter said to him, \"You will never wash my feet!\" Jesus answered him, \"If I don't wash you, you have no part with me.\"" },
+            { verse: 9, text: "Simon Peter said to him, \"Lord, not my feet only, but also my hands and my head!\"" },
+            { verse: 10, text: "Jesus said to him, \"Someone who has bathed only needs to have his feet washed, but is completely clean. You are clean, but not all of you.\"" },
+            { verse: 11, text: "For he knew him who would betray him, therefore he said, \"You are not all clean.\"" },
+            { verse: 12, text: "So when he had washed their feet, put his outer garment back on, and sat down again, he said to them, \"Do you know what I have done to you?" },
+            { verse: 13, text: "You call me, 'Teacher' and 'Lord.' You say so correctly, for so I am." },
+            { verse: 14, text: "If I then, the Lord and the Teacher, have washed your feet, you also ought to wash one another's feet." },
+            { verse: 15, text: "For I have given you an example, that you should also do as I have done to you." },
+            { verse: 16, text: "Most certainly I tell you, a servant is not greater than his lord, neither is one who is sent greater than he who sent him." },
+            { verse: 17, text: "If you know these things, blessed are you if you do them." }
+          ]
+        },
+        {
+          title: "Jesus Predicts His Betrayal",
+          verses: [
+            { verse: 18, text: "I don't speak concerning all of you. I know whom I have chosen. But that the Scripture may be fulfilled, 'He who eats bread with me has lifted up his heel against me.'" },
+            { verse: 19, text: "From now on, I tell you before it happens, that when it happens, you may believe that I am he." },
+            { verse: 20, text: "Most certainly I tell you, he who receives whomever I send, receives me; and he who receives me, receives him who sent me.\"" },
+            { verse: 21, text: "When Jesus had said this, he was troubled in spirit, and testified, \"Most certainly I tell you that one of you will betray me.\"" },
+            { verse: 22, text: "The disciples looked at one another, perplexed about whom he spoke." },
+            { verse: 23, text: "One of his disciples, whom Jesus loved, was at the table, leaning against Jesus' breast." },
+            { verse: 24, text: "Simon Peter therefore beckoned to him, and said to him, \"Tell us who it is of whom he speaks.\"" },
+            { verse: 25, text: "He, leaning back, as he was, on Jesus' breast, asked him, \"Lord, who is it?\"" },
+            { verse: 26, text: "Jesus therefore answered, \"It is he to whom I will give this piece of bread when I have dipped it.\" So when he had dipped the piece of bread, he gave it to Judas, the son of Simon Iscariot." },
+            { verse: 27, text: "After the piece of bread, then Satan entered into him. Then Jesus said to him, \"What you do, do quickly.\"" },
+            { verse: 28, text: "Now nobody at the table knew why he said this to him." },
+            { verse: 29, text: "For some thought, because Judas had the money box, that Jesus said to him, \"Buy what things we need for the feast,\" or that he should give something to the poor." },
+            { verse: 30, text: "Therefore having received that morsel, he went out immediately. It was night." }
+          ]
+        },
+        {
+          title: "The New Commandment",
+          verses: [
+            { verse: 31, text: "When he had gone out, Jesus said, \"Now the Son of Man has been glorified, and God has been glorified in him." },
+            { verse: 32, text: "If God has been glorified in him, God will also glorify him in himself, and he will glorify him immediately." },
+            { verse: 33, text: "Little children, I will be with you a little while longer. You will seek me, and as I said to the Jews, 'Where I am going, you can't come,' so now I tell you." },
+            { verse: 34, text: "A new commandment I give to you, that you love one another. Just as I have loved you, you also love one another." },
+            { verse: 35, text: "By this everyone will know that you are my disciples, if you have love for one another.\"" }
+          ]
+        },
+        {
+          title: "Jesus Predicts Peter's Denial",
+          verses: [
+            { verse: 36, text: "Simon Peter said to him, \"Lord, where are you going?\" Jesus answered, \"Where I am going, you can't follow now, but you will follow afterwards.\"" },
+            { verse: 37, text: "Peter said to him, \"Lord, why can't I follow you now? I will lay down my life for you.\"" },
+            { verse: 38, text: "Jesus answered him, \"Will you lay down your life for me? Most certainly I tell you, the rooster won't crow until you have denied me three times." }
+          ]
+        }
+      ]
+    },
+    {
+      id: 14,
+      chapter: 14,
+      title: "Jesus, the Way to the Father",
+      sections: [
+        {
+          title: "Jesus, the Way to the Father",
+          verses: [
+            { verse: 1, text: "\"Don't let your heart be troubled. Believe in God. Believe also in me." },
+            { verse: 2, text: "In my Father's house are many homes. If it weren't so, I would have told you. I am going to prepare a place for you." },
+            { verse: 3, text: "If I go and prepare a place for you, I will come again, and will receive you to myself; that where I am, you may be there also." },
+            { verse: 4, text: "You know where I go, and you know the way.\"" },
+            { verse: 5, text: "Thomas said to him, \"Lord, we don't know where you are going. How can we know the way?\"" },
+            { verse: 6, text: "Jesus said to him, \"I am the way, the truth, and the life. No one comes to the Father, except through me." },
+            { verse: 7, text: "If you had known me, you would have known my Father also. From now on, you know him, and have seen him.\"" },
+            { verse: 8, text: "Philip said to him, \"Lord, show us the Father, and that will be enough for us.\"" },
+            { verse: 9, text: "Jesus said to him, \"Have I been with you such a long time, and do you not know me, Philip? He who has seen me has seen the Father. How do you say, 'Show us the Father?'" },
+            { verse: 10, text: "Don't you believe that I am in the Father, and the Father in me? The words that I tell you, I speak not from myself; but the Father who lives in me does his works." },
+            { verse: 11, text: "Believe me that I am in the Father, and the Father in me; or else believe me for the very works' sake." },
+            { verse: 12, text: "Most certainly I tell you, he who believes in me, the works that I do, he will do also; and he will do greater works than these, because I am going to my Father." },
+            { verse: 13, text: "Whatever you will ask in my name, I will do it, that the Father may be glorified in the Son." },
+            { verse: 14, text: "If you will ask anything in my name, I will do it." }
+          ]
+        },
+        {
+          title: "Jesus Promises the Holy Spirit",
+          verses: [
+            { verse: 15, text: "If you love me, keep my commandments." },
+            { verse: 16, text: "I will pray to the Father, and he will give you another Counselor, that he may be with you forever:" },
+            { verse: 17, text: "the Spirit of truth, whom the world can't receive; for it doesn't see him and doesn't know him. You know him, for he lives with you, and will be in you." },
+            { verse: 18, text: "I will not leave you orphans. I will come to you." },
+            { verse: 19, text: "Yet a little while, and the world will see me no more; but you will see me. Because I live, you will live also." },
+            { verse: 20, text: "In that day you will know that I am in my Father, and you in me, and I in you." },
+            { verse: 21, text: "One who has my commandments and keeps them, that person is one who loves me. One who loves me will be loved by my Father, and I will love him, and will reveal myself to him.\"" },
+            { verse: 22, text: "Judas (not Iscariot) said to him, \"Lord, what has happened that you are about to reveal yourself to us, and not to the world?\"" },
+            { verse: 23, text: "Jesus answered him, \"If a man loves me, he will keep my word. My Father will love him, and we will come to him, and make our home with him." },
+            { verse: 24, text: "He who doesn't love me doesn't keep my words. The word which you hear isn't mine, but the Father's who sent me." },
+            { verse: 25, text: "I have said these things to you while still living with you." },
+            { verse: 26, text: "But the Counselor, the Holy Spirit, whom the Father will send in my name, will teach you all things, and will remind you of all that I said to you." }
+          ]
+        },
+        {
+          title: "Peace I Leave With You",
+          verses: [
+            { verse: 27, text: "Peace I leave with you. My peace I give to you; not as the world gives, I give to you. Don't let your heart be troubled, neither let it be fearful." },
+            { verse: 28, text: "You heard how I told you, 'I go away, and I come to you.' If you loved me, you would have rejoiced, because I said 'I am going to my Father;' for the Father is greater than I." },
+            { verse: 29, text: "Now I have told you before it happens so that when it happens, you may believe." },
+            { verse: 30, text: "I will no more speak much with you, for the prince of the world comes, and he has nothing in me." },
+            { verse: 31, text: "But that the world may know that I love the Father, and as the Father commanded me, even so I do. Arise, let's go from here." }
+          ]
+        }
+      ]
     }
   ]
 };
