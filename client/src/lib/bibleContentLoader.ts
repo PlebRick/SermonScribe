@@ -3,6 +3,7 @@ import { exodus } from './bible-content/exodus';
 import { matthew } from './bible-content/matthew';
 import { mark } from './bible-content/mark';
 import { john } from './bible-content/john';
+import { romans } from './bible-content/romans';
 import { bibleContent as allBibleContent } from './bible-data';
 
 // Define a global type for TypeScript
@@ -14,6 +15,7 @@ declare global {
       matthew: typeof matthew;
       mark: typeof mark;
       john: typeof john;
+      romans: typeof romans;
       [key: string]: any; // Allow for dynamic book keys
     };
   }
@@ -30,7 +32,8 @@ export function initializeBibleContent() {
     exodus,
     matthew,
     mark, 
-    john
+    john,
+    romans
   };
   
   window.__BIBLE_CONTENT__ = mergedContent;
