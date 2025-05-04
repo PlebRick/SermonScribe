@@ -285,35 +285,39 @@ export default function AdminPage() {
                         </CardHeader>
                       </div>
                       <div className="absolute top-3 right-3">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="text-gray-400 hover:text-red-500"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (confirm("Are you sure you want to delete this outline?")) {
-                              deleteOutlineMutation.mutate(outline.id);
-                            }
-                          }}
-                        >
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="16" 
-                            height="16" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            strokeWidth="2" 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round"
-                          >
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                          </svg>
-                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="text-gray-400 hover:text-red-500"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Are you sure you want to delete this outline?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This action cannot be undone. The outline will be permanently deleted.
+                                Any associated manuscripts or commentaries might become orphaned.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
+                              <AlertDialogAction 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  deleteOutlineMutation.mutate(outline.id);
+                                }}
+                                className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                              >
+                                Delete
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </Card>
                   ))}
@@ -364,35 +368,39 @@ export default function AdminPage() {
                           </CardHeader>
                         </div>
                         <div className="absolute top-3 right-3">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="text-gray-400 hover:text-red-500 h-6 w-6"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (confirm("Are you sure you want to delete this outline?")) {
-                                deleteOutlineMutation.mutate(outline.id);
-                              }
-                            }}
-                          >
-                            <svg 
-                              xmlns="http://www.w3.org/2000/svg" 
-                              width="14" 
-                              height="14" 
-                              viewBox="0 0 24 24" 
-                              fill="none" 
-                              stroke="currentColor" 
-                              strokeWidth="2" 
-                              strokeLinecap="round" 
-                              strokeLinejoin="round"
-                            >
-                              <path d="M3 6h18"></path>
-                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                              <line x1="10" y1="11" x2="10" y2="17"></line>
-                              <line x1="14" y1="11" x2="14" y2="17"></line>
-                            </svg>
-                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-gray-400 hover:text-red-500 h-6 w-6"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you sure you want to delete this outline?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. The outline will be permanently deleted.
+                                  Any associated manuscripts or commentaries might become orphaned.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
+                                <AlertDialogAction 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    deleteOutlineMutation.mutate(outline.id);
+                                  }}
+                                  className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                                >
+                                  Delete
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </div>
                       </Card>
                     ))}
@@ -405,22 +413,46 @@ export default function AdminPage() {
               <div className="md:col-span-3">
                 {selectedOutline ? (
                   <div className="space-y-4">
-                    {manuscript && manuscript.id && (
-                      <div className="flex justify-end mb-4">
-                        <Button 
-                          variant="outline" 
-                          className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
-                          onClick={() => {
-                            if (confirm("Are you sure you want to delete this manuscript?")) {
-                              deleteManuscriptMutation.mutate(manuscript.id);
-                              queryClient.invalidateQueries({ queryKey: ["/api/manuscripts"] });
-                            }
-                          }}
-                        >
-                          Delete Manuscript
-                        </Button>
+                    <div className="flex justify-between mb-4">
+                      <h2 className="text-xl font-bold">
+                        {manuscript && manuscript.id ? "Edit Manuscript" : "Add New Manuscript"}
+                      </h2>
+                      <div className="flex space-x-2">
+                        {manuscript && manuscript.id && (
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button 
+                                variant="outline" 
+                                className="text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                              >
+                                <Trash2 className="h-4 w-4 mr-2" />
+                                Delete
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you sure you want to delete this manuscript?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. The manuscript will be permanently deleted.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction 
+                                  onClick={() => {
+                                    deleteManuscriptMutation.mutate(manuscript.id);
+                                    queryClient.invalidateQueries({ queryKey: ["/api/manuscripts"] });
+                                  }}
+                                  className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                                >
+                                  Delete
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        )}
                       </div>
-                    )}
+                    </div>
                     <ManuscriptEditor 
                       outlineId={selectedOutline} 
                       onSave={(manuscript) => saveManuscriptMutation.mutate(manuscript)}
@@ -460,15 +492,19 @@ export default function AdminPage() {
               </div>
               
               <div className="md:col-span-3">
-                <h2 className="text-xl font-bold mb-4">Commentaries</h2>
                 {selectedOutline ? (
-                  <CommentaryEditor 
-                    bookId={selectedBook} 
-                    chapter={selectedChapter}
-                    outlineId={selectedOutline}
-                    onSave={(commentary) => saveCommentaryMutation.mutate(commentary)}
-                    onDelete={(id) => deleteCommentaryMutation.mutate(id)}
-                  />
+                  <div className="space-y-4">
+                    <div className="flex justify-between mb-4">
+                      <h2 className="text-xl font-bold">Commentaries</h2>
+                    </div>
+                    <CommentaryEditor 
+                      bookId={selectedBook} 
+                      chapter={selectedChapter}
+                      outlineId={selectedOutline}
+                      onSave={(commentary) => saveCommentaryMutation.mutate(commentary)}
+                      onDelete={(id) => deleteCommentaryMutation.mutate(id)}
+                    />
+                  </div>
                 ) : (
                   <p>Select an outline to edit or create commentaries.</p>
                 )}
