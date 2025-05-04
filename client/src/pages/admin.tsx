@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { apiRequest } from "@/lib/queryClient";
 import { Outline, Manuscript, Commentary, Book } from "@shared/schema";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 
 export default function AdminPage() {
   const queryClient = useQueryClient();
@@ -99,7 +100,14 @@ export default function AdminPage() {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6">Content Management</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Content Management</h1>
+        <Link href="/">
+          <Button variant="outline">
+            Back to Main Site
+          </Button>
+        </Link>
+      </div>
       
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>

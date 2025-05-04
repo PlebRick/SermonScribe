@@ -10,8 +10,10 @@ import {
   Sun, 
   Columns, 
   FileText,
-  Scroll
+  Scroll,
+  Settings
 } from "lucide-react";
+import { Link } from "wouter";
 
 interface HeaderProps {
   toggleMobileSidebar: () => void;
@@ -45,6 +47,17 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
         </div>
         
         <div className="flex items-center space-x-2">
+          <Link href="/admin">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+            >
+              <Settings className="h-5 w-5" />
+              <span className="sr-only">Admin</span>
+            </Button>
+          </Link>
+        
           <Button
             variant="ghost"
             size="icon"
