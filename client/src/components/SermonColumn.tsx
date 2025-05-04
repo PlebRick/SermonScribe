@@ -36,12 +36,12 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
   };
 
   const { data: manuscript = null, isLoading: isLoadingManuscript } = useQuery<any>({
-    queryKey: [`/api/manuscripts/${activeOutlineId}`],
+    queryKey: ["/api/manuscripts", activeOutlineId],
     enabled: activeTab === SERMON_TABS.MANUSCRIPT && !!activeOutlineId,
   });
 
   const { data: commentaries = [], isLoading: isLoadingCommentaries } = useQuery<any[]>({
-    queryKey: [`/api/commentaries/${currentBook?.id}/${currentChapter}`],
+    queryKey: ["/api/commentaries", currentBook?.id, currentChapter],
     enabled: activeTab === SERMON_TABS.COMMENTARY && !!currentBook?.id && !!currentChapter,
   });
 
