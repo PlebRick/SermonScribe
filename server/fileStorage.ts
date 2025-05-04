@@ -979,8 +979,9 @@ export class FileStorage implements IStorage {
         return [];
       }
       
-      // Import our Bible content helper
-      const { getVersesForBookAndChapter } = require('./bibleContent');
+      // Use dynamic import for ES modules
+      const bibleContentModule = await import('./bibleContent');
+      const { getVersesForBookAndChapter } = bibleContentModule;
       
       // Get verses from the imported Bible content
       console.log(`Loading verses from code for ${book.shortName} chapter ${chapter}`);
