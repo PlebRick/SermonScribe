@@ -28,6 +28,8 @@ export function convertBibleContentToVerses(
   chapter: number,
   bookContent: BibleBookContent
 ): Verse[] {
+  console.log(`Converting Bible content for book ${bookContent.shortName} chapter ${chapter}`);
+  
   // Find the requested chapter
   const chapterData = bookContent.chapters.find(c => c.chapter === chapter);
   if (!chapterData) {
@@ -35,11 +37,15 @@ export function convertBibleContentToVerses(
     return [];
   }
   
+  console.log(`Found chapter data with ${chapterData.sections.length} sections`);
+  
   // Convert sections and verses to flat array of Verse objects
   let verseId = 1000 * bookId + chapter * 100; // Generate unique IDs
   const verses: Verse[] = [];
   
-  chapterData.sections.forEach(section => {
+  chapterData.sections.forEach((section, idx) => {
+    console.log(`Processing section ${idx+1}: "${section.title}" with ${section.verses.length} verses`);
+    
     section.verses.forEach(v => {
       verses.push({
         id: verseId++,
@@ -51,5 +57,6 @@ export function convertBibleContentToVerses(
     });
   });
   
+  console.log(`Converted ${verses.length} total verses for ${bookContent.shortName} chapter ${chapter}`);
   return verses;
 }
