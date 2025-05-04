@@ -180,9 +180,18 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                     {(manuscript.content as any[]).map((section, idx) => (
                       <div key={idx} className="space-y-4">
                         <h4 className="font-medium text-lg">{section.title}</h4>
-                        {section.paragraphs.map((paragraph: string, pIdx: number) => (
-                          <p key={pIdx}>{paragraph}</p>
-                        ))}
+                        {/* Check for the new format with HTML content or fall back to old format */}
+                        {section.content ? (
+                          <div 
+                            className="prose dark:prose-invert max-w-none" 
+                            dangerouslySetInnerHTML={{ __html: section.content }}
+                          />
+                        ) : section.paragraphs ? (
+                          // Handle legacy format
+                          section.paragraphs.map((paragraph: string, pIdx: number) => (
+                            <p key={pIdx}>{paragraph}</p>
+                          ))
+                        ) : null}
                       </div>
                     ))}
                   </div>
