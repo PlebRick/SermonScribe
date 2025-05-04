@@ -35,12 +35,12 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     return `${currentBook?.name} ${outline.startChapter}:${outline.startVerse}-${outline.endChapter}:${outline.endVerse}`;
   };
 
-  const { data: manuscript = null, isLoading: isLoadingManuscript } = useQuery({
+  const { data: manuscript = null, isLoading: isLoadingManuscript } = useQuery<any>({
     queryKey: [`/api/manuscripts/${activeOutlineId}`],
     enabled: activeTab === SERMON_TABS.MANUSCRIPT && !!activeOutlineId,
   });
 
-  const { data: commentaries = [], isLoading: isLoadingCommentaries } = useQuery({
+  const { data: commentaries = [], isLoading: isLoadingCommentaries } = useQuery<any[]>({
     queryKey: [`/api/commentaries/${currentBook?.id}/${currentChapter}`],
     enabled: activeTab === SERMON_TABS.COMMENTARY && !!currentBook?.id && !!currentChapter,
   });
@@ -58,7 +58,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
 
   return (
     <div className="flex-1 overflow-hidden flex flex-col">
-      <div className="sticky top-0 z-10 bg-white dark:bg-content-dark border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700">
         <div className="p-4 flex justify-between items-center">
           <h2 className="font-serif text-xl font-semibold">
             {isLoading ? (
@@ -210,7 +210,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                     <h3 className="font-bold text-lg">
                       {currentBook?.name} {commentary.chapter}:{commentary.verse}
                     </h3>
-                    <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div className="p-4 bg-gray-50 dark:bg-[hsl(220,13%,15%)] rounded-lg">
                       <p className="mb-2">{commentary.content}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                         — {commentary.source}
@@ -282,7 +282,7 @@ function CommentarySkeleton() {
       {[1, 2, 3].map(i => (
         <div key={i} className="space-y-4">
           <Skeleton className="h-6 w-32" />
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 dark:bg-[hsl(220,13%,15%)] rounded-lg">
             <Skeleton className="h-4 w-full mb-2" />
             <Skeleton className="h-4 w-full mb-2" />
             <Skeleton className="h-4 w-3/4 mb-2" />

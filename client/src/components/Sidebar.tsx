@@ -50,8 +50,8 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
   };
 
   // Group books by testament
-  const oldTestamentBooks = books.filter((book: Book) => book.testament === TESTAMENTS.OLD);
-  const newTestamentBooks = books.filter((book: Book) => book.testament === TESTAMENTS.NEW);
+  const oldTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.OLD);
+  const newTestamentBooks = books.filter((book) => book.testament === TESTAMENTS.NEW);
 
   if (!isOpen) return null;
 

@@ -33,7 +33,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
 
   return (
     <div className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
-      <div className="sticky top-0 z-10 bg-white dark:bg-content-dark border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
+      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
         <h2 className="font-serif text-xl font-semibold">
           {isLoading ? (
             <Skeleton className="h-7 w-32" />
