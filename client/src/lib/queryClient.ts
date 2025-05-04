@@ -43,6 +43,12 @@ export const getQueryFn: <T>(options: {
       url = `${baseUrl}/${queryKey[1]}/${queryKey[2]}`;
       console.log("Using path params URL for outlines:", url);
     } 
+    // For manuscripts endpoint, add the outlineId as a path parameter
+    else if (baseUrl.includes('/manuscripts') && queryKey.length > 1 && queryKey[1] !== undefined) {
+      // For manuscripts, we want /api/manuscripts/:outlineId format
+      url = `${baseUrl}/${queryKey[1]}`;
+      console.log("Using path params URL for manuscripts:", url);
+    }
     // For queries with more than one parameter but not outlines, treat as query params
     else if (queryKey.length > 1) {
       // If we're using query parameters

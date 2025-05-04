@@ -48,7 +48,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
   }, [manuscript]);
 
   const { data: commentaries = [], isLoading: isLoadingCommentaries } = useQuery<any[]>({
-    queryKey: ["/api/commentaries", currentBook?.id, currentChapter],
+    queryKey: ["/api/commentaries", "bookId", currentBook?.id, "chapter", currentChapter],
     enabled: activeTab === SERMON_TABS.COMMENTARY && !!currentBook?.id && !!currentChapter,
   });
 
