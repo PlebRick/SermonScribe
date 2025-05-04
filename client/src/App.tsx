@@ -5,6 +5,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import AdminPage from "@/pages/admin";
 import { BibleProvider } from "./contexts/BibleContext";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 function Router() {
   return (
@@ -18,12 +19,14 @@ function Router() {
 
 function App() {
   return (
-    <BibleProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </BibleProvider>
+    <ThemeProvider defaultTheme="light">
+      <BibleProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </BibleProvider>
+    </ThemeProvider>
   );
 }
 
