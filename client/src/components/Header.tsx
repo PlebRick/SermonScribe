@@ -14,6 +14,7 @@ import {
   Settings
 } from "lucide-react";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   toggleMobileSidebar: () => void;
@@ -23,6 +24,44 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
   const { toggleTheme, isDark } = useTheme();
   const { columnState, toggleColumn } = useColumnState();
   const { isMobile } = useMobile();
+  
+  // Local state for column visibility - will be more directly controlled
+  const [isBibleVisible, setIsBibleVisible] = useState(true);
+  const [isSermonVisible, setIsSermonVisible] = useState(true);
+  
+  // Handle direct toggles
+  const toggleBibleColumn = () => {
+    const newValue = !isBibleVisible;
+    console.log("Directly toggling Bible column to:", newValue);
+    setIsBibleVisible(newValue);
+    
+    // Use DOM manipulation to show/hide columns - set display directly
+    const bibleColumn = document.querySelector('.bible-column-container');
+    if (bibleColumn) {
+      // If newValue is true, we want to show the column
+      (bibleColumn as HTMLElement).style.display = newValue ? 'block' : 'none';
+    }
+  };
+  
+  const toggleSermonColumn = () => {
+    const newValue = !isSermonVisible;
+    console.log("Directly toggling Sermon column to:", newValue);
+    setIsSermonVisible(newValue);
+    
+    // Use DOM manipulation to show/hide columns - set display directly
+    const sermonColumn = document.querySelector('.sermon-column-container');
+    if (sermonColumn) {
+      // If newValue is true, we want to show the column
+      (sermonColumn as HTMLElement).style.display = newValue ? 'block' : 'none';
+    }
+  };
+  
+  // Initialize column visibility after first render
+  useEffect(() => {
+    // Sync with column state from context
+    setIsBibleVisible(columnState[COLUMN_STATE.BIBLE]);
+    setIsSermonVisible(columnState[COLUMN_STATE.SERMON]);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] shadow-sm">
@@ -76,31 +115,25 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
           {/* Column toggles - should be visible on desktop and highlight when active */}
           {!isMobile && (
             <>
-              {/* Bible Column Toggle */}
+              {/* Bible Column Toggle with our direct toggle */}
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => {
-                  console.log("Header Bible button clicked, will set to:", !columnState[COLUMN_STATE.BIBLE]);
-                  toggleColumn(COLUMN_STATE.BIBLE);
-                }}
-                className={`rounded-full ${columnState[COLUMN_STATE.BIBLE] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
+                onClick={toggleBibleColumn}
+                className={`rounded-full ${isBibleVisible ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
-                <BookOpen className={`h-5 w-5 ${columnState[COLUMN_STATE.BIBLE] ? 'text-primary' : ''}`} />
+                <BookOpen className={`h-5 w-5 ${isBibleVisible ? 'text-primary' : ''}`} />
                 <span className="sr-only">Toggle Bible column</span>
               </Button>
               
-              {/* Sermon Column Toggle */}
+              {/* Sermon Column Toggle with our direct toggle */}
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => {
-                  console.log("Header Sermon button clicked, will set to:", !columnState[COLUMN_STATE.SERMON]);
-                  toggleColumn(COLUMN_STATE.SERMON);
-                }}
-                className={`rounded-full ${columnState[COLUMN_STATE.SERMON] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
+                onClick={toggleSermonColumn}
+                className={`rounded-full ${isSermonVisible ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
-                <FileText className={`h-5 w-5 ${columnState[COLUMN_STATE.SERMON] ? 'text-primary' : ''}`} />
+                <FileText className={`h-5 w-5 ${isSermonVisible ? 'text-primary' : ''}`} />
                 <span className="sr-only">Toggle sermon column</span>
               </Button>
             </>

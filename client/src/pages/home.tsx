@@ -85,10 +85,10 @@ export default function Home() {
         
         {/* Main Content - directly handle visibility here */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Bible Column - always render but use direct style control */}
+          {/* Bible Column - always render with special class for direct DOM manipulation */}
           <div 
-            className="flex-1 overflow-hidden" 
-            style={{ display: columnState[COLUMN_STATE.BIBLE] ? 'block' : 'none' }}
+            className="flex-1 overflow-hidden bible-column-container"
+            style={{ display: 'block' }}
           >
             <BibleColumn 
               isOpen={true} 
@@ -97,10 +97,10 @@ export default function Home() {
             />
           </div>
           
-          {/* Sermon Column - always render but use direct style control */}
+          {/* Sermon Column - always render with special class for direct DOM manipulation */}
           <div 
-            className="flex-1 overflow-hidden"
-            style={{ display: columnState[COLUMN_STATE.SERMON] ? 'block' : 'none' }}
+            className="flex-1 overflow-hidden sermon-column-container"
+            style={{ display: 'block' }}
           >
             <SermonColumn 
               isOpen={true} 
