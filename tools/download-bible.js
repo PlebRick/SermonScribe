@@ -1,10 +1,11 @@
 // Script to download the World English Bible (WEB) in JSON format
 // This is a one-time script to get the Bible text data for our import process
 
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const { promisify } = require('util');
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+import { promisify } from 'util';
+import { fileURLToPath } from 'url';
 
 const mkdir = promisify(fs.mkdir);
 const writeFile = promisify(fs.writeFile);
@@ -12,6 +13,10 @@ const writeFile = promisify(fs.writeFile);
 // Source URL for the WEB Bible in JSON format
 // Note: We're using an existing public domain Bible JSON source
 const SOURCE_URL = 'https://raw.githubusercontent.com/thiagobodruk/bible/master/json/en_web.json';
+
+// Define __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Define output path
 const SOURCE_DIR = path.join(__dirname, 'source');

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 31,
+    "bookId": 1,
+    "chapter": 2,
+    "verse": 1,
+    "text": "Thus the heavens and the earth were finished, and all the host of them."
+  },
+  {
+    "id": 32,
+    "bookId": 1,
+    "chapter": 2,
+    "verse": 2,
+    "text": "And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made."
+  },
+  {
+    "id": 33,
+    "bookId": 1,
+    "chapter": 2,
+    "verse": 3,
+    "text": "And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made."
+  }
+]

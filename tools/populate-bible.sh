@@ -11,7 +11,9 @@ echo
 
 # Step 1: Download the Bible
 echo "Step 1: Downloading Bible content..."
-node tools/download-bible.js | tee logs/download.log
+# Rename the files to .mjs for ES modules
+cp tools/download-bible.js tools/download-bible.mjs
+node tools/download-bible.mjs | tee logs/download.log
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
   echo "ERROR: Bible download failed."
   exit 1
@@ -21,7 +23,8 @@ echo
 
 # Step 2: Import the Bible
 echo "Step 2: Importing Bible content into application format..."
-node tools/bible-import.js | tee logs/import.log
+cp tools/bible-import.js tools/bible-import.mjs
+node tools/bible-import.mjs | tee logs/import.log
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
   echo "ERROR: Bible import failed."
   exit 1
@@ -31,7 +34,8 @@ echo
 
 # Step 3: Integrate with the application
 echo "Step 3: Integrating Bible content with the application..."
-node tools/integrate-bible-content.js | tee logs/integrate.log
+cp tools/integrate-bible-content.js tools/integrate-bible-content.mjs
+node tools/integrate-bible-content.mjs | tee logs/integrate.log
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
   echo "ERROR: Bible integration failed."
   exit 1

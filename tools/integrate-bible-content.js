@@ -1,9 +1,14 @@
 // This script integrates the generated Bible content with the SermonScribe application
 // It copies the client-side loader script to the appropriate location and updates index.html
 
-const fs = require('fs');
-const path = require('path');
-const { promisify } = require('util');
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import { fileURLToPath } from 'url';
+
+// Define __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);

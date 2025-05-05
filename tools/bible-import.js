@@ -2,9 +2,16 @@
 // This script automates the import of Bible text from JSON files into our application's format
 // It handles processing an entire Bible XML/JSON source into our structured format with sections
 
-const fs = require('fs');
-const path = require('path');
-const { promisify } = require('util');
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+
+// Define __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const require = createRequire(import.meta.url);
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
