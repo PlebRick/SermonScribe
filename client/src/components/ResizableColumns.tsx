@@ -165,14 +165,15 @@ export default function ResizableColumns({
         {leftColumn}
       </div>
       
-      {/* Resizer handle - full height */}
+      {/* Resizer handle - full height with consistent width */}
       <div 
         className="absolute top-0 bottom-0 w-6 bg-transparent cursor-col-resize z-10 flex items-center justify-center"
         style={{ left: `calc(${leftWidthPercent}% - 12px)` }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="h-full w-[4px] bg-gray-300 dark:bg-gray-600 mx-auto hover:bg-primary hover:w-[6px] transition-all" />
+        <div className="h-full w-[4px] bg-gray-300 dark:bg-gray-600 mx-auto hover:bg-primary transition-colors"
+            style={{ transition: 'background-color 0.3s', minWidth: '4px' }} />
       </div>
       
       {/* Right column */}
