@@ -14,6 +14,7 @@ import {
   Settings
 } from "lucide-react";
 import { Link } from "wouter";
+import BibleSearch from "./BibleSearch";
 import { useState, useEffect } from "react";
 
 interface HeaderProps {
@@ -55,6 +56,9 @@ export default function Header({
             <h1 className="font-serif text-xl font-bold">SermonScribe</h1>
           </div>
         </div>
+        
+        {/* Bible Search - Only show on desktop */}
+        {!isMobile && <BibleSearch />}
         
         <div className="flex items-center space-x-2">
           <Link href="/admin">
