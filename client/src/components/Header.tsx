@@ -80,7 +80,10 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => toggleColumn(COLUMN_STATE.BIBLE)}
+                onClick={() => {
+                  console.log("Header Bible button clicked, current state:", columnState[COLUMN_STATE.BIBLE]);
+                  toggleColumn(COLUMN_STATE.BIBLE);
+                }}
                 className={`rounded-full ${columnState[COLUMN_STATE.BIBLE] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
                 <BookOpen className={`h-5 w-5 ${columnState[COLUMN_STATE.BIBLE] ? 'text-primary' : ''}`} />
@@ -91,7 +94,10 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => toggleColumn(COLUMN_STATE.SERMON)}
+                onClick={() => {
+                  console.log("Header Sermon button clicked, current state:", columnState[COLUMN_STATE.SERMON]);
+                  toggleColumn(COLUMN_STATE.SERMON);
+                }}
                 className={`rounded-full ${columnState[COLUMN_STATE.SERMON] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
                 <FileText className={`h-5 w-5 ${columnState[COLUMN_STATE.SERMON] ? 'text-primary' : ''}`} />

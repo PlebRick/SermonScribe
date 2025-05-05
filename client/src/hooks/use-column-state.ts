@@ -2,11 +2,11 @@ import { useState, useCallback, useEffect } from "react";
 import { COLUMN_STATE } from "@/lib/constants";
 import { useMobile } from "@/hooks/use-mobile";
 
-interface ColumnState {
-  [COLUMN_STATE.SIDEBAR]: boolean;
-  [COLUMN_STATE.BIBLE]: boolean;
-  [COLUMN_STATE.SERMON]: boolean;
-}
+// Define column names as type for better type safety
+type ColumnName = typeof COLUMN_STATE[keyof typeof COLUMN_STATE];
+
+// Use Record for better type mapping
+interface ColumnState extends Record<ColumnName, boolean> {}
 
 export function useColumnState() {
   const { isMobile } = useMobile();
@@ -28,6 +28,8 @@ export function useColumnState() {
   }, [isMobile, columnState]);
 
   const toggleColumn = useCallback((columnName: keyof ColumnState) => {
+    console.log(`Toggle column called for: ${columnName}, current state:`, columnState[columnName]);
+    
     setColumnState(prev => {
       const newState = {
         ...prev,
@@ -42,10 +44,11 @@ export function useColumnState() {
           newState[COLUMN_STATE.BIBLE] = false;
         }
       }
-
+      
+      console.log(`New state for ${columnName}:`, newState[columnName]);
       return newState;
     });
-  }, [isMobile]);
+  }, [isMobile, columnState]);
 
   const setMobileView = useCallback((column: "bible" | "sermon") => {
     if (!isMobile) return;
