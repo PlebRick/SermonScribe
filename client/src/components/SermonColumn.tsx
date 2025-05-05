@@ -70,11 +70,14 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     setActiveTab(SERMON_TABS.MANUSCRIPT);
   };
 
-  // Don't render if the column is not open
-  if (!isOpen) return null;
+  // Apply CSS class to hide the column when not open rather than removing it entirely
+  const columnClasses = cn(
+    "flex-1 overflow-hidden flex flex-col",
+    !isOpen && "hidden"
+  );
 
   return (
-    <div className="flex-1 overflow-hidden flex flex-col">
+    <div className={columnClasses}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700">
         <div className="p-4 flex justify-between items-center">
           <h2 className="font-serif text-xl font-semibold">
