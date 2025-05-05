@@ -1151,32 +1151,45 @@ export class FileStorage implements IStorage {
       outline.id = ids.length > 0 ? Math.max(...ids) + 1 : 1;
     }
     
+    // Log outline details for debugging
+    console.log(`Saving outline: ID=${outline.id}, Book=${outline.bookId}, Chapter=${outline.startChapter}-${outline.endChapter}, Verses=${outline.startVerse}-${outline.endVerse}`);
+    
     // Save the outline file
     const filePath = path.join(CONTENT_DIR, 'outlines', `${outline.id}.json`);
     fs.writeFileSync(filePath, JSON.stringify(outline, null, 2));
     
-    // Update the index for this book and chapter
-    const chapterDir = path.join(CONTENT_DIR, 'outlines', `${outline.bookId}-${outline.startChapter}`);
-    if (!fs.existsSync(chapterDir)) {
-      fs.mkdirSync(chapterDir, { recursive: true });
-    }
+    // Make sure directory exists for all chapters this outline spans
+    const startChapter = outline.startChapter;
+    const endChapter = outline.endChapter || outline.startChapter;
     
-    const indexPath = path.join(chapterDir, 'index.json');
-    let outlineIds: number[] = [];
-    
-    if (fs.existsSync(indexPath)) {
-      const indexContent = fs.readFileSync(indexPath, 'utf-8');
-      outlineIds = JSON.parse(indexContent) as number[];
-      
-      // Add the ID if it's not already in the index
-      if (!outlineIds.includes(outline.id)) {
-        outlineIds.push(outline.id);
-        fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+    // Add to all chapters the outline spans
+    for (let chapter = startChapter; chapter <= endChapter; chapter++) {
+      // Update the index for this book and chapter
+      const chapterDir = path.join(CONTENT_DIR, 'outlines', `${outline.bookId}-${chapter}`);
+      if (!fs.existsSync(chapterDir)) {
+        console.log(`Creating new chapter directory: ${chapterDir}`);
+        fs.mkdirSync(chapterDir, { recursive: true });
       }
-    } else {
-      // Create new index with this outline
-      outlineIds = [outline.id];
-      fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+      
+      const indexPath = path.join(chapterDir, 'index.json');
+      let outlineIds: number[] = [];
+      
+      if (fs.existsSync(indexPath)) {
+        const indexContent = fs.readFileSync(indexPath, 'utf-8');
+        outlineIds = JSON.parse(indexContent) as number[];
+        
+        // Add the ID if it's not already in the index
+        if (!outlineIds.includes(outline.id)) {
+          outlineIds.push(outline.id);
+          fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+          console.log(`Added outline ID ${outline.id} to existing index for chapter ${chapter}`);
+        }
+      } else {
+        // Create new index with this outline
+        outlineIds = [outline.id];
+        fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+        console.log(`Created new index for chapter ${chapter} with outline ID ${outline.id}`);
+      }
     }
     
     return outline;
@@ -1259,14 +1272,22 @@ export class FileStorage implements IStorage {
     // Delete the file
     fs.unlinkSync(filePath);
     
-    // Update the index
-    const indexPath = path.join(CONTENT_DIR, 'outlines', `${outline.bookId}-${outline.startChapter}`, 'index.json');
-    if (fs.existsSync(indexPath)) {
-      const indexContent = fs.readFileSync(indexPath, 'utf-8');
-      let outlineIds = JSON.parse(indexContent) as number[];
-      
-      outlineIds = outlineIds.filter(oId => oId !== id);
-      fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+    // Get the start and end chapters
+    const startChapter = outline.startChapter;
+    const endChapter = outline.endChapter || outline.startChapter;
+    
+    // Update the index for all chapters this outline spanned
+    for (let chapter = startChapter; chapter <= endChapter; chapter++) {
+      const indexPath = path.join(CONTENT_DIR, 'outlines', `${outline.bookId}-${chapter}`, 'index.json');
+      if (fs.existsSync(indexPath)) {
+        const indexContent = fs.readFileSync(indexPath, 'utf-8');
+        let outlineIds = JSON.parse(indexContent) as number[];
+        
+        // Remove this outline ID from the index
+        outlineIds = outlineIds.filter(oId => oId !== id);
+        fs.writeFileSync(indexPath, JSON.stringify(outlineIds, null, 2));
+        console.log(`Removed outline ID ${id} from index for chapter ${chapter}`);
+      }
     }
     
     return true;
