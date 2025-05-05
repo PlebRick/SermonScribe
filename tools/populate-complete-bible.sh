@@ -7,13 +7,15 @@ mkdir -p logs
 
 echo "Starting Complete Bible Population Process..."
 echo "This will download the entire Bible, process sections, and integrate with the application."
+echo "WARNING: The complete download process may take several hours due to API rate limits."
 echo
 
 # Step 1: Download Complete Bible
 echo "Step 1: Downloading the complete Bible from API..."
-node tools/download-complete-bible.mjs | tee logs/download-complete.log
+node tools/download-complete-bible-robust.mjs | tee logs/download-complete.log
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
   echo "ERROR: Bible download failed."
+  echo "NOTE: You can restart the script - it will resume from where it left off."
   exit 1
 fi
 echo "Bible download complete."

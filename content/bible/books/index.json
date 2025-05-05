@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Genesis",
+    "shortName": "genesis",
+    "fileName": "genesis.json",
+    "chapters": 3
+  },
+  {
+    "name": "Psalms",
+    "shortName": "psalms",
+    "fileName": "psalms.json",
+    "chapters": 3
+  },
+  {
+    "name": "John",
+    "shortName": "john",
+    "fileName": "john.json",
+    "chapters": 2
+  },
+  {
+    "name": "Romans",
+    "shortName": "romans",
+    "fileName": "romans.json",
+    "chapters": 2
+  }
+]

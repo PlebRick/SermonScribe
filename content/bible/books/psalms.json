@@ -1,0 +1,973 @@
+{
+  "name": "Psalms",
+  "shortName": "psalms",
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Blessed is the man who doesn’t walk in the counsel of the wicked,\nnor stand on the path of sinners,\nnor sit in the seat of scoffers;"
+            },
+            {
+              "verse": 2,
+              "text": "but his delight is in Yahweh’s law.\nOn his law he meditates day and night."
+            },
+            {
+              "verse": 3,
+              "text": "He will be like a tree planted by the streams of water,\nthat produces its fruit in its season,\nwhose leaf also does not wither.\nWhatever he does shall prosper."
+            },
+            {
+              "verse": 4,
+              "text": "The wicked are not so,\nbut are like the chaff which the wind drives away."
+            },
+            {
+              "verse": 5,
+              "text": "Therefore the wicked shall not stand in the judgment,\nnor sinners in the congregation of the righteous."
+            }
+          ],
+          "title": "Verses 1-5"
+        },
+        {
+          "verses": [
+            {
+              "verse": 6,
+              "text": "For Yahweh knows the way of the righteous,\nbut the way of the wicked shall perish."
+            }
+          ],
+          "title": "Verse 6"
+        }
+      ]
+    },
+    {
+      "chapter": 23,
+      "sections": [
+        {
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Yahweh is my shepherd:\nI shall lack nothing."
+            },
+            {
+              "verse": 2,
+              "text": "He makes me lie down in green pastures.\nHe leads me beside still waters."
+            },
+            {
+              "verse": 3,
+              "text": "He restores my soul.\nHe guides me in the paths of righteousness for his name’s sake."
+            },
+            {
+              "verse": 4,
+              "text": "Even though I walk through the valley of the shadow of death,\nI will fear no evil, for you are with me.\nYour rod and your staff,\nthey comfort me."
+            },
+            {
+              "verse": 5,
+              "text": "You prepare a table before me\nin the presence of my enemies.\nYou anoint my head with oil.\nMy cup runs over."
+            }
+          ],
+          "title": "Verses 1-5"
+        },
+        {
+          "verses": [
+            {
+              "verse": 6,
+              "text": "Surely goodness and loving kindness shall follow me all the days of my life,\nand I will dwell in Yahweh’s house forever."
+            }
+          ],
+          "title": "Verse 6"
+        }
+      ]
+    },
+    {
+      "chapter": 119,
+      "sections": [
+        {
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Blessed are those whose ways are blameless,\nwho walk according to Yahweh’s law."
+            },
+            {
+              "verse": 2,
+              "text": "Blessed are those who keep his statutes,\nwho seek him with their whole heart."
+            },
+            {
+              "verse": 3,
+              "text": "Yes, they do nothing wrong.\nThey walk in his ways."
+            },
+            {
+              "verse": 4,
+              "text": "You have commanded your precepts,\nthat we should fully obey them."
+            },
+            {
+              "verse": 5,
+              "text": "Oh that my ways were steadfast\nto obey your statutes!"
+            }
+          ],
+          "title": "Verses 1-5"
+        },
+        {
+          "verses": [
+            {
+              "verse": 6,
+              "text": "Then I wouldn’t be disappointed,\nwhen I consider all of your commandments."
+            },
+            {
+              "verse": 7,
+              "text": "I will give thanks to you with uprightness of heart,\nwhen I learn your righteous judgments."
+            },
+            {
+              "verse": 8,
+              "text": "I will observe your statutes.\nDon’t utterly forsake me."
+            },
+            {
+              "verse": 9,
+              "text": "How can a young man keep his way pure?\nBy living according to your word."
+            },
+            {
+              "verse": 10,
+              "text": "With my whole heart, I have sought you.\nDon’t let me wander from your commandments."
+            }
+          ],
+          "title": "Verses 6-10"
+        },
+        {
+          "verses": [
+            {
+              "verse": 11,
+              "text": "I have hidden your word in my heart,\nthat I might not sin against you."
+            },
+            {
+              "verse": 12,
+              "text": "Blessed are you, Yahweh.\nTeach me your statutes."
+            },
+            {
+              "verse": 13,
+              "text": "With my lips,\nI have declared all the ordinances of your mouth."
+            },
+            {
+              "verse": 14,
+              "text": "I have rejoiced in the way of your testimonies,\nas much as in all riches."
+            },
+            {
+              "verse": 15,
+              "text": "I will meditate on your precepts,\nand consider your ways."
+            }
+          ],
+          "title": "Verses 11-15"
+        },
+        {
+          "verses": [
+            {
+              "verse": 16,
+              "text": "I will delight myself in your statutes.\nI will not forget your word."
+            },
+            {
+              "verse": 17,
+              "text": "Do good to your servant.\nI will live and I will obey your word."
+            },
+            {
+              "verse": 18,
+              "text": "Open my eyes,\nthat I may see wondrous things out of your law."
+            },
+            {
+              "verse": 19,
+              "text": "I am a stranger on the earth.\nDon’t hide your commandments from me."
+            },
+            {
+              "verse": 20,
+              "text": "My soul is consumed with longing for your ordinances at all times."
+            }
+          ],
+          "title": "Verses 16-20"
+        },
+        {
+          "verses": [
+            {
+              "verse": 21,
+              "text": "You have rebuked the proud who are cursed,\nwho wander from your commandments."
+            },
+            {
+              "verse": 22,
+              "text": "Take reproach and contempt away from me,\nfor I have kept your statutes."
+            },
+            {
+              "verse": 23,
+              "text": "Though princes sit and slander me,\nyour servant will meditate on your statutes."
+            },
+            {
+              "verse": 24,
+              "text": "Indeed your statutes are my delight,\nand my counselors."
+            },
+            {
+              "verse": 25,
+              "text": "My soul is laid low in the dust.\nRevive me according to your word!"
+            }
+          ],
+          "title": "Verses 21-25"
+        },
+        {
+          "verses": [
+            {
+              "verse": 26,
+              "text": "I declared my ways, and you answered me.\nTeach me your statutes."
+            },
+            {
+              "verse": 27,
+              "text": "Let me understand the teaching of your precepts!\nThen I will meditate on your wondrous works."
+            },
+            {
+              "verse": 28,
+              "text": "My soul is weary with sorrow:\nstrengthen me according to your word."
+            },
+            {
+              "verse": 29,
+              "text": "Keep me from the way of deceit.\nGrant me your law graciously!"
+            },
+            {
+              "verse": 30,
+              "text": "I have chosen the way of truth.\nI have set your ordinances before me."
+            }
+          ],
+          "title": "Verses 26-30"
+        },
+        {
+          "verses": [
+            {
+              "verse": 31,
+              "text": "I cling to your statutes, Yahweh.\nDon’t let me be disappointed."
+            },
+            {
+              "verse": 32,
+              "text": "I run in the path of your commandments,\nfor you have set my heart free."
+            },
+            {
+              "verse": 33,
+              "text": "Teach me, Yahweh, the way of your statutes.\nI will keep them to the end."
+            },
+            {
+              "verse": 34,
+              "text": "Give me understanding, and I will keep your law.\nYes, I will obey it with my whole heart."
+            },
+            {
+              "verse": 35,
+              "text": "Direct me in the path of your commandments,\nfor I delight in them."
+            }
+          ],
+          "title": "Verses 31-35"
+        },
+        {
+          "verses": [
+            {
+              "verse": 36,
+              "text": "Turn my heart toward your statutes,\nnot toward selfish gain."
+            },
+            {
+              "verse": 37,
+              "text": "Turn my eyes away from looking at worthless things.\nRevive me in your ways."
+            },
+            {
+              "verse": 38,
+              "text": "Fulfill your promise to your servant,\nthat you may be feared."
+            },
+            {
+              "verse": 39,
+              "text": "Take away my disgrace that I dread,\nfor your ordinances are good."
+            },
+            {
+              "verse": 40,
+              "text": "Behold, I long for your precepts!\nRevive me in your righteousness."
+            }
+          ],
+          "title": "Verses 36-40"
+        },
+        {
+          "verses": [
+            {
+              "verse": 41,
+              "text": "Let your loving kindness also come to me, Yahweh,\nyour salvation, according to your word."
+            },
+            {
+              "verse": 42,
+              "text": "So I will have an answer for him who reproaches me,\nfor I trust in your word."
+            },
+            {
+              "verse": 43,
+              "text": "Don’t snatch the word of truth out of my mouth,\nfor I put my hope in your ordinances."
+            },
+            {
+              "verse": 44,
+              "text": "So I will obey your law continually,\nforever and ever."
+            },
+            {
+              "verse": 45,
+              "text": "I will walk in liberty,\nfor I have sought your precepts."
+            }
+          ],
+          "title": "Verses 41-45"
+        },
+        {
+          "verses": [
+            {
+              "verse": 46,
+              "text": "I will also speak of your statutes before kings,\nand will not be disappointed."
+            },
+            {
+              "verse": 47,
+              "text": "I will delight myself in your commandments,\nbecause I love them."
+            },
+            {
+              "verse": 48,
+              "text": "I reach out my hands for your commandments, which I love.\nI will meditate on your statutes."
+            },
+            {
+              "verse": 49,
+              "text": "Remember your word to your servant,\nbecause you gave me hope."
+            },
+            {
+              "verse": 50,
+              "text": "This is my comfort in my affliction,\nfor your word has revived me."
+            }
+          ],
+          "title": "Verses 46-50"
+        },
+        {
+          "verses": [
+            {
+              "verse": 51,
+              "text": "The arrogant mock me excessively,\nbut I don’t swerve from your law."
+            },
+            {
+              "verse": 52,
+              "text": "I remember your ordinances of old, Yahweh,\nand have comforted myself."
+            },
+            {
+              "verse": 53,
+              "text": "Indignation has taken hold on me,\nbecause of the wicked who forsake your law."
+            },
+            {
+              "verse": 54,
+              "text": "Your statutes have been my songs,\nin the house where I live."
+            },
+            {
+              "verse": 55,
+              "text": "I have remembered your name, Yahweh, in the night,\nand I obey your law."
+            }
+          ],
+          "title": "Verses 51-55"
+        },
+        {
+          "verses": [
+            {
+              "verse": 56,
+              "text": "This is my way,\nthat I keep your precepts."
+            },
+            {
+              "verse": 57,
+              "text": "Yahweh is my portion.\nI promised to obey your words."
+            },
+            {
+              "verse": 58,
+              "text": "I sought your favor with my whole heart.\nBe merciful to me according to your word."
+            },
+            {
+              "verse": 59,
+              "text": "I considered my ways,\nand turned my steps to your statutes."
+            },
+            {
+              "verse": 60,
+              "text": "I will hurry, and not delay,\nto obey your commandments."
+            }
+          ],
+          "title": "Verses 56-60"
+        },
+        {
+          "verses": [
+            {
+              "verse": 61,
+              "text": "The ropes of the wicked bind me,\nbut I won’t forget your law."
+            },
+            {
+              "verse": 62,
+              "text": "At midnight I will rise to give thanks to you,\nbecause of your righteous ordinances."
+            },
+            {
+              "verse": 63,
+              "text": "I am a friend of all those who fear you,\nof those who observe your precepts."
+            },
+            {
+              "verse": 64,
+              "text": "The earth is full of your loving kindness, Yahweh.\nTeach me your statutes."
+            },
+            {
+              "verse": 65,
+              "text": "Do good to your servant,\naccording to your word, Yahweh."
+            }
+          ],
+          "title": "Verses 61-65"
+        },
+        {
+          "verses": [
+            {
+              "verse": 66,
+              "text": "Teach me good judgment and knowledge,\nfor I believe in your commandments."
+            },
+            {
+              "verse": 67,
+              "text": "Before I was afflicted, I went astray;\nbut now I observe your word."
+            },
+            {
+              "verse": 68,
+              "text": "You are good, and do good.\nTeach me your statutes."
+            },
+            {
+              "verse": 69,
+              "text": "The proud have smeared a lie upon me.\nWith my whole heart, I will keep your precepts."
+            },
+            {
+              "verse": 70,
+              "text": "Their heart is as callous as the fat,\nbut I delight in your law."
+            }
+          ],
+          "title": "Verses 66-70"
+        },
+        {
+          "verses": [
+            {
+              "verse": 71,
+              "text": "It is good for me that I have been afflicted,\nthat I may learn your statutes."
+            },
+            {
+              "verse": 72,
+              "text": "The law of your mouth is better to me than thousands of pieces of gold and silver."
+            },
+            {
+              "verse": 73,
+              "text": "Your hands have made me and formed me.\nGive me understanding, that I may learn your commandments."
+            },
+            {
+              "verse": 74,
+              "text": "Those who fear you will see me and be glad,\nbecause I have put my hope in your word."
+            },
+            {
+              "verse": 75,
+              "text": "Yahweh, I know that your judgments are righteous,\nthat in faithfulness you have afflicted me."
+            }
+          ],
+          "title": "Verses 71-75"
+        },
+        {
+          "verses": [
+            {
+              "verse": 76,
+              "text": "Please let your loving kindness be for my comfort,\naccording to your word to your servant."
+            },
+            {
+              "verse": 77,
+              "text": "Let your tender mercies come to me, that I may live;\nfor your law is my delight."
+            },
+            {
+              "verse": 78,
+              "text": "Let the proud be disappointed, for they have overthrown me wrongfully.\nI will meditate on your precepts."
+            },
+            {
+              "verse": 79,
+              "text": "Let those who fear you turn to me.\nThey will know your statutes."
+            },
+            {
+              "verse": 80,
+              "text": "Let my heart be blameless toward your decrees,\nthat I may not be disappointed."
+            }
+          ],
+          "title": "Verses 76-80"
+        },
+        {
+          "verses": [
+            {
+              "verse": 81,
+              "text": "My soul faints for your salvation.\nI hope in your word."
+            },
+            {
+              "verse": 82,
+              "text": "My eyes fail for your word.\nI say, “When will you comfort me?”"
+            },
+            {
+              "verse": 83,
+              "text": "For I have become like a wineskin in the smoke.\nI don’t forget your statutes."
+            },
+            {
+              "verse": 84,
+              "text": "How many are the days of your servant?\nWhen will you execute judgment on those who persecute me?"
+            },
+            {
+              "verse": 85,
+              "text": "The proud have dug pits for me,\ncontrary to your law."
+            }
+          ],
+          "title": "Verses 81-85"
+        },
+        {
+          "verses": [
+            {
+              "verse": 86,
+              "text": "All of your commandments are faithful.\nThey persecute me wrongfully.\nHelp me!"
+            },
+            {
+              "verse": 87,
+              "text": "They had almost wiped me from the earth,\nbut I didn’t forsake your precepts."
+            },
+            {
+              "verse": 88,
+              "text": "Preserve my life according to your loving kindness,\nso I will obey the statutes of your mouth."
+            },
+            {
+              "verse": 89,
+              "text": "Yahweh, your word is settled in heaven forever."
+            },
+            {
+              "verse": 90,
+              "text": "Your faithfulness is to all generations.\nYou have established the earth, and it remains."
+            }
+          ],
+          "title": "Verses 86-90"
+        },
+        {
+          "verses": [
+            {
+              "verse": 91,
+              "text": "Your laws remain to this day,\nfor all things serve you."
+            },
+            {
+              "verse": 92,
+              "text": "Unless your law had been my delight,\nI would have perished in my affliction."
+            },
+            {
+              "verse": 93,
+              "text": "I will never forget your precepts,\nfor with them, you have revived me."
+            },
+            {
+              "verse": 94,
+              "text": "I am yours.\nSave me, for I have sought your precepts."
+            },
+            {
+              "verse": 95,
+              "text": "The wicked have waited for me, to destroy me.\nI will consider your statutes."
+            }
+          ],
+          "title": "Verses 91-95"
+        },
+        {
+          "verses": [
+            {
+              "verse": 96,
+              "text": "I have seen a limit to all perfection,\nbut your commands are boundless."
+            },
+            {
+              "verse": 97,
+              "text": "How I love your law!\nIt is my meditation all day."
+            },
+            {
+              "verse": 98,
+              "text": "Your commandments make me wiser than my enemies,\nfor your commandments are always with me."
+            },
+            {
+              "verse": 99,
+              "text": "I have more understanding than all my teachers,\nfor your testimonies are my meditation."
+            },
+            {
+              "verse": 100,
+              "text": "I understand more than the aged,\nbecause I have kept your precepts."
+            }
+          ],
+          "title": "Verses 96-100"
+        },
+        {
+          "verses": [
+            {
+              "verse": 101,
+              "text": "I have kept my feet from every evil way,\nthat I might observe your word."
+            },
+            {
+              "verse": 102,
+              "text": "I have not turned away from your ordinances,\nfor you have taught me."
+            },
+            {
+              "verse": 103,
+              "text": "How sweet are your promises to my taste,\nmore than honey to my mouth!"
+            },
+            {
+              "verse": 104,
+              "text": "Through your precepts, I get understanding;\ntherefore I hate every false way."
+            },
+            {
+              "verse": 105,
+              "text": "Your word is a lamp to my feet,\nand a light for my path."
+            }
+          ],
+          "title": "Verses 101-105"
+        },
+        {
+          "verses": [
+            {
+              "verse": 106,
+              "text": "I have sworn, and have confirmed it,\nthat I will obey your righteous ordinances."
+            },
+            {
+              "verse": 107,
+              "text": "I am afflicted very much.\nRevive me, Yahweh, according to your word."
+            },
+            {
+              "verse": 108,
+              "text": "Accept, I beg you, the willing offerings of my mouth.\nYahweh, teach me your ordinances."
+            },
+            {
+              "verse": 109,
+              "text": "My soul is continually in my hand,\nyet I won’t forget your law."
+            },
+            {
+              "verse": 110,
+              "text": "The wicked have laid a snare for me,\nyet I haven’t gone astray from your precepts."
+            }
+          ],
+          "title": "Verses 106-110"
+        },
+        {
+          "verses": [
+            {
+              "verse": 111,
+              "text": "I have taken your testimonies as a heritage forever,\nfor they are the joy of my heart."
+            },
+            {
+              "verse": 112,
+              "text": "I have set my heart to perform your statutes forever,\neven to the end."
+            },
+            {
+              "verse": 113,
+              "text": "I hate double-minded men,\nbut I love your law."
+            },
+            {
+              "verse": 114,
+              "text": "You are my hiding place and my shield.\nI hope in your word."
+            },
+            {
+              "verse": 115,
+              "text": "Depart from me, you evildoers,\nthat I may keep the commandments of my God."
+            }
+          ],
+          "title": "Verses 111-115"
+        },
+        {
+          "verses": [
+            {
+              "verse": 116,
+              "text": "Uphold me according to your word, that I may live.\nLet me not be ashamed of my hope."
+            },
+            {
+              "verse": 117,
+              "text": "Hold me up, and I will be safe,\nand will have respect for your statutes continually."
+            },
+            {
+              "verse": 118,
+              "text": "You reject all those who stray from your statutes,\nfor their deceit is in vain."
+            },
+            {
+              "verse": 119,
+              "text": "You put away all the wicked of the earth like dross.\nTherefore I love your testimonies."
+            },
+            {
+              "verse": 120,
+              "text": "My flesh trembles for fear of you.\nI am afraid of your judgments."
+            }
+          ],
+          "title": "Verses 116-120"
+        },
+        {
+          "verses": [
+            {
+              "verse": 121,
+              "text": "I have done what is just and righteous.\nDon’t leave me to my oppressors."
+            },
+            {
+              "verse": 122,
+              "text": "Ensure your servant’s well-being.\nDon’t let the proud oppress me."
+            },
+            {
+              "verse": 123,
+              "text": "My eyes fail looking for your salvation,\nfor your righteous word."
+            },
+            {
+              "verse": 124,
+              "text": "Deal with your servant according to your loving kindness.\nTeach me your statutes."
+            },
+            {
+              "verse": 125,
+              "text": "I am your servant. Give me understanding,\nthat I may know your testimonies."
+            }
+          ],
+          "title": "Verses 121-125"
+        },
+        {
+          "verses": [
+            {
+              "verse": 126,
+              "text": "It is time to act, Yahweh,\nfor they break your law."
+            },
+            {
+              "verse": 127,
+              "text": "Therefore I love your commandments more than gold,\nyes, more than pure gold."
+            },
+            {
+              "verse": 128,
+              "text": "Therefore I consider all of your precepts to be right.\nI hate every false way."
+            },
+            {
+              "verse": 129,
+              "text": "Your testimonies are wonderful,\ntherefore my soul keeps them."
+            },
+            {
+              "verse": 130,
+              "text": "The entrance of your words gives light.\nIt gives understanding to the simple."
+            }
+          ],
+          "title": "Verses 126-130"
+        },
+        {
+          "verses": [
+            {
+              "verse": 131,
+              "text": "I opened my mouth wide and panted,\nfor I longed for your commandments."
+            },
+            {
+              "verse": 132,
+              "text": "Turn to me, and have mercy on me,\nas you always do to those who love your name."
+            },
+            {
+              "verse": 133,
+              "text": "Establish my footsteps in your word.\nDon’t let any iniquity have dominion over me."
+            },
+            {
+              "verse": 134,
+              "text": "Redeem me from the oppression of man,\nso I will observe your precepts."
+            },
+            {
+              "verse": 135,
+              "text": "Make your face shine on your servant.\nTeach me your statutes."
+            }
+          ],
+          "title": "Verses 131-135"
+        },
+        {
+          "verses": [
+            {
+              "verse": 136,
+              "text": "Streams of tears run down my eyes,\nbecause they don’t observe your law."
+            },
+            {
+              "verse": 137,
+              "text": "You are righteous, Yahweh.\nYour judgments are upright."
+            },
+            {
+              "verse": 138,
+              "text": "You have commanded your statutes in righteousness.\nThey are fully trustworthy."
+            },
+            {
+              "verse": 139,
+              "text": "My zeal wears me out,\nbecause my enemies ignore your words."
+            },
+            {
+              "verse": 140,
+              "text": "Your promises have been thoroughly tested,\nand your servant loves them."
+            }
+          ],
+          "title": "Verses 136-140"
+        },
+        {
+          "verses": [
+            {
+              "verse": 141,
+              "text": "I am small and despised.\nI don’t forget your precepts."
+            },
+            {
+              "verse": 142,
+              "text": "Your righteousness is an everlasting righteousness.\nYour law is truth."
+            },
+            {
+              "verse": 143,
+              "text": "Trouble and anguish have taken hold of me.\nYour commandments are my delight."
+            },
+            {
+              "verse": 144,
+              "text": "Your testimonies are righteous forever.\nGive me understanding, that I may live."
+            },
+            {
+              "verse": 145,
+              "text": "I have called with my whole heart.\nAnswer me, Yahweh!\nI will keep your statutes."
+            }
+          ],
+          "title": "Verses 141-145"
+        },
+        {
+          "verses": [
+            {
+              "verse": 146,
+              "text": "I have called to you. Save me!\nI will obey your statutes."
+            },
+            {
+              "verse": 147,
+              "text": "I rise before dawn and cry for help.\nI put my hope in your words."
+            },
+            {
+              "verse": 148,
+              "text": "My eyes stay open through the night watches,\nthat I might meditate on your word."
+            },
+            {
+              "verse": 149,
+              "text": "Hear my voice according to your loving kindness.\nRevive me, Yahweh, according to your ordinances."
+            },
+            {
+              "verse": 150,
+              "text": "They draw near who follow after wickedness.\nThey are far from your law."
+            }
+          ],
+          "title": "Verses 146-150"
+        },
+        {
+          "verses": [
+            {
+              "verse": 151,
+              "text": "You are near, Yahweh.\nAll your commandments are truth."
+            },
+            {
+              "verse": 152,
+              "text": "Of old I have known from your testimonies,\nthat you have founded them forever."
+            },
+            {
+              "verse": 153,
+              "text": "Consider my affliction, and deliver me,\nfor I don’t forget your law."
+            },
+            {
+              "verse": 154,
+              "text": "Plead my cause, and redeem me!\nRevive me according to your promise."
+            },
+            {
+              "verse": 155,
+              "text": "Salvation is far from the wicked,\nfor they don’t seek your statutes."
+            }
+          ],
+          "title": "Verses 151-155"
+        },
+        {
+          "verses": [
+            {
+              "verse": 156,
+              "text": "Great are your tender mercies, Yahweh.\nRevive me according to your ordinances."
+            },
+            {
+              "verse": 157,
+              "text": "Many are my persecutors and my adversaries.\nI haven’t swerved from your testimonies."
+            },
+            {
+              "verse": 158,
+              "text": "I look at the faithless with loathing,\nbecause they don’t observe your word."
+            },
+            {
+              "verse": 159,
+              "text": "Consider how I love your precepts.\nRevive me, Yahweh, according to your loving kindness."
+            },
+            {
+              "verse": 160,
+              "text": "All of your words are truth.\nEvery one of your righteous ordinances endures forever."
+            }
+          ],
+          "title": "Verses 156-160"
+        },
+        {
+          "verses": [
+            {
+              "verse": 161,
+              "text": "Princes have persecuted me without a cause,\nbut my heart stands in awe of your words."
+            },
+            {
+              "verse": 162,
+              "text": "I rejoice at your word,\nas one who finds great plunder."
+            },
+            {
+              "verse": 163,
+              "text": "I hate and abhor falsehood.\nI love your law."
+            },
+            {
+              "verse": 164,
+              "text": "Seven times a day, I praise you,\nbecause of your righteous ordinances."
+            },
+            {
+              "verse": 165,
+              "text": "Those who love your law have great peace.\nNothing causes them to stumble."
+            }
+          ],
+          "title": "Verses 161-165"
+        },
+        {
+          "verses": [
+            {
+              "verse": 166,
+              "text": "I have hoped for your salvation, Yahweh.\nI have done your commandments."
+            },
+            {
+              "verse": 167,
+              "text": "My soul has observed your testimonies.\nI love them exceedingly."
+            },
+            {
+              "verse": 168,
+              "text": "I have obeyed your precepts and your testimonies,\nfor all my ways are before you."
+            },
+            {
+              "verse": 169,
+              "text": "Let my cry come before you, Yahweh.\nGive me understanding according to your word."
+            },
+            {
+              "verse": 170,
+              "text": "Let my supplication come before you.\nDeliver me according to your word."
+            }
+          ],
+          "title": "Verses 166-170"
+        },
+        {
+          "verses": [
+            {
+              "verse": 171,
+              "text": "Let my lips utter praise,\nfor you teach me your statutes."
+            },
+            {
+              "verse": 172,
+              "text": "Let my tongue sing of your word,\nfor all your commandments are righteousness."
+            },
+            {
+              "verse": 173,
+              "text": "Let your hand be ready to help me,\nfor I have chosen your precepts."
+            },
+            {
+              "verse": 174,
+              "text": "I have longed for your salvation, Yahweh.\nYour law is my delight."
+            },
+            {
+              "verse": 175,
+              "text": "Let my soul live, that I may praise you.\nLet your ordinances help me."
+            }
+          ],
+          "title": "Verses 171-175"
+        },
+        {
+          "verses": [
+            {
+              "verse": 176,
+              "text": "I have gone astray like a lost sheep.\nSeek your servant, for I don’t forget your commandments."
+            }
+          ],
+          "title": "Verse 176"
+        }
+      ]
+    }
+  ]
+}
