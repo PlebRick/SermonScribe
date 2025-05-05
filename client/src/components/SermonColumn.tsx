@@ -17,6 +17,7 @@ interface SermonColumnProps {
 }
 
 export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonColumnProps) {
+  const queryClient = useQueryClient();
   const { 
     currentBook, 
     currentChapter, 
@@ -27,6 +28,14 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     activeTab,
     setActiveTab
   } = useBible();
+  
+  const refreshOutlines = () => {
+    if (currentBook?.id && currentChapter) {
+      queryClient.invalidateQueries({ 
+        queryKey: [`/api/outlines/${currentBook.id}/${currentChapter}`] 
+      });
+    }
+  };
 
   const formatVerseRange = (outline: any) => {
     if (outline.startChapter === outline.endChapter) {
@@ -79,7 +88,19 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
             )}
           </h2>
           
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+            {activeTab === SERMON_TABS.OUTLINE && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={refreshOutlines}
+                className="text-gray-500 hover:text-primary"
+                title="Refresh outlines"
+              >
+                <RefreshCw className="h-4 w-4" />
+                <span className="sr-only">Refresh outlines</span>
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="icon"
