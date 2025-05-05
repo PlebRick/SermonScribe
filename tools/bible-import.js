@@ -99,34 +99,171 @@ async function ensureDirectories() {
   }
 }
 
-// Function to group verses into sections (chunks of N verses)
-function groupVersesIntoSections(verses, sectionSize = 5) {
-  const sections = [];
-  let currentSection = {
-    title: `Verses 1-${Math.min(sectionSize, verses.length)}`,
-    verses: []
-  };
+// Map of special section headers for important Bible passages
+const SECTION_HEADERS = {
+  // Genesis chapter 1
+  'Genesis': {
+    1: [
+      { start: 1, end: 2, title: 'The Beginning' },
+      { start: 3, end: 5, title: 'The First Day' },
+      { start: 6, end: 8, title: 'The Second Day' },
+      { start: 9, end: 13, title: 'The Third Day' },
+      { start: 14, end: 19, title: 'The Fourth Day' },
+      { start: 20, end: 23, title: 'The Fifth Day' },
+      { start: 24, end: 31, title: 'The Sixth Day' }
+    ],
+    2: [
+      { start: 1, end: 3, title: 'The Seventh Day' },
+      { start: 4, end: 14, title: 'Adam and Eve' },
+      { start: 15, end: 25, title: 'The Garden of Eden' }
+    ],
+    3: [
+      { start: 1, end: 7, title: 'The Temptation and Fall' },
+      { start: 8, end: 15, title: 'God Confronts Adam and Eve' },
+      { start: 16, end: 24, title: 'The Curse' }
+    ]
+  },
+  // Add more books and their section headers here
+  'Exodus': {
+    20: [
+      { start: 1, end: 17, title: 'The Ten Commandments' }
+    ]
+  },
+  'Matthew': {
+    5: [
+      { start: 1, end: 12, title: 'The Beatitudes' },
+      { start: 13, end: 20, title: 'Salt and Light' },
+      { start: 21, end: 48, title: 'The Fulfillment of the Law' }
+    ],
+    6: [
+      { start: 1, end: 4, title: 'Giving to the Needy' },
+      { start: 5, end: 15, title: 'The Lord\'s Prayer' },
+      { start: 16, end: 18, title: 'Fasting' },
+      { start: 19, end: 34, title: 'Treasures in Heaven' }
+    ]
+  },
+  'John': {
+    3: [
+      { start: 1, end: 21, title: 'Jesus Teaches Nicodemus' },
+      { start: 16, end: 16, title: 'For God So Loved the World' }
+    ]
+  },
+  'Romans': {
+    8: [
+      { start: 1, end: 17, title: 'Life in the Spirit' },
+      { start: 18, end: 30, title: 'Future Glory' },
+      { start: 31, end: 39, title: 'More Than Conquerors' }
+    ]
+  }
+};
 
-  verses.forEach((verse, index) => {
-    // Add verse to current section
-    currentSection.verses.push(verse);
+// Default chapter titles for books
+const DEFAULT_CHAPTER_TITLES = {
+  'Genesis': 'The Creation',
+  'Exodus': 'The Exodus from Egypt',
+  'Leviticus': 'The Law of Holiness',
+  'Numbers': 'The Census of Israel',
+  'Deuteronomy': 'The Second Law',
+  'Joshua': 'The Conquest of Canaan',
+  'Judges': 'Israel\'s Judges',
+  'Ruth': 'The Story of Ruth',
+  'Psalms': 'Songs of Praise',
+  'Proverbs': 'Wisdom Sayings',
+  'Matthew': 'The Gospel of Matthew',
+  'Mark': 'The Gospel of Mark',
+  'Luke': 'The Gospel of Luke',
+  'John': 'The Gospel of John',
+  'Acts': 'The Acts of the Apostles',
+  'Romans': 'Paul\'s Letter to the Romans',
+  'Revelation': 'The Revelation to John'
+};
+
+// Function to group verses into sections using predefined section headers when available
+function groupVersesIntoSections(verses, bookName, chapterNum) {
+  // Check if we have predefined sections for this book and chapter
+  const bookSections = SECTION_HEADERS[bookName];
+  const chapterSections = bookSections ? bookSections[chapterNum] : null;
+  
+  if (chapterSections && chapterSections.length > 0) {
+    // Use predefined sections
+    const sections = [];
     
-    // When we reach section size or the end, start a new section
-    const verseNumber = index + 1;
-    if (verseNumber % sectionSize === 0 && verseNumber < verses.length) {
-      sections.push(currentSection);
-      const nextStart = verseNumber + 1;
-      const nextEnd = Math.min(nextStart + sectionSize - 1, verses.length);
-      currentSection = {
-        title: `Verses ${nextStart}-${nextEnd}`,
-        verses: []
-      };
+    // Sort sections by start verse to ensure proper order
+    const sortedSections = [...chapterSections].sort((a, b) => a.start - b.start);
+    
+    // Create sections based on predefined headers
+    sortedSections.forEach((sectionDef, idx) => {
+      const sectionVerses = verses.filter(v => 
+        v.verse >= sectionDef.start && v.verse <= sectionDef.end
+      );
+      
+      if (sectionVerses.length > 0) {
+        sections.push({
+          title: sectionDef.title,
+          verses: sectionVerses
+        });
+      }
+    });
+    
+    // Find any verses not covered by predefined sections
+    const coveredVerseNumbers = new Set();
+    sections.forEach(section => {
+      section.verses.forEach(verse => {
+        coveredVerseNumbers.add(verse.verse);
+      });
+    });
+    
+    const uncoveredVerses = verses.filter(v => !coveredVerseNumbers.has(v.verse));
+    
+    // If there are uncovered verses, add them as additional sections
+    if (uncoveredVerses.length > 0) {
+      // Group uncovered verses into sections of 5
+      const additionalSections = groupVersesBySize(uncoveredVerses, 5);
+      sections.push(...additionalSections);
+      
+      // Sort all sections by the first verse number
+      sections.sort((a, b) => {
+        const aFirstVerse = a.verses[0].verse;
+        const bFirstVerse = b.verses[0].verse;
+        return aFirstVerse - bFirstVerse;
+      });
+    }
+    
+    return sections;
+  } else {
+    // If no predefined sections, group by size (fallback)
+    return groupVersesBySize(verses, 5);
+  }
+}
+
+// Helper function to group verses into sections of specified size
+function groupVersesBySize(verses, sectionSize = 5) {
+  const sections = [];
+  let currentVerses = [];
+  let startVerse = 0;
+  
+  verses.forEach(verse => {
+    if (currentVerses.length === 0) {
+      startVerse = verse.verse;
+    }
+    
+    currentVerses.push(verse);
+    
+    if (currentVerses.length >= sectionSize) {
+      sections.push({
+        title: `Verses ${startVerse}-${verse.verse}`,
+        verses: [...currentVerses]
+      });
+      currentVerses = [];
     }
   });
   
-  // Add the last section if it's not empty
-  if (currentSection.verses.length > 0) {
-    sections.push(currentSection);
+  // Add any remaining verses as the last section
+  if (currentVerses.length > 0) {
+    sections.push({
+      title: `Verses ${startVerse}-${currentVerses[currentVerses.length - 1].verse}`,
+      verses: currentVerses
+    });
   }
   
   return sections;
@@ -165,10 +302,17 @@ async function processBibleBooks() {
       }
       
       const bookData = bibleData[bookName];
+      // Get all chapter numbers and find the maximum
+      const chapterNumbers = Object.keys(bookData).map(c => parseInt(c));
+      const chapterCount = Math.max(...chapterNumbers);
+      
       const formattedBook = {
+        id: Object.keys(BOOK_MAP).indexOf(bookName) + 1, // Add an ID for database consistency
         name: bookName,
         shortName: bookInfo.shortName,
         testament: bookInfo.testament,
+        position: Object.keys(BOOK_MAP).indexOf(bookName) + 1, // For sorting in sidebar
+        chapterCount: chapterCount,
         chapters: []
       };
       
@@ -183,12 +327,27 @@ async function processBibleBooks() {
         // Sort verses by number
         formattedVerses.sort((a, b) => a.verse - b.verse);
         
-        // Group verses into sections
-        const sections = groupVersesIntoSections(formattedVerses);
+        // Group verses into sections, passing book name and chapter number for headers
+        const sections = groupVersesIntoSections(formattedVerses, bookName, parseInt(chapterNum));
+        
+        // Get default chapter title or use a generic one
+        const chapterNumInt = parseInt(chapterNum);
+        let chapterTitle = '';
+        
+        // For first chapter, use the book default title if available
+        if (chapterNumInt === 1 && DEFAULT_CHAPTER_TITLES[bookName]) {
+          chapterTitle = DEFAULT_CHAPTER_TITLES[bookName];
+        } else {
+          // For key chapters, use more specific titles
+          // This could be expanded with a more comprehensive mapping
+          chapterTitle = `Chapter ${chapterNumInt}`;
+        }
         
         // Add to formatted book chapters
         formattedBook.chapters.push({
-          chapter: parseInt(chapterNum),
+          id: chapterNumInt,
+          chapter: chapterNumInt,
+          title: chapterTitle,
           sections
         });
       }
@@ -207,12 +366,29 @@ async function processBibleBooks() {
     console.log('Bible import complete!');
     console.log(`Successfully processed ${booksProcessed} books.`);
     
-    // Create book index file
-    const bookIndex = Object.entries(BOOK_MAP).map(([name, info]) => ({
-      name,
-      shortName: info.shortName,
-      testament: info.testament
-    }));
+    // Create book index file with full metadata
+    const bookIndex = Object.entries(BOOK_MAP).map(([name, info], index) => {
+      // Find the max chapter count for this book if we processed it
+      const bookFilePath = path.join(BIBLE_BOOKS_DIR, `${info.shortName}.json`);
+      let chapterCount = 0;
+      try {
+        // If we've processed this book, get its chapter count from the file
+        const bookJson = require(bookFilePath);
+        chapterCount = bookJson.chapterCount || bookJson.chapters.length;
+      } catch (err) {
+        // If file doesn't exist yet, make an estimate
+        chapterCount = 0; // This will be a placeholder
+      }
+      
+      return {
+        id: index + 1,
+        name,
+        shortName: info.shortName,
+        testament: info.testament,
+        position: index + 1,
+        chapterCount
+      };
+    });
     
     await writeFile(
       path.join(BIBLE_DIR, 'index.json'), 
