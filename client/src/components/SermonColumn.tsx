@@ -70,6 +70,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     setActiveTab(SERMON_TABS.MANUSCRIPT);
   };
 
+  // Don't render if the column is not open
   if (!isOpen) return null;
 
   return (

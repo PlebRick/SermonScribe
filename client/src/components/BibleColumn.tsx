@@ -29,6 +29,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
     }
   }, [currentBook, currentChapter]);
 
+  // Don't render if the column is not open
   if (!isOpen) return null;
 
   return (

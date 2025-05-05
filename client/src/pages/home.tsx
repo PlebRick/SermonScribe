@@ -49,9 +49,10 @@ export default function Home() {
       <Header toggleMobileSidebar={toggleMobileSidebar} />
       
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop Sidebar */}
+        {/* Desktop Sidebar - either collapsed or expanded version */}
         {!isMobile && (
           sidebarCollapsed ? (
+            // Collapsed sidebar with only icon
             <div className="w-14 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] flex flex-col items-center py-8">
               <BookOpen className="h-6 w-6 text-primary mb-4" />
               <button 
@@ -63,6 +64,7 @@ export default function Home() {
               </button>
             </div>
           ) : (
+            // Expanded sidebar
             <Sidebar 
               isMobile={false} 
               isOpen={true} 
@@ -71,28 +73,32 @@ export default function Home() {
           )
         )}
         
-        {/* Mobile Sidebar */}
-        <Sidebar 
-          isMobile={isMobile} 
-          isOpen={mobileSidebarOpen} 
-          closeMobileSidebar={closeMobileSidebar}
-          onToggleSidebar={toggleSidebar} 
-        />
+        {/* Mobile Sidebar - overlay when opened */}
+        {isMobile && (
+          <Sidebar 
+            isMobile={true} 
+            isOpen={mobileSidebarOpen} 
+            closeMobileSidebar={closeMobileSidebar}
+            onToggleSidebar={toggleSidebar} 
+          />
+        )}
         
-        {/* Main Content */}
-        <main className="flex-1 flex flex-col md:flex-row overflow-hidden">
+        {/* Main Content Columns */}
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+          {/* Bible Column */}
           <BibleColumn 
             isOpen={columnState[COLUMN_STATE.BIBLE]} 
             toggleColumn={() => toggleColumn(COLUMN_STATE.BIBLE)}
             isMobile={isMobile}
           />
           
+          {/* Sermon Column */}
           <SermonColumn 
             isOpen={columnState[COLUMN_STATE.SERMON]} 
             toggleColumn={() => toggleColumn(COLUMN_STATE.SERMON)}
             isMobile={isMobile}
           />
-        </main>
+        </div>
       </div>
       
       {/* Mobile Bottom Navigation */}
