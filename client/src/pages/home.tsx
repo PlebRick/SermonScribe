@@ -22,6 +22,10 @@ export default function Home() {
   const closeMobileSidebar = () => {
     setMobileSidebarOpen(false);
   };
+  
+  const toggleSidebar = () => {
+    setSidebarCollapsed(prev => !prev);
+  };
 
   const handleSetMobileView = (view: "bible" | "sermon") => {
     setMobileView(view);
@@ -48,7 +52,8 @@ export default function Home() {
         {!isMobile && (
           <Sidebar 
             isMobile={false} 
-            isOpen={columnState[COLUMN_STATE.SIDEBAR]} 
+            isOpen={!sidebarCollapsed} 
+            onToggleSidebar={toggleSidebar}
           />
         )}
         
@@ -56,7 +61,8 @@ export default function Home() {
         <Sidebar 
           isMobile={isMobile} 
           isOpen={mobileSidebarOpen} 
-          closeMobileSidebar={closeMobileSidebar} 
+          closeMobileSidebar={closeMobileSidebar}
+          onToggleSidebar={toggleSidebar} 
         />
         
         {/* Main Content */}
