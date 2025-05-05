@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { X, ChevronRight } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, BookOpen } from "lucide-react";
 import { useBible } from "@/contexts/BibleContext";
 import { useQuery } from "@tanstack/react-query";
 import { Book } from "@shared/schema";
@@ -13,15 +13,17 @@ interface SidebarProps {
   isMobile: boolean;
   isOpen: boolean;
   closeMobileSidebar?: () => void;
+  onToggleSidebar?: () => void;
 }
 
-export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: SidebarProps) {
+export default function Sidebar({ isMobile, isOpen, closeMobileSidebar, onToggleSidebar }: SidebarProps) {
   const [expandedTestaments, setExpandedTestaments] = useState<Record<string, boolean>>({
     [TESTAMENTS.OLD]: true,
     [TESTAMENTS.NEW]: false
   });
   
   const [expandedBooks, setExpandedBooks] = useState<Record<string, boolean>>({});
+  const [collapsed, setCollapsed] = useState(false);
   
   const { setCurrentLocation } = useBible();
 
@@ -69,18 +71,55 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar }: Sideba
     ? apiNewTestamentBooks 
     : newTestamentBooks.sort((a, b) => a.position - b.position);
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    // Only render collapsed version for desktop
+    if (!isMobile) {
+      return (
+        <aside className="w-12 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] flex flex-col items-center py-4">
+          <div className="flex flex-col items-center gap-4">
+            <BookOpen className="h-6 w-6 text-primary" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={onToggleSidebar}
+              className="rounded-full"
+            >
+              <ChevronRight className="h-4 w-4" />
+              <span className="sr-only">Expand sidebar</span>
+            </Button>
+          </div>
+        </aside>
+      );
+    }
+    return null;
+  }
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
-        <h2 className="font-medium text-lg">Bible Navigation</h2>
-        {isMobile && (
-          <Button variant="ghost" size="icon" onClick={closeMobileSidebar}>
-            <X className="h-5 w-5" />
-            <span className="sr-only">Close sidebar</span>
-          </Button>
-        )}
+      <div className="p-4 flex justify-between items-center">
+        <div className="flex items-center">
+          <h2 className="font-medium text-lg">Bible Navigation</h2>
+          <BookOpen className="h-5 w-5 ml-2 text-primary" />
+        </div>
+        <div className="flex items-center gap-2">
+          {!isMobile && (
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={onToggleSidebar}
+              className="rounded-full"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span className="sr-only">Collapse sidebar</span>
+            </Button>
+          )}
+          {isMobile && (
+            <Button variant="ghost" size="icon" onClick={closeMobileSidebar}>
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close sidebar</span>
+            </Button>
+          )}
+        </div>
       </div>
       
       <ScrollArea className="flex-1 p-4">

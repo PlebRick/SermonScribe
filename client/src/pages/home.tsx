@@ -13,6 +13,7 @@ export default function Home() {
   const { columnState, toggleColumn, setMobileView } = useColumnState();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [activeMobileView, setActiveMobileView] = useState(MOBILE_VIEWS.BIBLE);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const toggleMobileSidebar = () => {
     setMobileSidebarOpen(prev => !prev);
