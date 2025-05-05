@@ -49,7 +49,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
       className="flex-1 overflow-hidden flex flex-col border-none"
       style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] p-4 flex justify-between items-center">
-        <h2 className="font-serif text-xl font-semibold">
+        <h2 className="font-serif text-xl font-semibold pt-0">
           {isLoading ? (
             <Skeleton className="h-7 w-32" />
           ) : (

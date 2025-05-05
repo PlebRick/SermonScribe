@@ -172,7 +172,7 @@ export default function ResizableColumns({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="h-full w-[3px] bg-gray-300 dark:bg-gray-600 mx-auto hover:bg-primary hover:w-[5px] transition-all rounded-full" />
+        <div className="h-full w-[4px] bg-gray-300 dark:bg-gray-600 mx-auto hover:bg-primary hover:w-[6px] transition-all" />
       </div>
       
       {/* Right column */}

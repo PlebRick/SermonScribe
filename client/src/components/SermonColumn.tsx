@@ -78,7 +78,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
       className="flex-1 overflow-hidden flex flex-col border-none"
       style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))]">
-        <div className="p-4 flex justify-between items-center">
+        <div className="p-4 pb-2 flex justify-between items-center">
           <h2 className="font-serif text-xl font-semibold">
             {isLoading ? (
               <Skeleton className="h-7 w-48" />
