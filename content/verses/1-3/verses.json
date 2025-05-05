@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "bookId": 1,
+    "chapter": 3,
+    "verse": 1,
+    "text": "Now the serpent was more subtle than any animal of the field which Yahweh God had made. He said to the woman, \"Has God really said, 'You shall not eat of any tree of the garden'?\"",
+    "sectionTitle": "The Temptation and Fall"
+  },
+  {
+    "id": 2,
+    "bookId": 1,
+    "chapter": 3,
+    "verse": 2,
+    "text": "The woman said to the serpent, \"We may eat fruit from the trees of the garden,\"",
+    "sectionTitle": "The Temptation and Fall"
+  },
+  {
+    "id": 3,
+    "bookId": 1,
+    "chapter": 3,
+    "verse": 3,
+    "text": "but not the fruit of the tree which is in the middle of the garden. God has said, \"You shall not eat of it. You shall not touch it, lest you die.\"",
+    "sectionTitle": "The Temptation and Fall"
+  }
+]

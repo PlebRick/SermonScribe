@@ -92,8 +92,35 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
   }> = [];
   
   try {
-    // We'll use our structured content data when available for any book
-    if (window.__BIBLE_CONTENT__ && bookShortName) {
+    // Make sure direct disk loaded content is attempted first
+    const hasSectionTitles = verses.some(v => (v as any).sectionTitle);
+    if (hasSectionTitles) {
+      console.log(`Using section titles from disk-loaded verses for ${bookShortName} chapter ${chapter}`);
+      
+      // Group verses by section title
+      const sectionMap = new Map<string, Array<any>>();
+      
+      verses.forEach(verse => {
+        const sectionTitle = (verse as any).sectionTitle || 'Untitled Section';
+        if (!sectionMap.has(sectionTitle)) {
+          sectionMap.set(sectionTitle, []);
+        }
+        sectionMap.get(sectionTitle)?.push(verse);
+      });
+      
+      // Convert to our sections format
+      sections = Array.from(sectionMap.entries()).map(([title, verseList]) => ({
+        title,
+        verses: verseList.map(v => ({
+          verse: v.verse,
+          text: v.text
+        }))
+      }));
+      
+      console.log(`Created ${sections.length} sections from disk-loaded verses`);
+    }
+    // If no section titles, try loading from window.__BIBLE_CONTENT__ 
+    else if (window.__BIBLE_CONTENT__ && bookShortName) {
       console.log('Trying to load data for', bookShortName, 'chapter', chapter);
       
       // Access books by their shortnames - cast to Record to fix TypeScript issues
@@ -109,7 +136,7 @@ function renderVerses(verses: any[], bookShortName: string, chapter: number) {
         
         console.log(`${bookShortName} content available:`, true);
         
-        if (bookData.chapters && bookData.chapters.length) {
+        if (bookData.chapters && Array.isArray(bookData.chapters)) {
           console.log(`${bookShortName} chapters:`, bookData.chapters.length);
           
           // Find the chapter object in the chapters array
