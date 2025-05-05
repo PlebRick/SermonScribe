@@ -354,59 +354,87 @@ export default function AdminPage() {
           <div className="grid grid-cols-1 gap-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="md:col-span-1">
-                <h2 className="text-xl font-bold mb-4">Outlines</h2>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold">Outlines</h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedOutline(null);
+                      // Switch to the outlines tab to create a new outline
+                      const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                      if (outlineTab) outlineTab.click();
+                    }}
+                  >
+                    <Plus className="h-4 w-4 mr-1" />
+                    New Outline
+                  </Button>
+                </div>
                 {outlines && outlines.length > 0 ? (
                   <div className="space-y-4">
                     {outlines.map((outline: Outline) => (
-                      <Card key={outline.id} className="relative">
-                        <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
-                          <CardHeader>
+                      <Card key={outline.id} className={`relative cursor-pointer ${selectedOutline === outline.id ? 'border-primary' : ''}`}>
+                        <div className="flex" onClick={() => setSelectedOutline(outline.id)}>
+                          <CardHeader className="flex-1">
                             <CardTitle className="text-sm">{outline.title}</CardTitle>
                             <CardDescription className="text-xs">
                               {outline.startChapter}:{outline.startVerse} - {outline.endChapter}:{outline.endVerse}
                             </CardDescription>
                           </CardHeader>
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          <AlertDialog>
-                            <AlertDialogTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="text-gray-400 hover:text-red-500 h-6 w-6"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                              <AlertDialogHeader>
-                                <AlertDialogTitle>Are you sure you want to delete this outline?</AlertDialogTitle>
-                                <AlertDialogDescription>
-                                  This action cannot be undone. The outline will be permanently deleted.
-                                  Any associated manuscripts or commentaries might become orphaned.
-                                </AlertDialogDescription>
-                              </AlertDialogHeader>
-                              <AlertDialogFooter>
-                                <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
-                                <AlertDialogAction 
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    deleteOutlineMutation.mutate(outline.id);
-                                  }}
-                                  className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                          <div className="p-2">
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="text-gray-400 hover:text-red-500 h-6 w-6"
+                                  onClick={(e) => e.stopPropagation()}
                                 >
-                                  Delete
-                                </AlertDialogAction>
-                              </AlertDialogFooter>
-                            </AlertDialogContent>
-                          </AlertDialog>
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Are you sure you want to delete this outline?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    This action cannot be undone. The outline will be permanently deleted.
+                                    Any associated manuscripts or commentaries might become orphaned.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
+                                  <AlertDialogAction 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      deleteOutlineMutation.mutate(outline.id);
+                                    }}
+                                    className="bg-red-500 hover:bg-red-600 focus:ring-red-500"
+                                  >
+                                    Delete
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </div>
                         </div>
                       </Card>
                     ))}
                   </div>
                 ) : (
-                  <p>No outlines found for this chapter.</p>
+                  <div className="text-center my-8">
+                    <p className="mb-4">No outlines found for this chapter.</p>
+                    <Button 
+                      onClick={() => {
+                        setSelectedOutline(null);
+                        // Switch to the outlines tab to create a new outline
+                        const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                        if (outlineTab) outlineTab.click();
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Create First Outline
+                    </Button>
+                  </div>
                 )}
               </div>
               
@@ -459,7 +487,24 @@ export default function AdminPage() {
                     />
                   </div>
                 ) : (
-                  <p>Select an outline to edit or create a manuscript.</p>
+                  <div className="flex flex-col items-center justify-center p-12 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                    <p className="mb-4 text-lg text-center">Select an outline to edit or create a manuscript</p>
+                    <p className="text-sm text-muted-foreground mb-6 text-center">
+                      Manuscripts are always connected to an outline. To create a new manuscript with a different verse range,
+                      first create a new outline.
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        setSelectedOutline(null);
+                        // Switch to the outlines tab to create a new outline
+                        const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                        if (outlineTab) outlineTab.click();
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Create New Outline
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>
@@ -470,11 +515,26 @@ export default function AdminPage() {
           <div className="grid grid-cols-1 gap-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="md:col-span-1">
-                <h2 className="text-xl font-bold mb-4">Outlines</h2>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold">Outlines</h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedOutline(null);
+                      // Switch to the outlines tab to create a new outline
+                      const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                      if (outlineTab) outlineTab.click();
+                    }}
+                  >
+                    <Plus className="h-4 w-4 mr-1" />
+                    New Outline
+                  </Button>
+                </div>
                 {outlines && outlines.length > 0 ? (
                   <div className="space-y-4">
                     {outlines.map((outline: Outline) => (
-                      <Card key={outline.id} className="relative">
+                      <Card key={outline.id} className={`relative cursor-pointer ${selectedOutline === outline.id ? 'border-primary' : ''}`}>
                         <div className="cursor-pointer" onClick={() => setSelectedOutline(outline.id)}>
                           <CardHeader>
                             <CardTitle className="text-sm">{outline.title}</CardTitle>
@@ -487,7 +547,20 @@ export default function AdminPage() {
                     ))}
                   </div>
                 ) : (
-                  <p>No outlines found for this chapter.</p>
+                  <div className="text-center my-8">
+                    <p className="mb-4">No outlines found for this chapter.</p>
+                    <Button 
+                      onClick={() => {
+                        setSelectedOutline(null);
+                        // Switch to the outlines tab to create a new outline
+                        const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                        if (outlineTab) outlineTab.click();
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Create First Outline
+                    </Button>
+                  </div>
                 )}
               </div>
               
@@ -506,7 +579,24 @@ export default function AdminPage() {
                     />
                   </div>
                 ) : (
-                  <p>Select an outline to edit or create commentaries.</p>
+                  <div className="flex flex-col items-center justify-center p-12 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                    <p className="mb-4 text-lg text-center">Select an outline to edit or create commentaries</p>
+                    <p className="text-sm text-muted-foreground mb-6 text-center">
+                      Commentaries are always connected to an outline. To create a new commentary with a different verse range,
+                      first create a new outline.
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        setSelectedOutline(null);
+                        // Switch to the outlines tab to create a new outline
+                        const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                        if (outlineTab) outlineTab.click();
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Create New Outline
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>
