@@ -354,11 +354,12 @@ export default function AdminPage() {
           <div className="grid grid-cols-1 gap-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="md:col-span-1">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-bold">Outlines</h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="text-xl font-bold mr-2">Outlines</h2>
                   <Button
                     variant="outline"
-                    size="sm"
+                    size="icon"
+                    className="h-6 w-6 rounded-full p-0"
                     onClick={() => {
                       setSelectedOutline(null);
                       // Switch to the outlines tab to create a new outline
@@ -366,8 +367,7 @@ export default function AdminPage() {
                       if (outlineTab) outlineTab.click();
                     }}
                   >
-                    <Plus className="h-4 w-4 mr-1" />
-                    New Outline
+                    <Plus className="h-3 w-3" />
                   </Button>
                 </div>
                 {outlines && outlines.length > 0 ? (
@@ -515,11 +515,12 @@ export default function AdminPage() {
           <div className="grid grid-cols-1 gap-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="md:col-span-1">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-bold">Outlines</h2>
+                <div className="flex items-center mb-4">
+                  <h2 className="text-xl font-bold mr-2">Outlines</h2>
                   <Button
                     variant="outline"
-                    size="sm"
+                    size="icon"
+                    className="h-6 w-6 rounded-full p-0"
                     onClick={() => {
                       setSelectedOutline(null);
                       // Switch to the outlines tab to create a new outline
@@ -527,8 +528,7 @@ export default function AdminPage() {
                       if (outlineTab) outlineTab.click();
                     }}
                   >
-                    <Plus className="h-4 w-4 mr-1" />
-                    New Outline
+                    <Plus className="h-3 w-3" />
                   </Button>
                 </div>
                 {outlines && outlines.length > 0 ? (

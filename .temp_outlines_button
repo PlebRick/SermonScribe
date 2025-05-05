@@ -1,0 +1,16 @@
+                <div className="flex items-center mb-4">
+                  <h2 className="text-xl font-bold mr-2">Outlines</h2>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-6 w-6 rounded-full p-0"
+                    onClick={() => {
+                      setSelectedOutline(null);
+                      // Switch to the outlines tab to create a new outline
+                      const outlineTab = document.querySelector('[value="outlines"]') as HTMLElement;
+                      if (outlineTab) outlineTab.click();
+                    }}
+                  >
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                </div>
