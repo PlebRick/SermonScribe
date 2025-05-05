@@ -49,7 +49,7 @@ export default function Home() {
       <Header toggleMobileSidebar={toggleMobileSidebar} />
       
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop Sidebar - Show full or collapsed version */}
+        {/* Desktop Sidebar */}
         {!isMobile && (
           sidebarCollapsed ? (
             <div className="w-14 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] flex flex-col items-center py-8">
@@ -57,9 +57,9 @@ export default function Home() {
               <button 
                 onClick={toggleSidebar}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Expand sidebar"
               >
                 <ChevronRight className="h-4 w-4" />
-                <span className="sr-only">Expand sidebar</span>
               </button>
             </div>
           ) : (

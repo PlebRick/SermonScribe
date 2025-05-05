@@ -23,7 +23,6 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar, onToggle
   });
   
   const [expandedBooks, setExpandedBooks] = useState<Record<string, boolean>>({});
-  const [collapsed, setCollapsed] = useState(false);
   
   const { setCurrentLocation } = useBible();
 
