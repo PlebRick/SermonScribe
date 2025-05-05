@@ -48,7 +48,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
     <div 
       className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col"
       style={{ display: isOpen ? 'flex' : 'none' }}>
-      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
+      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] p-4 flex justify-between items-center">
         <h2 className="font-serif text-xl font-semibold">
           {isLoading ? (
             <Skeleton className="h-7 w-32" />
@@ -57,17 +57,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
           )}
         </h2>
         
-        <div className="flex items-center">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleColumn}
-            className={cn(!isMobile && "hidden md:flex")}
-          >
-            <Combine className="h-5 w-5" />
-            <span className="sr-only">Toggle Bible column</span>
-          </Button>
-        </div>
+        {/* Toggle button removed as it's now in the header */}
       </div>
       
       <ScrollArea ref={scrollRef} className="flex-1">

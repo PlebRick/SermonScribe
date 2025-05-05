@@ -77,7 +77,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
     <div 
       className="flex-1 overflow-hidden flex flex-col"
       style={{ display: isOpen ? 'flex' : 'none' }}>
-      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))]">
         <div className="p-4 flex justify-between items-center">
           <h2 className="font-serif text-xl font-semibold">
             {isLoading ? (
@@ -104,15 +104,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
                 <span className="sr-only">Refresh outlines</span>
               </Button>
             )}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleColumn}
-              className={cn(!isMobile && "hidden md:flex")}
-            >
-              <Combine className="h-5 w-5" />
-              <span className="sr-only">Toggle sermon column</span>
-            </Button>
+            {/* Toggle button removed as it's now in the header */}
           </div>
         </div>
 
