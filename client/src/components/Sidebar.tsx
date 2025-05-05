@@ -71,26 +71,8 @@ export default function Sidebar({ isMobile, isOpen, closeMobileSidebar, onToggle
     ? apiNewTestamentBooks 
     : newTestamentBooks.sort((a, b) => a.position - b.position);
 
-  if (!isOpen) {
-    // Only render collapsed version for desktop
-    if (!isMobile) {
-      return (
-        <aside className="w-12 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] flex flex-col items-center py-4">
-          <div className="flex flex-col items-center gap-4">
-            <BookOpen className="h-6 w-6 text-primary" />
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={onToggleSidebar}
-              className="rounded-full"
-            >
-              <ChevronRight className="h-4 w-4" />
-              <span className="sr-only">Expand sidebar</span>
-            </Button>
-          </div>
-        </aside>
-      );
-    }
+  // For mobile, if not open, return null
+  if (isMobile && !isOpen) {
     return null;
   }
 

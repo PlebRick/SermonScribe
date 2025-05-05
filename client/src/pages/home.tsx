@@ -7,6 +7,7 @@ import MobileNavigation from "@/components/MobileNavigation";
 import { useMobile } from "@/hooks/use-mobile";
 import { useColumnState } from "@/hooks/use-column-state";
 import { COLUMN_STATE, MOBILE_VIEWS } from "@/lib/constants";
+import { BookOpen, ChevronRight } from "lucide-react";
 
 export default function Home() {
   const { isMobile } = useMobile();
@@ -48,13 +49,26 @@ export default function Home() {
       <Header toggleMobileSidebar={toggleMobileSidebar} />
       
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop Sidebar */}
+        {/* Desktop Sidebar - Show full or collapsed version */}
         {!isMobile && (
-          <Sidebar 
-            isMobile={false} 
-            isOpen={!sidebarCollapsed} 
-            onToggleSidebar={toggleSidebar}
-          />
+          sidebarCollapsed ? (
+            <div className="w-14 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] flex flex-col items-center py-8">
+              <BookOpen className="h-6 w-6 text-primary mb-4" />
+              <button 
+                onClick={toggleSidebar}
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <ChevronRight className="h-4 w-4" />
+                <span className="sr-only">Expand sidebar</span>
+              </button>
+            </div>
+          ) : (
+            <Sidebar 
+              isMobile={false} 
+              isOpen={true} 
+              onToggleSidebar={toggleSidebar}
+            />
+          )
         )}
         
         {/* Mobile Sidebar */}
