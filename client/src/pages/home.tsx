@@ -14,7 +14,7 @@ export default function Home() {
   const { columnState, toggleColumn, setMobileView } = useColumnState();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [activeMobileView, setActiveMobileView] = useState(MOBILE_VIEWS.BIBLE);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   // Local state for managing column visibility directly
   const [isBibleVisible, setIsBibleVisible] = useState(true);

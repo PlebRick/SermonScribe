@@ -52,7 +52,7 @@ export default function Header({
           
           <div className="flex items-center">
             <Scroll className="text-primary mr-2 h-6 w-6" />
-            <h1 className="font-serif text-xl font-bold">Expository Sermons</h1>
+            <h1 className="font-serif text-xl font-bold">SermonScribe</h1>
           </div>
         </div>
         

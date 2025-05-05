@@ -18,7 +18,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isMobile, isOpen, closeMobileSidebar, onToggleSidebar }: SidebarProps) {
   const [expandedTestaments, setExpandedTestaments] = useState<Record<string, boolean>>({
-    [TESTAMENTS.OLD]: true,
+    [TESTAMENTS.OLD]: false,
     [TESTAMENTS.NEW]: false
   });
   
