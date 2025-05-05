@@ -29,14 +29,25 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
     }
   }, [currentBook, currentChapter]);
 
-  // Apply CSS class to hide the column when not open rather than removing it entirely
-  const columnClasses = cn(
-    "flex-1 border-r border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col",
-    !isOpen && "hidden"
-  );
+  // Use inline style for visibility instead of just CSS classes
+  const style = {
+    display: isOpen ? 'flex' : 'none',
+    flexDirection: 'column' as const,
+    flex: 1,
+    borderRight: '1px solid var(--border-color)',
+    overflow: 'hidden'
+  };
+
+  // Set border color based on theme
+  const borderColor = 'var(--border-color)';
+
+  // Debug output for visibility
+  console.log('Bible column visibility:', isOpen ? 'visible' : 'hidden');
 
   return (
-    <div className={columnClasses}>
+    <div 
+      className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col"
+      style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
         <h2 className="font-serif text-xl font-semibold">
           {isLoading ? (

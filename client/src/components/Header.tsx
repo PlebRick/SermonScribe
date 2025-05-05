@@ -81,7 +81,7 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => {
-                  console.log("Header Bible button clicked, current state:", columnState[COLUMN_STATE.BIBLE]);
+                  console.log("Header Bible button clicked, will set to:", !columnState[COLUMN_STATE.BIBLE]);
                   toggleColumn(COLUMN_STATE.BIBLE);
                 }}
                 className={`rounded-full ${columnState[COLUMN_STATE.BIBLE] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
@@ -95,7 +95,7 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => {
-                  console.log("Header Sermon button clicked, current state:", columnState[COLUMN_STATE.SERMON]);
+                  console.log("Header Sermon button clicked, will set to:", !columnState[COLUMN_STATE.SERMON]);
                   toggleColumn(COLUMN_STATE.SERMON);
                 }}
                 className={`rounded-full ${columnState[COLUMN_STATE.SERMON] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}

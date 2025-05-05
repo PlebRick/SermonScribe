@@ -83,21 +83,31 @@ export default function Home() {
           />
         )}
         
-        {/* Main Content Columns */}
+        {/* Main Content - directly handle visibility here */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Bible Column */}
-          <BibleColumn 
-            isOpen={columnState[COLUMN_STATE.BIBLE]} 
-            toggleColumn={() => toggleColumn(COLUMN_STATE.BIBLE)}
-            isMobile={isMobile}
-          />
+          {/* Bible Column - always render but use direct style control */}
+          <div 
+            className="flex-1 overflow-hidden" 
+            style={{ display: columnState[COLUMN_STATE.BIBLE] ? 'block' : 'none' }}
+          >
+            <BibleColumn 
+              isOpen={true} 
+              toggleColumn={() => toggleColumn(COLUMN_STATE.BIBLE)}
+              isMobile={isMobile}
+            />
+          </div>
           
-          {/* Sermon Column */}
-          <SermonColumn 
-            isOpen={columnState[COLUMN_STATE.SERMON]} 
-            toggleColumn={() => toggleColumn(COLUMN_STATE.SERMON)}
-            isMobile={isMobile}
-          />
+          {/* Sermon Column - always render but use direct style control */}
+          <div 
+            className="flex-1 overflow-hidden"
+            style={{ display: columnState[COLUMN_STATE.SERMON] ? 'block' : 'none' }}
+          >
+            <SermonColumn 
+              isOpen={true} 
+              toggleColumn={() => toggleColumn(COLUMN_STATE.SERMON)}
+              isMobile={isMobile}
+            />
+          </div>
         </div>
       </div>
       
