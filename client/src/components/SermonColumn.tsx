@@ -3,10 +3,10 @@ import { useBible } from "@/contexts/BibleContext";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SERMON_TABS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
-import { Combine, ChevronRight } from "lucide-react";
+import { Combine, ChevronRight, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 

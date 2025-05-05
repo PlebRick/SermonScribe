@@ -42,6 +42,8 @@ export function BibleProvider({ children }: { children: ReactNode }) {
   const { data: outlines = [], isLoading: isLoadingOutlines } = useQuery({
     queryKey: [`/api/outlines/${currentBookId}/${currentChapter}`],
     enabled: !!currentBookId && !!currentChapter,
+    refetchOnWindowFocus: true,
+    staleTime: 0, // Force refetch every time
   });
 
   const setCurrentLocation = useCallback((bookId: number, chapter: number) => {
