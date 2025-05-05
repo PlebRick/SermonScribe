@@ -64,6 +64,27 @@
               "text": "God blessed the seventh day, and made it holy, because he rested in it from all his work of creation which he had done."
             }
           ]
+        },
+        {
+          "title": "Adam and Eve",
+          "verses": [
+            {
+              "verse": 4,
+              "text": "This is the history of the generations of the heavens and of the earth when they were created, in the day that Yahweh God made the earth and the heavens."
+            },
+            {
+              "verse": 5,
+              "text": "No plant of the field was yet in the earth, and no herb of the field had yet sprung up; for Yahweh God had not caused it to rain on the earth. There was not a man to till the ground,"
+            },
+            {
+              "verse": 6,
+              "text": "but a mist went up from the earth, and watered the whole surface of the ground."
+            },
+            {
+              "verse": 7,
+              "text": "Yahweh God formed man from the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul."
+            }
+          ]
         }
       ]
     },
@@ -86,6 +107,14 @@
             {
               "verse": 3,
               "text": "but not the fruit of the tree which is in the middle of the garden. God has said, \"You shall not eat of it. You shall not touch it, lest you die.\""
+            },
+            {
+              "verse": 4,
+              "text": "The serpent said to the woman, \"You won't really die,\""
+            },
+            {
+              "verse": 5,
+              "text": "for God knows that in the day you eat it, your eyes will be opened, and you will be like God, knowing good and evil."
             }
           ]
         }
