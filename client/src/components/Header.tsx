@@ -58,6 +58,7 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
             </Button>
           </Link>
         
+          {/* Theme toggle - works as expected */}
           <Button
             variant="ghost"
             size="icon"
@@ -72,35 +73,28 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
             <span className="sr-only">Toggle theme</span>
           </Button>
           
+          {/* Column toggles - should be visible on desktop and highlight when active */}
           {!isMobile && (
             <>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => toggleColumn(COLUMN_STATE.SIDEBAR)}
-                className="hidden md:flex"
-              >
-                <Columns className="h-5 w-5" />
-                <span className="sr-only">Toggle sidebar</span>
-              </Button>
-              
+              {/* Bible Column Toggle */}
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => toggleColumn(COLUMN_STATE.BIBLE)}
-                className="hidden md:flex"
+                className={`rounded-full ${columnState[COLUMN_STATE.BIBLE] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
-                <BookOpen className="h-5 w-5" />
-                <span className="sr-only">Toggle Scroll column</span>
+                <BookOpen className={`h-5 w-5 ${columnState[COLUMN_STATE.BIBLE] ? 'text-primary' : ''}`} />
+                <span className="sr-only">Toggle Bible column</span>
               </Button>
               
+              {/* Sermon Column Toggle */}
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => toggleColumn(COLUMN_STATE.SERMON)}
-                className="hidden md:flex"
+                className={`rounded-full ${columnState[COLUMN_STATE.SERMON] ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
-                <FileText className="h-5 w-5" />
+                <FileText className={`h-5 w-5 ${columnState[COLUMN_STATE.SERMON] ? 'text-primary' : ''}`} />
                 <span className="sr-only">Toggle sermon column</span>
               </Button>
             </>
