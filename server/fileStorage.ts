@@ -982,13 +982,21 @@ export class FileStorage implements IStorage {
         return [];
       }
       
-      // Use dynamic import for ES modules
-      const bibleContentModule = await import('./bibleContent');
-      const { getVersesForBookAndChapter } = bibleContentModule;
+      // First try to load from our new imported Bible content on disk
+      const bibleContentFromDisk = await import('./bibleContentFromDisk');
+      const { getVersesForBookAndChapter: getVersesFromDisk } = bibleContentFromDisk;
       
-      // Get verses from the imported Bible content
-      console.log(`Loading verses from code for ${book.shortName} chapter ${chapter}`);
-      const verses = getVersesForBookAndChapter(bookId, chapter, book.shortName);
+      // Get verses from the disk-based Bible content
+      console.log(`Trying to load verses from disk for ${book.shortName} chapter ${chapter}`);
+      let verses = getVersesFromDisk(bookId, chapter, book.shortName);
+      
+      // If no verses found from disk, fall back to the original code-based content
+      if (verses.length === 0) {
+        console.log(`No verses found on disk, falling back to code-based content for ${book.shortName} chapter ${chapter}`);
+        const bibleContentModule = await import('./bibleContent');
+        const { getVersesForBookAndChapter } = bibleContentModule;
+        verses = getVersesForBookAndChapter(bookId, chapter, book.shortName);
+      }
       
       // Cache these verses to disk for future use
       if (verses.length > 0) {
