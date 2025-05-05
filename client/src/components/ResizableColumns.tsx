@@ -30,9 +30,12 @@ export default function ResizableColumns({
   
   // Handle mouse down event on the resizer
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsDragging(true);
     startXRef.current = e.clientX;
     startLeftWidthRef.current = leftWidth;
+    
+    // Attach event listeners to document
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   };
@@ -66,6 +69,37 @@ export default function ResizableColumns({
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
+  
+  // Touch event handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    startXRef.current = e.touches[0].clientX;
+    startLeftWidthRef.current = leftWidth;
+    
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+  };
+  
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging || !containerRef.current) return;
+    
+    const containerWidth = containerRef.current.offsetWidth;
+    const deltaX = e.touches[0].clientX - startXRef.current;
+    const newLeftWidth = Math.min(
+      Math.max(20, (startLeftWidthRef.current + deltaX / containerWidth * 100)), 
+      80
+    );
+    
+    setLeftWidth(newLeftWidth);
+    setRightWidth(100 - newLeftWidth);
+  };
+  
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
+  };
   
   // On mobile, use full width for the visible column
   if (isMobile) {
@@ -106,13 +140,14 @@ export default function ResizableColumns({
         className="absolute top-0 bottom-0 w-6 bg-transparent cursor-col-resize z-10 flex items-center justify-center"
         style={{ left: `calc(${leftWidth}% - 12px)` }}
         onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
       >
         <div className="h-full w-[3px] bg-gray-300 dark:bg-gray-600 mx-auto hover:bg-primary hover:w-[5px] transition-all rounded-full" />
       </div>
       
       <div 
         style={{ width: `${rightWidth}%` }} 
-        className="h-full overflow-auto transition-all duration-75"
+        className="h-full overflow-auto transition-all duration-75 border-none"
       >
         {rightColumn}
       </div>

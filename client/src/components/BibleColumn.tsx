@@ -46,7 +46,7 @@ export default function BibleColumn({ isOpen, toggleColumn, isMobile }: BibleCol
 
   return (
     <div 
-      className="flex-1 border-r border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col"
+      className="flex-1 overflow-hidden flex flex-col border-none"
       style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))] p-4 flex justify-between items-center">
         <h2 className="font-serif text-xl font-semibold">

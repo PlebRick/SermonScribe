@@ -75,7 +75,7 @@ export default function SermonColumn({ isOpen, toggleColumn, isMobile }: SermonC
 
   return (
     <div 
-      className="flex-1 overflow-hidden flex flex-col"
+      className="flex-1 overflow-hidden flex flex-col border-none"
       style={{ display: isOpen ? 'flex' : 'none' }}>
       <div className="sticky top-0 z-10 bg-white dark:bg-[hsl(var(--content-dark))]">
         <div className="p-4 flex justify-between items-center">
