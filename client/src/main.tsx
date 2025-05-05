@@ -11,7 +11,7 @@ initializeBibleContent();
 
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="theme">
+    <ThemeProvider defaultTheme="dark" storageKey="theme">
       <App />
     </ThemeProvider>
   </QueryClientProvider>
