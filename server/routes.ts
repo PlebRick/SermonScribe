@@ -337,6 +337,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     res.json({ message: "Commentary deleted successfully" });
   }));
+  
+  // Repair tool for fixing outline index files
+  app.get("/api/admin/repair-outlines", asyncHandler(async (req, res) => {
+    try {
+      console.log("Starting outline index repair process...");
+      await repairOutlineIndexes();
+      console.log("Repair complete");
+      res.json({ message: "Outline indexes repaired successfully" });
+    } catch (error) {
+      console.error("Error repairing outline indexes:", error);
+      res.status(500).json({ message: "Error repairing outline indexes" });
+    }
+  }));
 
   return httpServer;
 }
