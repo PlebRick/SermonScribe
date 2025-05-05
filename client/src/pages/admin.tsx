@@ -624,6 +624,12 @@ function OutlineEditor({
   const [startVerse, setStartVerse] = useState(1);
   const [endVerse, setEndVerse] = useState(10);
   const [points, setPoints] = useState<string[]>([""]);
+  const [outlineBookId, setOutlineBookId] = useState(bookId);
+
+  // Store the initial bookId when the component mounts or when bookId changes
+  useEffect(() => {
+    setOutlineBookId(bookId);
+  }, [bookId]);
 
   const { data: outline } = useQuery<Outline>({
     queryKey: ["/api/outlines", outlineId],
@@ -638,14 +644,20 @@ function OutlineEditor({
       setEndVerse(outline.endVerse || 10);
       // Ensure points is always an array
       setPoints(Array.isArray(outline.points) ? outline.points : [""]);
+      // Set the book ID from the outline itself when editing
+      if (outline.bookId) {
+        setOutlineBookId(outline.bookId);
+      }
     } else {
       // Reset form for new outline
       setTitle("");
       setStartVerse(1);
       setEndVerse(10);
       setPoints([""]);
+      // Reset to the currently selected book when creating new
+      setOutlineBookId(bookId);
     }
-  }, [outline, outlineId]);
+  }, [outline, outlineId, bookId]);
 
   const addPoint = () => {
     setPoints([...points, ""]);
@@ -667,11 +679,14 @@ function OutlineEditor({
     // Remove empty points
     const filteredPoints = points.filter(point => point.trim() !== "");
     
+    // Log the current book ID being saved
+    console.log(`Saving outline for book ID: ${outlineBookId} (selected book ID: ${bookId})`);
+    
     // Cast to any to avoid TypeScript errors with optional fields
     const outlineData: any = {
       id: outlineId || undefined,
       title,
-      bookId,
+      bookId: outlineBookId, // Use the stored book ID
       startChapter: chapter,
       endChapter: chapter,
       startVerse: startVerse || 1,
