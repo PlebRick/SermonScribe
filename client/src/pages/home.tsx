@@ -15,6 +15,35 @@ export default function Home() {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [activeMobileView, setActiveMobileView] = useState(MOBILE_VIEWS.BIBLE);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  
+  // Local state for managing column visibility directly
+  const [isBibleVisible, setIsBibleVisible] = useState(true);
+  const [isSermonVisible, setIsSermonVisible] = useState(true);
+  
+  // Direct toggle functions for column visibility with more accurate logging
+  const toggleBibleVisibility = () => {
+    const newState = !isBibleVisible;
+    console.log('TOGGLING BIBLE COLUMN TO:', newState);
+    setIsBibleVisible(newState);
+    
+    // If we're hiding this one but the other one is also hidden, show the other one
+    if (!newState && !isSermonVisible) {
+      setIsSermonVisible(true);
+      console.log('Auto-showing sermon column');
+    }
+  };
+  
+  const toggleSermonVisibility = () => {
+    const newState = !isSermonVisible;
+    console.log('TOGGLING SERMON COLUMN TO:', newState);
+    setIsSermonVisible(newState);
+    
+    // If we're hiding this one but the other one is also hidden, show the other one
+    if (!newState && !isBibleVisible) {
+      setIsBibleVisible(true);
+      console.log('Auto-showing bible column');
+    }
+  };
 
   const toggleMobileSidebar = () => {
     setMobileSidebarOpen(prev => !prev);
@@ -46,7 +75,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header toggleMobileSidebar={toggleMobileSidebar} />
+      <Header 
+        toggleMobileSidebar={toggleMobileSidebar}
+        toggleBibleVisibility={toggleBibleVisibility}
+        toggleSermonVisibility={toggleSermonVisibility}
+        isBibleVisible={isBibleVisible}
+        isSermonVisible={isSermonVisible}
+      />
       
       <div className="flex flex-1 overflow-hidden">
         {/* Desktop Sidebar - either collapsed or expanded version */}
@@ -88,7 +123,7 @@ export default function Home() {
           {/* Bible Column - always render with special class for direct DOM manipulation */}
           <div 
             className="flex-1 overflow-hidden bible-column-container"
-            style={{ display: 'block' }}
+            style={{ display: isBibleVisible ? 'block' : 'none' }}
           >
             <BibleColumn 
               isOpen={true} 
@@ -100,7 +135,7 @@ export default function Home() {
           {/* Sermon Column - always render with special class for direct DOM manipulation */}
           <div 
             className="flex-1 overflow-hidden sermon-column-container"
-            style={{ display: 'block' }}
+            style={{ display: isSermonVisible ? 'block' : 'none' }}
           >
             <SermonColumn 
               isOpen={true} 

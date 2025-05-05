@@ -18,50 +18,21 @@ import { useState, useEffect } from "react";
 
 interface HeaderProps {
   toggleMobileSidebar: () => void;
+  toggleBibleVisibility?: () => void;
+  toggleSermonVisibility?: () => void;
+  isBibleVisible?: boolean;
+  isSermonVisible?: boolean;
 }
 
-export default function Header({ toggleMobileSidebar }: HeaderProps) {
+export default function Header({ 
+  toggleMobileSidebar,
+  toggleBibleVisibility,
+  toggleSermonVisibility,
+  isBibleVisible = true,
+  isSermonVisible = true,
+}: HeaderProps) {
   const { toggleTheme, isDark } = useTheme();
-  const { columnState, toggleColumn } = useColumnState();
   const { isMobile } = useMobile();
-  
-  // Local state for column visibility - will be more directly controlled
-  const [isBibleVisible, setIsBibleVisible] = useState(true);
-  const [isSermonVisible, setIsSermonVisible] = useState(true);
-  
-  // Handle direct toggles
-  const toggleBibleColumn = () => {
-    const newValue = !isBibleVisible;
-    console.log("Directly toggling Bible column to:", newValue);
-    setIsBibleVisible(newValue);
-    
-    // Use DOM manipulation to show/hide columns - set display directly
-    const bibleColumn = document.querySelector('.bible-column-container');
-    if (bibleColumn) {
-      // If newValue is true, we want to show the column
-      (bibleColumn as HTMLElement).style.display = newValue ? 'block' : 'none';
-    }
-  };
-  
-  const toggleSermonColumn = () => {
-    const newValue = !isSermonVisible;
-    console.log("Directly toggling Sermon column to:", newValue);
-    setIsSermonVisible(newValue);
-    
-    // Use DOM manipulation to show/hide columns - set display directly
-    const sermonColumn = document.querySelector('.sermon-column-container');
-    if (sermonColumn) {
-      // If newValue is true, we want to show the column
-      (sermonColumn as HTMLElement).style.display = newValue ? 'block' : 'none';
-    }
-  };
-  
-  // Initialize column visibility after first render
-  useEffect(() => {
-    // Sync with column state from context
-    setIsBibleVisible(columnState[COLUMN_STATE.BIBLE]);
-    setIsSermonVisible(columnState[COLUMN_STATE.SERMON]);
-  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[hsl(var(--sidebar-dark))] shadow-sm">
@@ -115,22 +86,22 @@ export default function Header({ toggleMobileSidebar }: HeaderProps) {
           {/* Column toggles - should be visible on desktop and highlight when active */}
           {!isMobile && (
             <>
-              {/* Bible Column Toggle with our direct toggle */}
+              {/* Bible Column Toggle - uses prop function for toggle */}
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={toggleBibleColumn}
+                onClick={toggleBibleVisibility}
                 className={`rounded-full ${isBibleVisible ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
                 <BookOpen className={`h-5 w-5 ${isBibleVisible ? 'text-primary' : ''}`} />
                 <span className="sr-only">Toggle Bible column</span>
               </Button>
               
-              {/* Sermon Column Toggle with our direct toggle */}
+              {/* Sermon Column Toggle - uses prop function for toggle */}
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={toggleSermonColumn}
+                onClick={toggleSermonVisibility}
                 className={`rounded-full ${isSermonVisible ? 'bg-gray-100 dark:bg-gray-800' : ''}`}
               >
                 <FileText className={`h-5 w-5 ${isSermonVisible ? 'text-primary' : ''}`} />
