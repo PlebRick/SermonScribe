@@ -8,6 +8,7 @@ import { useMobile } from "@/hooks/use-mobile";
 import { useColumnState } from "@/hooks/use-column-state";
 import { COLUMN_STATE, MOBILE_VIEWS } from "@/lib/constants";
 import { BookOpen, ChevronRight } from "lucide-react";
+import ResizableColumns from "@/components/ResizableColumns";
 
 export default function Home() {
   const { isMobile } = useMobile();
@@ -118,31 +119,28 @@ export default function Home() {
           />
         )}
         
-        {/* Main Content - directly handle visibility here */}
-        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Bible Column - always render with special class for direct DOM manipulation */}
-          <div 
-            className="flex-1 overflow-hidden bible-column-container"
-            style={{ display: isBibleVisible ? 'block' : 'none' }}
-          >
-            <BibleColumn 
-              isOpen={true} 
-              toggleColumn={() => toggleColumn(COLUMN_STATE.BIBLE)}
-              isMobile={isMobile}
-            />
-          </div>
-          
-          {/* Sermon Column - always render with special class for direct DOM manipulation */}
-          <div 
-            className="flex-1 overflow-hidden sermon-column-container"
-            style={{ display: isSermonVisible ? 'block' : 'none' }}
-          >
-            <SermonColumn 
-              isOpen={true} 
-              toggleColumn={() => toggleColumn(COLUMN_STATE.SERMON)}
-              isMobile={isMobile}
-            />
-          </div>
+        {/* Main Content with Resizable Columns */}
+        <div className="flex-1 overflow-hidden">
+          <ResizableColumns
+            leftColumn={
+              <BibleColumn 
+                isOpen={true} 
+                toggleColumn={() => toggleColumn(COLUMN_STATE.BIBLE)}
+                isMobile={isMobile}
+              />
+            }
+            rightColumn={
+              <SermonColumn 
+                isOpen={true} 
+                toggleColumn={() => toggleColumn(COLUMN_STATE.SERMON)}
+                isMobile={isMobile}
+              />
+            }
+            showLeftColumn={isBibleVisible}
+            showRightColumn={isSermonVisible}
+            isMobile={isMobile}
+            defaultSizes={[50, 50]}
+          />
         </div>
       </div>
       
