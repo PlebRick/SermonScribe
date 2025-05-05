@@ -1,0 +1,538 @@
+[
+  {
+    "id": 1,
+    "name": "Genesis",
+    "shortName": "gen",
+    "testament": "old",
+    "position": 1,
+    "chapterCount": 3
+  },
+  {
+    "id": 2,
+    "name": "Exodus",
+    "shortName": "exo",
+    "testament": "old",
+    "position": 2,
+    "chapterCount": 0
+  },
+  {
+    "id": 3,
+    "name": "Leviticus",
+    "shortName": "lev",
+    "testament": "old",
+    "position": 3,
+    "chapterCount": 0
+  },
+  {
+    "id": 4,
+    "name": "Numbers",
+    "shortName": "num",
+    "testament": "old",
+    "position": 4,
+    "chapterCount": 0
+  },
+  {
+    "id": 5,
+    "name": "Deuteronomy",
+    "shortName": "deu",
+    "testament": "old",
+    "position": 5,
+    "chapterCount": 0
+  },
+  {
+    "id": 6,
+    "name": "Joshua",
+    "shortName": "jos",
+    "testament": "old",
+    "position": 6,
+    "chapterCount": 0
+  },
+  {
+    "id": 7,
+    "name": "Judges",
+    "shortName": "jdg",
+    "testament": "old",
+    "position": 7,
+    "chapterCount": 0
+  },
+  {
+    "id": 8,
+    "name": "Ruth",
+    "shortName": "rut",
+    "testament": "old",
+    "position": 8,
+    "chapterCount": 0
+  },
+  {
+    "id": 9,
+    "name": "1 Samuel",
+    "shortName": "samuel1",
+    "testament": "old",
+    "position": 9,
+    "chapterCount": 0
+  },
+  {
+    "id": 10,
+    "name": "2 Samuel",
+    "shortName": "samuel2",
+    "testament": "old",
+    "position": 10,
+    "chapterCount": 0
+  },
+  {
+    "id": 11,
+    "name": "1 Kings",
+    "shortName": "kings1",
+    "testament": "old",
+    "position": 11,
+    "chapterCount": 0
+  },
+  {
+    "id": 12,
+    "name": "2 Kings",
+    "shortName": "kings2",
+    "testament": "old",
+    "position": 12,
+    "chapterCount": 0
+  },
+  {
+    "id": 13,
+    "name": "1 Chronicles",
+    "shortName": "chronicles1",
+    "testament": "old",
+    "position": 13,
+    "chapterCount": 0
+  },
+  {
+    "id": 14,
+    "name": "2 Chronicles",
+    "shortName": "chronicles2",
+    "testament": "old",
+    "position": 14,
+    "chapterCount": 0
+  },
+  {
+    "id": 15,
+    "name": "Ezra",
+    "shortName": "ezr",
+    "testament": "old",
+    "position": 15,
+    "chapterCount": 0
+  },
+  {
+    "id": 16,
+    "name": "Nehemiah",
+    "shortName": "neh",
+    "testament": "old",
+    "position": 16,
+    "chapterCount": 0
+  },
+  {
+    "id": 17,
+    "name": "Esther",
+    "shortName": "est",
+    "testament": "old",
+    "position": 17,
+    "chapterCount": 0
+  },
+  {
+    "id": 18,
+    "name": "Job",
+    "shortName": "job",
+    "testament": "old",
+    "position": 18,
+    "chapterCount": 0
+  },
+  {
+    "id": 19,
+    "name": "Psalms",
+    "shortName": "psa",
+    "testament": "old",
+    "position": 19,
+    "chapterCount": 0
+  },
+  {
+    "id": 20,
+    "name": "Psalm",
+    "shortName": "psa",
+    "testament": "old",
+    "position": 20,
+    "chapterCount": 0
+  },
+  {
+    "id": 21,
+    "name": "Proverbs",
+    "shortName": "pro",
+    "testament": "old",
+    "position": 21,
+    "chapterCount": 0
+  },
+  {
+    "id": 22,
+    "name": "Ecclesiastes",
+    "shortName": "ecc",
+    "testament": "old",
+    "position": 22,
+    "chapterCount": 0
+  },
+  {
+    "id": 23,
+    "name": "Song of Solomon",
+    "shortName": "sng",
+    "testament": "old",
+    "position": 23,
+    "chapterCount": 0
+  },
+  {
+    "id": 24,
+    "name": "Isaiah",
+    "shortName": "isa",
+    "testament": "old",
+    "position": 24,
+    "chapterCount": 0
+  },
+  {
+    "id": 25,
+    "name": "Jeremiah",
+    "shortName": "jer",
+    "testament": "old",
+    "position": 25,
+    "chapterCount": 0
+  },
+  {
+    "id": 26,
+    "name": "Lamentations",
+    "shortName": "lam",
+    "testament": "old",
+    "position": 26,
+    "chapterCount": 0
+  },
+  {
+    "id": 27,
+    "name": "Ezekiel",
+    "shortName": "ezk",
+    "testament": "old",
+    "position": 27,
+    "chapterCount": 0
+  },
+  {
+    "id": 28,
+    "name": "Daniel",
+    "shortName": "dan",
+    "testament": "old",
+    "position": 28,
+    "chapterCount": 0
+  },
+  {
+    "id": 29,
+    "name": "Hosea",
+    "shortName": "hos",
+    "testament": "old",
+    "position": 29,
+    "chapterCount": 0
+  },
+  {
+    "id": 30,
+    "name": "Joel",
+    "shortName": "jol",
+    "testament": "old",
+    "position": 30,
+    "chapterCount": 0
+  },
+  {
+    "id": 31,
+    "name": "Amos",
+    "shortName": "amo",
+    "testament": "old",
+    "position": 31,
+    "chapterCount": 0
+  },
+  {
+    "id": 32,
+    "name": "Obadiah",
+    "shortName": "oba",
+    "testament": "old",
+    "position": 32,
+    "chapterCount": 0
+  },
+  {
+    "id": 33,
+    "name": "Jonah",
+    "shortName": "jon",
+    "testament": "old",
+    "position": 33,
+    "chapterCount": 0
+  },
+  {
+    "id": 34,
+    "name": "Micah",
+    "shortName": "mic",
+    "testament": "old",
+    "position": 34,
+    "chapterCount": 0
+  },
+  {
+    "id": 35,
+    "name": "Nahum",
+    "shortName": "nam",
+    "testament": "old",
+    "position": 35,
+    "chapterCount": 0
+  },
+  {
+    "id": 36,
+    "name": "Habakkuk",
+    "shortName": "hab",
+    "testament": "old",
+    "position": 36,
+    "chapterCount": 0
+  },
+  {
+    "id": 37,
+    "name": "Zephaniah",
+    "shortName": "zep",
+    "testament": "old",
+    "position": 37,
+    "chapterCount": 0
+  },
+  {
+    "id": 38,
+    "name": "Haggai",
+    "shortName": "hag",
+    "testament": "old",
+    "position": 38,
+    "chapterCount": 0
+  },
+  {
+    "id": 39,
+    "name": "Zechariah",
+    "shortName": "zec",
+    "testament": "old",
+    "position": 39,
+    "chapterCount": 0
+  },
+  {
+    "id": 40,
+    "name": "Malachi",
+    "shortName": "mal",
+    "testament": "old",
+    "position": 40,
+    "chapterCount": 0
+  },
+  {
+    "id": 41,
+    "name": "Matthew",
+    "shortName": "mat",
+    "testament": "new",
+    "position": 41,
+    "chapterCount": 0
+  },
+  {
+    "id": 42,
+    "name": "Mark",
+    "shortName": "mrk",
+    "testament": "new",
+    "position": 42,
+    "chapterCount": 0
+  },
+  {
+    "id": 43,
+    "name": "Luke",
+    "shortName": "luk",
+    "testament": "new",
+    "position": 43,
+    "chapterCount": 0
+  },
+  {
+    "id": 44,
+    "name": "John",
+    "shortName": "jhn",
+    "testament": "new",
+    "position": 44,
+    "chapterCount": 0
+  },
+  {
+    "id": 45,
+    "name": "Acts",
+    "shortName": "act",
+    "testament": "new",
+    "position": 45,
+    "chapterCount": 0
+  },
+  {
+    "id": 46,
+    "name": "Romans",
+    "shortName": "rom",
+    "testament": "new",
+    "position": 46,
+    "chapterCount": 0
+  },
+  {
+    "id": 47,
+    "name": "1 Corinthians",
+    "shortName": "corinthians1",
+    "testament": "new",
+    "position": 47,
+    "chapterCount": 0
+  },
+  {
+    "id": 48,
+    "name": "2 Corinthians",
+    "shortName": "corinthians2",
+    "testament": "new",
+    "position": 48,
+    "chapterCount": 0
+  },
+  {
+    "id": 49,
+    "name": "Galatians",
+    "shortName": "gal",
+    "testament": "new",
+    "position": 49,
+    "chapterCount": 0
+  },
+  {
+    "id": 50,
+    "name": "Ephesians",
+    "shortName": "eph",
+    "testament": "new",
+    "position": 50,
+    "chapterCount": 0
+  },
+  {
+    "id": 51,
+    "name": "Philippians",
+    "shortName": "php",
+    "testament": "new",
+    "position": 51,
+    "chapterCount": 0
+  },
+  {
+    "id": 52,
+    "name": "Colossians",
+    "shortName": "col",
+    "testament": "new",
+    "position": 52,
+    "chapterCount": 0
+  },
+  {
+    "id": 53,
+    "name": "1 Thessalonians",
+    "shortName": "thessalonians1",
+    "testament": "new",
+    "position": 53,
+    "chapterCount": 0
+  },
+  {
+    "id": 54,
+    "name": "2 Thessalonians",
+    "shortName": "thessalonians2",
+    "testament": "new",
+    "position": 54,
+    "chapterCount": 0
+  },
+  {
+    "id": 55,
+    "name": "1 Timothy",
+    "shortName": "timothy1",
+    "testament": "new",
+    "position": 55,
+    "chapterCount": 0
+  },
+  {
+    "id": 56,
+    "name": "2 Timothy",
+    "shortName": "timothy2",
+    "testament": "new",
+    "position": 56,
+    "chapterCount": 0
+  },
+  {
+    "id": 57,
+    "name": "Titus",
+    "shortName": "tit",
+    "testament": "new",
+    "position": 57,
+    "chapterCount": 0
+  },
+  {
+    "id": 58,
+    "name": "Philemon",
+    "shortName": "phm",
+    "testament": "new",
+    "position": 58,
+    "chapterCount": 0
+  },
+  {
+    "id": 59,
+    "name": "Hebrews",
+    "shortName": "heb",
+    "testament": "new",
+    "position": 59,
+    "chapterCount": 0
+  },
+  {
+    "id": 60,
+    "name": "James",
+    "shortName": "jas",
+    "testament": "new",
+    "position": 60,
+    "chapterCount": 0
+  },
+  {
+    "id": 61,
+    "name": "1 Peter",
+    "shortName": "peter1",
+    "testament": "new",
+    "position": 61,
+    "chapterCount": 0
+  },
+  {
+    "id": 62,
+    "name": "2 Peter",
+    "shortName": "peter2",
+    "testament": "new",
+    "position": 62,
+    "chapterCount": 0
+  },
+  {
+    "id": 63,
+    "name": "1 John",
+    "shortName": "john1",
+    "testament": "new",
+    "position": 63,
+    "chapterCount": 0
+  },
+  {
+    "id": 64,
+    "name": "2 John",
+    "shortName": "john2",
+    "testament": "new",
+    "position": 64,
+    "chapterCount": 0
+  },
+  {
+    "id": 65,
+    "name": "3 John",
+    "shortName": "john3",
+    "testament": "new",
+    "position": 65,
+    "chapterCount": 0
+  },
+  {
+    "id": 66,
+    "name": "Jude",
+    "shortName": "jud",
+    "testament": "new",
+    "position": 66,
+    "chapterCount": 0
+  },
+  {
+    "id": 67,
+    "name": "Revelation",
+    "shortName": "rev",
+    "testament": "new",
+    "position": 67,
+    "chapterCount": 0
+  }
+]

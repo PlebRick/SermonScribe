@@ -1,0 +1,95 @@
+{
+  "id": 1,
+  "name": "Genesis",
+  "shortName": "gen",
+  "testament": "old",
+  "position": 1,
+  "chapterCount": 3,
+  "chapters": [
+    {
+      "id": 1,
+      "chapter": 1,
+      "title": "The Creation",
+      "sections": [
+        {
+          "title": "The Beginning",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "In the beginning, God created the heavens and the earth."
+            },
+            {
+              "verse": 2,
+              "text": "The earth was formless and empty. Darkness was on the surface of the deep and God's Spirit was hovering over the surface of the waters."
+            }
+          ]
+        },
+        {
+          "title": "The First Day",
+          "verses": [
+            {
+              "verse": 3,
+              "text": "God said, \"Let there be light,\" and there was light."
+            },
+            {
+              "verse": 4,
+              "text": "God saw the light, and saw that it was good. God divided the light from the darkness."
+            },
+            {
+              "verse": 5,
+              "text": "God called the light \"day\", and the darkness he called \"night\". There was evening and there was morning, the first day."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "chapter": 2,
+      "title": "Chapter 2",
+      "sections": [
+        {
+          "title": "The Seventh Day",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "The heavens, the earth, and all their vast array were finished."
+            },
+            {
+              "verse": 2,
+              "text": "On the seventh day God finished his work which he had done; and he rested on the seventh day from all his work which he had done."
+            },
+            {
+              "verse": 3,
+              "text": "God blessed the seventh day, and made it holy, because he rested in it from all his work of creation which he had done."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "chapter": 3,
+      "title": "Chapter 3",
+      "sections": [
+        {
+          "title": "The Temptation and Fall",
+          "verses": [
+            {
+              "verse": 1,
+              "text": "Now the serpent was more subtle than any animal of the field which Yahweh God had made. He said to the woman, \"Has God really said, 'You shall not eat of any tree of the garden'?\""
+            },
+            {
+              "verse": 2,
+              "text": "The woman said to the serpent, \"We may eat fruit from the trees of the garden,\""
+            },
+            {
+              "verse": 3,
+              "text": "but not the fruit of the tree which is in the middle of the garden. God has said, \"You shall not eat of it. You shall not touch it, lest you die.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

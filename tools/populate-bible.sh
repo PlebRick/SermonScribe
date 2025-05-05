@@ -9,16 +9,14 @@ echo "Starting Bible population process..."
 echo "This will download the Bible, convert it to our format, and integrate it with the application."
 echo
 
-# Step 1: Download the Bible
-echo "Step 1: Downloading Bible content..."
-# Rename the files to .mjs for ES modules
-cp tools/download-bible.js tools/download-bible.mjs
-node tools/download-bible.mjs | tee logs/download.log
+# Step 1: Generate Sample Bible Data
+echo "Step 1: Generating sample Bible data..."
+node tools/minimal-bible-data.mjs | tee logs/sample-data.log
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
-  echo "ERROR: Bible download failed."
+  echo "ERROR: Bible sample data generation failed."
   exit 1
 fi
-echo "Bible download complete."
+echo "Bible sample data generation complete."
 echo
 
 # Step 2: Import the Bible
