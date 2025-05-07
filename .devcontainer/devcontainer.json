@@ -1,7 +1,7 @@
 {
   "name": "SermonScribe Codespace",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
-  "forwardPorts": [3000],
+  "forwardPorts": [3000, 5000],
   "postCreateCommand": "npm install",
-  "remoteUser": "vscode"
+  "remoteUser": "node"
 }
