@@ -1,18 +1,7 @@
-// File: .devcontainer/devcontainer.json
 {
   "name": "SermonScribe Codespace",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  // Use Node.js v18 image with TypeScript tooling
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
-    }
-  },
-  // Expose your dev server port
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
   "forwardPorts": [3000],
-  // Install deps on initial create
   "postCreateCommand": "npm install",
   "remoteUser": "vscode"
 }
